@@ -10,7 +10,8 @@ import '../../../../core/constant/app_dimensions.dart';
 
 import '../../../../core/theme/app_theme_extension.dart';
 
-import '../../../../core/widgets/button/app_button.dart';
+import '../../../../core/widgets/button/app_button1.dart';
+import '../../../../core/widgets/button/app_button2.dart';
 import '../../../../core/widgets/input/app_input2.dart';
 import '../../../../core/widgets/input/app_input1.dart';
 import '../../../../core/widgets/nav/app_navbar.dart';
@@ -143,11 +144,11 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
           ),
           const SizedBox(height: AppDimensions.spacingMd),
-          AppButton(label: 'Button', onPressed: () {}),
+          AppButton1(label: 'Button', onPressed: () {}),
           const SizedBox(height: AppDimensions.spacingMd),
-          AppButton(label: 'Button', isLoading: true, onPressed: () {}),
+          AppButton1(label: 'Button', isLoading: true, onPressed: () {}),
           const SizedBox(height: AppDimensions.spacingMd),
-          const AppButton(label: 'Button', enabled: false),
+          const AppButton1(label: 'Button', enabled: false),
           const SizedBox(height: AppDimensions.spacingMd),
           Text(
             'Buttons 2',
@@ -158,15 +159,22 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
           ),
           const SizedBox(height: AppDimensions.spacingMd),
-          AppButton(
+          AppButton2(
             label: 'Button',
-            variant: AppButtonVariant.secondary,
+            variant: AppButton2Variant.secondary,
             onPressed: () {},
           ),
           const SizedBox(height: AppDimensions.spacingMd),
-          AppButton(
+          AppButton2(
             label: 'Create Webinar',
-            variant: AppButtonVariant.tertiary,
+            variant: AppButton2Variant.tertiary,
+            onPressed: () {},
+          ),
+          const SizedBox(height: AppDimensions.spacingMd),
+          AppButton2(
+            label: 'Create Webinar',
+            isLoading: true,
+            variant: AppButton2Variant.tertiary,
             onPressed: () {},
           ),
         ],
