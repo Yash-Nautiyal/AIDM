@@ -9,6 +9,35 @@ class AppColors {
   static const Color brandPrimaryTint = Color(0xFFFFFFFF);
   static const Color brandPurpleTint = Color(0xFFEDE8FE);
 
+  //Gradient
+  static const LinearGradient gradientBrandPurple = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFF3762E3), Color(0xFF6647FA)],
+    stops: [0.0365, 1.1513],
+  );
+
+  static const LinearGradient gradientActiveBlue = LinearGradient(
+    begin: Alignment.centerRight,
+    end: Alignment.centerLeft,
+    colors: [Color(0xFF3086FD), Color(0xFF1333E0)],
+    stops: [0.0468, 0.9958],
+  );
+
+  static const LinearGradient gradientYellow = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFFFED001), Color(0xFFFFA90A)],
+    stops: [0.0824, 0.9373],
+  );
+
+  static const LinearGradient gradientBrandBlue = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [Color(0xFF6189FF), Color(0xFF3762E3)],
+    stops: [0.0684, 0.9904],
+  );
+
   // Status
   static const Color statusLive = Color(0xFFEF3838);
   static const Color statusLiveTint = Color(0xFFFEF0F0);
@@ -57,6 +86,23 @@ class AppColors {
   static Color get lightBorderDefault => const Color(0xFFE8E8EA);
   static Color get lightButtonInactive => const Color(0xFFD4D4D4);
 
+  static List<BoxShadow> get lightBottomNavShadow => [
+    BoxShadow(
+      color: const Color(0x08000000),
+      blurRadius: 24,
+      offset: const Offset(0, -5),
+      spreadRadius: 0,
+    ),
+  ];
+  static List<BoxShadow> get lightButtonShadow => [
+    BoxShadow(
+      color: Color(0x0D000000),
+      offset: Offset(0, 2),
+      blurRadius: 8,
+      spreadRadius: 0,
+    ),
+  ];
+
   // ---------------------------------------------------------------------------
   // DARK MODE COLORS
   // ---------------------------------------------------------------------------
@@ -68,4 +114,19 @@ class AppColors {
   static Color get darkTextTertiary => const Color(0xFF525253);
   static Color get darkBorderDefault => const Color(0xFF404040);
   static Color get darkButtonInactive => const Color(0xFF393939);
+
+  static List<BoxShadow> get darkBottomNavShadow => [
+    BoxShadow(
+      color: const Color(0xFF000000).withValues(alpha: 0.30),
+      blurRadius: 24,
+      offset: const Offset(0, -5),
+    ),
+  ];
+  static List<BoxShadow> get darkButtonShadow => [
+    BoxShadow(
+      color: const Color(0xFF000000).withValues(alpha: 0.30),
+      blurRadius: 24,
+      offset: const Offset(0, -5),
+    ),
+  ];
 }

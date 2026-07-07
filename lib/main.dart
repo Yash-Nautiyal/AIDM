@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'core/theme/app_theme.dart';
-import 'feature/dashboard/presentation/pages/dashboard_page.dart';
+import 'core/utils/app_screen.dart';
+import 'feature/auth/presentation/pages/welocome_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const AppScreenScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: const DashboardPage(),
+      home: const WelocomePage(),
     );
   }
 }

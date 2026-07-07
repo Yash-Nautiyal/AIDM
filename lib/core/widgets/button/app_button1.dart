@@ -1,3 +1,4 @@
+import 'package:aidm/core/utils/responsive_extension.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/app_dimensions.dart';
@@ -44,7 +45,7 @@ class AppButton1 extends StatelessWidget {
 
     return SizedBox(
       width: expand ? double.infinity : null,
-      height: 50,
+      height: AppDimensions.buttonHeight,
       child: Material(
         color: backgroundColor,
         shape: RoundedRectangleBorder(borderRadius: borderRadius),
@@ -62,14 +63,14 @@ class AppButton1 extends StatelessWidget {
                 children: [
                   if (isLoading) ...[
                     SizedBox(
-                      width: 16,
-                      height: 16,
+                      width: 16.sp,
+                      height: 16.sp,
                       child: CircularProgressIndicator(
                         strokeWidth: 2,
                         color: textColor,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: AppDimensions.spacingSm),
                   ],
                   Text(
                     label,

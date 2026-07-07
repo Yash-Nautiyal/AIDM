@@ -132,7 +132,7 @@ class _DashboardPageState extends State<DashboardPage> {
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(AppDimensions.pagePadding),
+      padding: EdgeInsets.all(AppDimensions.pagePadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -144,9 +144,9 @@ class _DashboardPageState extends State<DashboardPage> {
               color: theme.textPrimary,
             ),
           ),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           const AppInput(),
-          const SizedBox(height: AppDimensions.spacing3xl),
+          SizedBox(height: AppDimensions.spacing3xl),
           Text(
             'Input field 2',
             style: TextStyle(
@@ -155,9 +155,9 @@ class _DashboardPageState extends State<DashboardPage> {
               color: theme.textPrimary,
             ),
           ),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           const AppInput2(),
-          const SizedBox(height: AppDimensions.spacing3xl),
+          SizedBox(height: AppDimensions.spacing3xl),
           Text(
             'Buttons',
             style: TextStyle(
@@ -166,13 +166,13 @@ class _DashboardPageState extends State<DashboardPage> {
               color: theme.textPrimary,
             ),
           ),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           AppButton1(label: 'Button', onPressed: () {}),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           AppButton1(label: 'Button', isLoading: true, onPressed: () {}),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           const AppButton1(label: 'Button', enabled: false),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           Text(
             'Buttons 2',
             style: TextStyle(
@@ -181,26 +181,26 @@ class _DashboardPageState extends State<DashboardPage> {
               color: theme.textPrimary,
             ),
           ),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           AppButton2(
             label: 'Button',
             variant: AppButton2Variant.secondary,
             onPressed: () {},
           ),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           AppButton2(
             label: 'Create Webinar',
             variant: AppButton2Variant.tertiary,
             onPressed: () {},
           ),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           AppButton2(
             label: 'Create Webinar',
             isLoading: true,
             variant: AppButton2Variant.tertiary,
             onPressed: () {},
           ),
-          const SizedBox(height: AppDimensions.spacing3xl),
+          SizedBox(height: AppDimensions.spacing3xl),
           Text(
             'Carousel dots',
             style: TextStyle(
@@ -209,7 +209,7 @@ class _DashboardPageState extends State<DashboardPage> {
               color: theme.textPrimary,
             ),
           ),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           SizedBox(
             height: 160,
             child: PageView.builder(
@@ -218,7 +218,7 @@ class _DashboardPageState extends State<DashboardPage> {
               onPageChanged: (index) => setState(() => _carouselIndex = index),
               itemBuilder: (context, index) {
                 return Container(
-                  margin: const EdgeInsets.symmetric(
+                  margin: EdgeInsets.symmetric(
                     horizontal: AppDimensions.spacingXs,
                   ),
                   decoration: BoxDecoration(
@@ -240,7 +240,7 @@ class _DashboardPageState extends State<DashboardPage> {
               },
             ),
           ),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           Center(
             child: AppCarouselDots(
               count: _carouselItemCount,
@@ -264,7 +264,7 @@ class _DashboardPageState extends State<DashboardPage> {
               color: theme.textPrimary,
             ),
           ),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           AppToggle(
             value: _switchValue,
             onChanged: (value) {
@@ -273,7 +273,7 @@ class _DashboardPageState extends State<DashboardPage> {
               });
             },
           ),
-          const SizedBox(height: AppDimensions.spacing3xl),
+          SizedBox(height: AppDimensions.spacing3xl),
           Text(
             'Date picker',
             style: TextStyle(
@@ -282,14 +282,14 @@ class _DashboardPageState extends State<DashboardPage> {
               color: theme.textPrimary,
             ),
           ),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           AppDatePicker(
             initialDate: _selectedDate,
             onDateChanged: (date) => setState(() => _selectedDate = date),
             onClear: () => setState(() => _selectedDate = DateTime.now()),
             onDone: () {},
           ),
-          const SizedBox(height: AppDimensions.spacing3xl),
+          SizedBox(height: AppDimensions.spacing3xl),
           Text(
             'Time picker',
             style: TextStyle(
@@ -298,14 +298,14 @@ class _DashboardPageState extends State<DashboardPage> {
               color: theme.textPrimary,
             ),
           ),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           AppTimePicker(
             initialTime: _selectedTime,
             onTimeChanged: (time) => setState(() => _selectedTime = time),
             onClear: () => setState(() => _selectedTime = TimeOfDay.now()),
             onDone: () {},
           ),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           AppButton2(
             label: 'Open date picker',
             variant: AppButton2Variant.tertiary,
@@ -319,7 +319,7 @@ class _DashboardPageState extends State<DashboardPage> {
               }
             },
           ),
-          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(height: AppDimensions.spacingMd),
           AppButton2(
             label: 'Open time picker',
             variant: AppButton2Variant.tertiary,

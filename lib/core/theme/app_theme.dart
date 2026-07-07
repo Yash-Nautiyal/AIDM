@@ -13,7 +13,7 @@ class AppTheme {
       brightness: Brightness.light,
       scaffoldBackgroundColor: AppColors.lightBgPage,
       textTheme:
-          const TextTheme(
+          TextTheme(
             displayLarge: AppTypography.display,
             headlineSmall: AppTypography.h3,
             bodyLarge: AppTypography.bodyLarge,
@@ -36,7 +36,7 @@ class AppTheme {
       brightness: Brightness.dark,
       scaffoldBackgroundColor: AppColors.darkBgPage,
       textTheme:
-          const TextTheme(
+          TextTheme(
             displayLarge: AppTypography.display,
             headlineSmall: AppTypography.h3,
             bodyLarge: AppTypography.bodyLarge,

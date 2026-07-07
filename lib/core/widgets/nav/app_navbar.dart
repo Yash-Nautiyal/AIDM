@@ -41,14 +41,7 @@ class AppNavbar extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: theme.backgroundPage,
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x08000000),
-            offset: Offset(0, -5),
-            blurRadius: 24,
-            spreadRadius: 0,
-          ),
-        ],
+        boxShadow: theme.bottomNavShadow,
       ),
       child: SafeArea(
         top: false,
@@ -80,13 +73,7 @@ class AppNavbar extends StatelessWidget {
                         borderRadius: BorderRadius.circular(
                           AppDimensions.navPillRadius,
                         ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: theme.brandPrimary.withValues(alpha: 0.28),
-                            blurRadius: 12,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
+                        boxShadow: theme.bottomNavShadow,
                       ),
                     ),
                   ),
@@ -140,7 +127,7 @@ class _NavBarItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(
+              padding: EdgeInsets.symmetric(
                 horizontal: AppDimensions.navPillHorizontalPadding,
                 vertical: AppDimensions.navPillVerticalPadding,
               ),
@@ -168,7 +155,7 @@ class _NavBarItem extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: AppDimensions.navLabelGap),
+            SizedBox(height: AppDimensions.navLabelGap),
             AnimatedDefaultTextStyle(
               duration: AppAnimations.navDuration,
               curve: AppAnimations.standardCurve,

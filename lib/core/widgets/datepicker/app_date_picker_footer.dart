@@ -22,7 +22,7 @@ class AppDatePickerFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     final typography = Theme.of(context).extension<AppTypographyExtension>()!;
     return Padding(
-      padding: const EdgeInsets.symmetric(
+      padding: EdgeInsets.symmetric(
         horizontal: AppDimensions.spacingLg,
         vertical: AppDimensions.spacingMd,
       ),

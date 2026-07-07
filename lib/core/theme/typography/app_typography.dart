@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../utils/responsive_extension.dart';
 
 class AppTypography {
   AppTypography._();
@@ -6,138 +7,138 @@ class AppTypography {
   static const String fontFamily = 'PlusJakartaSans';
 
   // HEADLINE
-  static const TextStyle display = TextStyle(
+  static TextStyle get display => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 44,
-    fontWeight: FontWeight.w800,
-  );
-
-  static const TextStyle h1 = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 35,
+    fontSize: 44.sp,
     fontWeight: FontWeight.w600,
   );
 
-  static const TextStyle h2 = TextStyle(
+  static TextStyle get h1 => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 26,
+    fontSize: 35.sp,
     fontWeight: FontWeight.w600,
   );
 
-  static const TextStyle h3 = TextStyle(
+  static TextStyle get h2 => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 18,
+    fontSize: 26.sp,
     fontWeight: FontWeight.w600,
-    height: 18 / 18, // 1.0
   );
 
-  static const TextStyle h4 = TextStyle(
+  static TextStyle get h3 => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 20,
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w600,
+    height: 18 / 18, // Line height multiplier remains unscaled
+  );
+
+  static TextStyle get h4 => TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 20.sp,
     fontWeight: FontWeight.w500,
-    height: 18 / 20, // 0.9
+    height: 18 / 20,
   );
 
   // BODY
-  static const TextStyle bodyLarge = TextStyle(
+  static TextStyle get bodyLarge => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 18,
+    fontSize: 18.sp,
     fontWeight: FontWeight.w400,
     height: 25 / 18,
   );
 
-  static const TextStyle bodyMedium16 = TextStyle(
+  static TextStyle get bodyMedium16 => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w500,
   );
 
-  static const TextStyle body16 = TextStyle(
+  static TextStyle get body16 => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w500,
     height: 20 / 16,
   );
 
-  static const TextStyle body = TextStyle(
+  static TextStyle get body => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w400,
   );
 
-  static const TextStyle bodyMedium = TextStyle(
+  static TextStyle get bodyMedium => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w500,
   );
 
-  static const TextStyle bodySemibold = TextStyle(
+  static TextStyle get bodySemibold => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 13,
+    fontSize: 13.sp,
     fontWeight: FontWeight.w600,
   );
 
-  static const TextStyle bodyCompact = TextStyle(
+  static TextStyle get bodyCompact => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w400,
     height: 19 / 12,
   );
 
-  static const TextStyle bodyXSmall = TextStyle(
+  static TextStyle get bodyXSmall => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 10,
+    fontSize: 10.sp,
     fontWeight: FontWeight.w500,
   );
 
   // LABELS & CAPTIONS
-  static const TextStyle labelLarge = TextStyle(
+  static TextStyle get labelLarge => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w600,
   );
 
-  static const TextStyle label = TextStyle(
+  static TextStyle get label => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeight.w600,
     height: 24 / 16,
   );
 
-  static const TextStyle labelMedium = TextStyle(
+  static TextStyle get labelMedium => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 14,
+    fontSize: 14.sp,
     fontWeight: FontWeight.w500,
   );
 
-  static const TextStyle labelSmall = TextStyle(
+  static TextStyle get labelSmall => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 10,
+    fontSize: 10.sp,
     fontWeight: FontWeight.w500,
   );
 
-  static const TextStyle captionBold = TextStyle(
+  static TextStyle get captionBold => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w600,
   );
 
-  static const TextStyle caption = TextStyle(
+  static TextStyle get caption => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w500,
     height: 18 / 12,
   );
 
-  static const TextStyle captionLight = TextStyle(
+  static TextStyle get captionLight => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 12,
+    fontSize: 12.sp,
     fontWeight: FontWeight.w400,
   );
 
-  static const TextStyle nav = TextStyle(
+  static TextStyle get nav => TextStyle(
     fontFamily: fontFamily,
-    fontSize: 10,
+    fontSize: 10.sp,
     fontWeight: FontWeight.w500,
   );
 }

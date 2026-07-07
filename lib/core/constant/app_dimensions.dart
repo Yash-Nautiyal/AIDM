@@ -1,33 +1,41 @@
+import '../utils/responsive_extension.dart';
+
 abstract final class AppDimensions {
   // Page layout
-  static const double pagePadding = 24;
-  static const double spacingXs = 4;
-  static const double spacingSm = 8;
-  static const double spacingMd = 12;
-  static const double spacingLg = 16;
-  static const double spacingXl = 20;
-  static const double spacing2xl = 24;
-  static const double spacing3xl = 32;
+  static double get pagePadding => 24.w;
+  static double get spacingXs => 4.w;
+  static double get spacingSm => 8.w;
+  static double get spacingMd => 12.w;
+  static double get spacingLg => 16.w;
+  static double get spacingXl => 20.w;
+  static double get spacing2xl => 24.w;
+  static double get spacing3xl => 32.w;
+
+  // Button
+  static double get buttonHeight => 50.h;
 
   // Nav bar
-  static const double navBarHeight = 74;
-  static const double navIconSize = 20;
-  static const double navPillHorizontalPadding = 16;
-  static const double navPillVerticalPadding = 8;
-  static const double navPillRadius = 20;
-  static const double navItemRadius = 12;
-  static const double navLabelFontSize = 11;
-  static const double navLabelLineHeight = 1.2;
-  static const double navLabelGap = 4;
-  static const double navLabelHeight = navLabelFontSize * navLabelLineHeight;
+  static double get navBarHeight => 74.h;
+  static double get navIconSize => 20.w;
+  static double get navPillHorizontalPadding => 16.w;
+  static double get navPillVerticalPadding => 8.h;
+  static double get navPillRadius => 20.r;
+  static double get navItemRadius => 12.r;
 
-  static const double navPillHeight = navIconSize + navPillVerticalPadding * 2;
-  static const double navPillWidth = navIconSize + navPillHorizontalPadding * 2;
-  static const double navContentHeight =
+  // Nav text math
+  static double get navLabelFontSize => 11.sp;
+  static double get navLabelLineHeight => 1.2;
+  static double get navLabelGap => 4.h;
+  static double get navLabelHeight => navLabelFontSize * navLabelLineHeight;
+
+  // Computed layout bounds
+  static double get navPillHeight => navIconSize + navPillVerticalPadding * 2;
+  static double get navPillWidth => navIconSize + navPillHorizontalPadding * 2;
+  static double get navContentHeight =>
       navPillHeight + navLabelGap + navLabelHeight;
 
   // Radius
-  static const double radiusSm = 9;
-  static const double radiusMd = 12;
-  static const double radiusLg = 16;
+  static double get radiusSm => 9.r;
+  static double get radiusMd => 12.r;
+  static double get radiusLg => 16.r;
 }

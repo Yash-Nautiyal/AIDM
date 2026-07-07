@@ -8,6 +8,16 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
   final Color brandPrimaryTint;
   final Color brandPurpleTint;
 
+  // Shadow
+  final List<BoxShadow> bottomNavShadow;
+  final List<BoxShadow> buttonShadow;
+
+  // Gradient
+  final LinearGradient gradientBrandPurple;
+  final LinearGradient gradientActiveBlue;
+  final LinearGradient gradientYellow;
+  final LinearGradient gradientBrandBlue;
+
   // Background
   final Color backgroundPage;
   final Color backgroundInput;
@@ -56,6 +66,12 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     required this.brandPurple,
     required this.brandPrimaryTint,
     required this.brandPurpleTint,
+    required this.bottomNavShadow,
+    required this.buttonShadow,
+    required this.gradientBrandPurple,
+    required this.gradientActiveBlue,
+    required this.gradientYellow,
+    required this.gradientBrandBlue,
     required this.backgroundPage,
     required this.backgroundInput,
     required this.lightBlackScreen,
@@ -95,6 +111,12 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     brandPurple: AppColors.brandPurple,
     brandPrimaryTint: AppColors.brandPrimaryTint,
     brandPurpleTint: AppColors.brandPurpleTint,
+    bottomNavShadow: AppColors.lightBottomNavShadow,
+    buttonShadow: AppColors.lightButtonShadow,
+    gradientBrandPurple: AppColors.gradientBrandPurple,
+    gradientActiveBlue: AppColors.gradientActiveBlue,
+    gradientYellow: AppColors.gradientYellow,
+    gradientBrandBlue: AppColors.gradientBrandBlue,
     backgroundPage: AppColors.lightBgPage,
     backgroundInput: AppColors.lightBgInput,
     lightBlackScreen: AppColors.lightBlackScreen,
@@ -134,6 +156,12 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     brandPurple: AppColors.brandPurple,
     brandPrimaryTint: AppColors.brandPrimaryTint,
     brandPurpleTint: AppColors.brandPurpleTint,
+    bottomNavShadow: AppColors.darkBottomNavShadow,
+    buttonShadow: AppColors.darkButtonShadow,
+    gradientBrandPurple: AppColors.gradientBrandPurple,
+    gradientActiveBlue: AppColors.gradientActiveBlue,
+    gradientYellow: AppColors.gradientYellow,
+    gradientBrandBlue: AppColors.gradientBrandBlue,
     backgroundPage: AppColors.darkBgPage,
     backgroundInput: AppColors.darkBgInput,
     lightBlackScreen: AppColors.lightBlackScreen,
@@ -173,6 +201,12 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     Color? brandPurple,
     Color? brandPrimaryTint,
     Color? brandPurpleTint,
+    List<BoxShadow>? bottomNavShadow,
+    List<BoxShadow>? buttonShadow,
+    LinearGradient? gradientBrandPurple,
+    LinearGradient? gradientActiveBlue,
+    LinearGradient? gradientYellow,
+    LinearGradient? gradientBrandBlue,
     Color? backgroundPage,
     Color? backgroundInput,
     Color? lightBlackScreen,
@@ -210,6 +244,12 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
       brandPurple: brandPurple ?? this.brandPurple,
       brandPrimaryTint: brandPrimaryTint ?? this.brandPrimaryTint,
       brandPurpleTint: brandPurpleTint ?? this.brandPurpleTint,
+      bottomNavShadow: bottomNavShadow ?? this.bottomNavShadow,
+      buttonShadow: buttonShadow ?? this.buttonShadow,
+      gradientBrandPurple: gradientBrandPurple ?? this.gradientBrandPurple,
+      gradientActiveBlue: gradientActiveBlue ?? this.gradientActiveBlue,
+      gradientYellow: gradientYellow ?? this.gradientYellow,
+      gradientBrandBlue: gradientBrandBlue ?? this.gradientBrandBlue,
       backgroundPage: backgroundPage ?? this.backgroundPage,
       backgroundInput: backgroundInput ?? this.backgroundInput,
       lightBlackScreen: lightBlackScreen ?? this.lightBlackScreen,
@@ -263,6 +303,30 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
         t,
       )!,
       brandPurpleTint: Color.lerp(brandPurpleTint, other.brandPurpleTint, t)!,
+      bottomNavShadow:
+          BoxShadow.lerpList(bottomNavShadow, other.bottomNavShadow, t) ?? [],
+      buttonShadow:
+          BoxShadow.lerpList(buttonShadow, other.buttonShadow, t) ?? [],
+      gradientBrandPurple: LinearGradient.lerp(
+        gradientBrandPurple,
+        other.gradientBrandPurple,
+        t,
+      )!,
+      gradientActiveBlue: LinearGradient.lerp(
+        gradientActiveBlue,
+        other.gradientActiveBlue,
+        t,
+      )!,
+      gradientYellow: LinearGradient.lerp(
+        gradientYellow,
+        other.gradientYellow,
+        t,
+      )!,
+      gradientBrandBlue: LinearGradient.lerp(
+        gradientBrandBlue,
+        other.gradientBrandBlue,
+        t,
+      )!,
       backgroundPage: Color.lerp(backgroundPage, other.backgroundPage, t)!,
       backgroundInput: Color.lerp(backgroundInput, other.backgroundInput, t)!,
       lightBlackScreen: Color.lerp(

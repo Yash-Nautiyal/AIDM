@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../constant/app_dimensions.dart';
-import '../../theme/app_colors.dart';
 import '../../theme/app_theme_extension.dart';
+import '../../theme/typography/app_typography_extension.dart';
+import '../../utils/responsive_extension.dart';
 
 class AppInput2 extends StatefulWidget {
   const AppInput2({
@@ -73,7 +74,7 @@ class _AppInput2State extends State<AppInput2> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
     final isFocused = _focusNode.hasFocus;
-
+    final typography = Theme.of(context).extension<AppTypographyExtension>()!;
     return DecoratedBox(
       decoration: BoxDecoration(
         color: theme.brandPrimaryTint,
@@ -102,22 +103,14 @@ class _AppInput2State extends State<AppInput2> {
         textInputAction: widget.textInputAction,
         onChanged: widget.onChanged,
         onSubmitted: widget.onSubmitted,
-        style: TextStyle(
-          fontSize: 15,
-          height: 1.4,
-          color: AppColors.textPrimary,
-        ),
+        style: typography.body16.copyWith(color: theme.textPrimary),
         cursorColor: theme.borderFocus,
         decoration: InputDecoration(
           hintText: widget.hintText,
-          hintStyle: TextStyle(
-            fontSize: 15,
-            height: 1.4,
-            color: AppColors.lightTextTertiary,
-          ),
-          contentPadding: const EdgeInsets.symmetric(
-            horizontal: 12,
-            vertical: 11,
+          hintStyle: typography.body16.copyWith(color: theme.textTertiary),
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 12.w,
+            vertical: 11.h,
           ),
           border: InputBorder.none,
           enabledBorder: InputBorder.none,

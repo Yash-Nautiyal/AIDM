@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../constant/app_dimensions.dart';
 import '../../theme/app_theme_extension.dart';
 import '../../theme/typography/app_typography_extension.dart';
+import '../../utils/responsive_extension.dart';
 import 'app_date_picker_card.dart';
 import 'app_date_picker_footer.dart';
 
@@ -30,7 +31,7 @@ class AppTimePicker extends StatefulWidget {
 }
 
 class _AppTimePickerState extends State<AppTimePicker> {
-  static const double _pickerHeight = 180;
+  static final double _pickerHeight = 180.h;
 
   late DateTime _selectedDateTime;
   late bool _isPm;
@@ -113,9 +114,9 @@ class _AppTimePickerState extends State<AppTimePicker> {
             ),
           ),
           if (!widget.use24HourFormat) ...[
-            const SizedBox(height: AppDimensions.spacingSm),
+            SizedBox(height: AppDimensions.spacingSm),
             _AmPmSegment(isPm: _isPm, onChanged: _handlePeriodChanged),
-            const SizedBox(height: AppDimensions.spacingMd),
+            SizedBox(height: AppDimensions.spacingMd),
           ],
           if (widget.showFooter)
             AppDatePickerFooter(onClear: _handleClear, onDone: _handleDone),
@@ -140,7 +141,7 @@ class _AmPmSegment extends StatelessWidget {
         : theme.backgroundInput;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppDimensions.spacing2xl),
+      padding: EdgeInsets.symmetric(horizontal: AppDimensions.spacing2xl),
       child: CupertinoTheme(
         data: CupertinoThemeData(
           primaryColor: theme.brandPrimary,
@@ -150,7 +151,10 @@ class _AmPmSegment extends StatelessWidget {
           groupValue: isPm,
           backgroundColor: inactiveBackground,
           thumbColor: theme.brandPrimary,
-          padding: const EdgeInsets.all(2),
+          padding: EdgeInsets.symmetric(
+            horizontal: AppDimensions.spacingXs,
+            vertical: AppDimensions.spacingXs,
+          ),
           children: {
             false: _SegmentLabel(label: 'AM', isSelected: !isPm, theme: theme),
             true: _SegmentLabel(label: 'PM', isSelected: isPm, theme: theme),
@@ -179,9 +183,9 @@ class _SegmentLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     final typography = Theme.of(context).extension<AppTypographyExtension>()!;
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppDimensions.spacing2xl,
-        vertical: AppDimensions.spacingSm,
+      padding: EdgeInsets.symmetric(
+        horizontal: AppDimensions.spacingXl,
+        vertical: AppDimensions.spacingXs,
       ),
       child: Text(
         label,

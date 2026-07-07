@@ -18,7 +18,7 @@ Future<DateTime?> showAppDatePicker(
     backgroundColor: Colors.transparent,
     builder: (context) {
       return Padding(
-        padding: const EdgeInsets.all(AppDimensions.spacingLg),
+        padding: EdgeInsets.all(AppDimensions.spacingLg),
         child: AppDatePicker(
           initialDate: initialDate,
           firstDate: firstDate,
@@ -44,7 +44,7 @@ Future<TimeOfDay?> showAppTimePicker(
     backgroundColor: Colors.transparent,
     builder: (context) {
       return Padding(
-        padding: const EdgeInsets.all(AppDimensions.spacingLg),
+        padding: EdgeInsets.all(AppDimensions.spacingLg),
         child: AppTimePicker(
           initialTime: initialTime,
           onTimeChanged: (time) => result = time,
