@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../constant/app_dimensions.dart';
 import '../../theme/app_theme_extension.dart';
 
 enum AppButtonVariant { primary, secondary, tertiary }
@@ -32,12 +33,14 @@ class AppButton extends StatelessWidget {
     if (!enabled) return theme.buttonInactive;
     if (isLoading) {
       return switch (variant) {
-        AppButtonVariant.primary =>
-          theme.buttonBackgroundPrimary.withValues(alpha: 0.6),
+        AppButtonVariant.primary => theme.buttonBackgroundPrimary.withValues(
+          alpha: 0.6,
+        ),
         AppButtonVariant.secondary =>
           theme.buttonBackgroundSecondary.withValues(alpha: 0.6),
-        AppButtonVariant.tertiary =>
-          theme.buttonBackgroundTertiary.withValues(alpha: 0.6),
+        AppButtonVariant.tertiary => theme.buttonBackgroundTertiary.withValues(
+          alpha: 0.6,
+        ),
       };
     }
     return switch (variant) {
@@ -91,8 +94,12 @@ class AppButton extends StatelessWidget {
         color: backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.horizontal(
-            left: Radius.circular(_isButton2Style ? 12 : 16),
-            right: Radius.circular(_isButton2Style ? 12 : 16),
+            left: Radius.circular(
+              _isButton2Style ? AppDimensions.radiusSm : AppDimensions.radiusMd,
+            ),
+            right: Radius.circular(
+              _isButton2Style ? AppDimensions.radiusSm : AppDimensions.radiusMd,
+            ),
           ),
           side: variant == AppButtonVariant.tertiary
               ? BorderSide(color: theme.buttonTertiaryBorder, width: 1)
@@ -104,7 +111,7 @@ class AppButton extends StatelessWidget {
           splashColor: textColor.withValues(alpha: 0.12),
           highlightColor: textColor.withValues(alpha: 0.08),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding: EdgeInsets.symmetric(horizontal: AppDimensions.spacing2xl),
             child: Center(child: child),
           ),
         ),

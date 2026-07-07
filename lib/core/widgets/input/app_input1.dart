@@ -1,3 +1,4 @@
+import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/app_theme_extension.dart';
@@ -76,8 +77,8 @@ class _AppInputState extends State<AppInput> {
       decoration: BoxDecoration(
         color: theme.backgroundInput,
         borderRadius: BorderRadius.horizontal(
-          left: Radius.circular(12),
-          right: Radius.circular(12),
+          left: Radius.circular(AppDimensions.radiusMd),
+          right: Radius.circular(AppDimensions.radiusMd),
         ),
         border: isFocused
             ? Border.all(color: theme.borderFocus, width: 1)

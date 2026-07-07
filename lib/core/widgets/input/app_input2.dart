@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../constant/app_dimensions.dart';
 import '../../theme/app_theme_extension.dart';
 
 class AppInput2 extends StatefulWidget {
@@ -76,8 +77,8 @@ class _AppInput2State extends State<AppInput2> {
       decoration: BoxDecoration(
         color: theme.brandPrimaryTint,
         borderRadius: BorderRadius.horizontal(
-          left: Radius.circular(9),
-          right: Radius.circular(9),
+          left: Radius.circular(AppDimensions.radiusSm),
+          right: Radius.circular(AppDimensions.radiusSm),
         ),
         border: isFocused
             ? Border.all(color: theme.borderFocus, width: 1)

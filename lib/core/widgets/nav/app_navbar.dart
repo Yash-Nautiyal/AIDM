@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../constant/app_animations.dart';
+import '../../constant/app_dimensions.dart';
 import '../../theme/app_theme_extension.dart';
 
 enum AppNavBarItem { dashboard, webinars, calendar, recordings, more }
@@ -50,17 +52,57 @@ class AppNavbar extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: SizedBox(
-          height: 74,
-          child: Row(
-            children: List.generate(items.length, (index) {
-              return Expanded(
-                child: _NavBarItem(
-                  item: items[index],
-                  isSelected: index == currentIndex,
-                  onTap: () => onTap(index),
-                ),
+          height: AppDimensions.navBarHeight,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final itemWidth = constraints.maxWidth / items.length;
+              final contentTop =
+                  (AppDimensions.navBarHeight -
+                      AppDimensions.navContentHeight) /
+                  2;
+
+              return Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  AnimatedPositioned(
+                    duration: AppAnimations.navDuration,
+                    curve: AppAnimations.standardCurve,
+                    left:
+                        currentIndex * itemWidth +
+                        (itemWidth - AppDimensions.navPillWidth) / 2,
+                    top: contentTop,
+                    width: AppDimensions.navPillWidth,
+                    height: AppDimensions.navPillHeight,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: theme.brandPrimary,
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.navPillRadius,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: theme.brandPrimary.withValues(alpha: 0.28),
+                            blurRadius: 12,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Row(
+                    children: List.generate(items.length, (index) {
+                      return Expanded(
+                        child: _NavBarItem(
+                          item: items[index],
+                          isSelected: index == currentIndex,
+                          onTap: () => onTap(index),
+                        ),
+                      );
+                    }),
+                  ),
+                ],
               );
-            }),
+            },
           ),
         ),
       ),
@@ -89,35 +131,55 @@ class _NavBarItem extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
+        splashColor: theme.brandPrimary.withValues(alpha: 0.08),
+        highlightColor: theme.brandPrimary.withValues(alpha: 0.04),
+        borderRadius: BorderRadius.circular(AppDimensions.navItemRadius),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.easeInOut,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color: isSelected ? theme.brandPrimary : Colors.transparent,
-                borderRadius: BorderRadius.circular(20),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimensions.navPillHorizontalPadding,
+                vertical: AppDimensions.navPillVerticalPadding,
               ),
-              child: SvgPicture.asset(
-                item.iconAsset,
-                width: 20,
-                height: 20,
-                colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
+              child: TweenAnimationBuilder<double>(
+                duration: AppAnimations.navDuration,
+                curve: AppAnimations.standardCurve,
+                tween: Tween(
+                  end: isSelected ? AppAnimations.navSelectedScale : 1,
+                ),
+                builder: (context, scale, child) {
+                  return Transform.scale(scale: scale, child: child);
+                },
+                child: TweenAnimationBuilder<Color?>(
+                  duration: AppAnimations.navDuration,
+                  curve: AppAnimations.standardCurve,
+                  tween: ColorTween(end: iconColor),
+                  builder: (context, color, _) {
+                    return SvgPicture.asset(
+                      item.iconAsset,
+                      width: AppDimensions.navIconSize,
+                      height: AppDimensions.navIconSize,
+                      colorFilter: ColorFilter.mode(color!, BlendMode.srcIn),
+                    );
+                  },
+                ),
               ),
             ),
-            const SizedBox(height: 4),
-            Text(
-              item.label,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+            const SizedBox(height: AppDimensions.navLabelGap),
+            AnimatedDefaultTextStyle(
+              duration: AppAnimations.navDuration,
+              curve: AppAnimations.standardCurve,
               style: TextStyle(
-                fontSize: 11,
-                height: 1.2,
+                fontSize: AppDimensions.navLabelFontSize,
+                height: AppDimensions.navLabelLineHeight,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                 color: labelColor,
+              ),
+              child: Text(
+                item.label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
