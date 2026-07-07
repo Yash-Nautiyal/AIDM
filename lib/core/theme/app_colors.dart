@@ -22,6 +22,10 @@ class AppColors {
   static const Color statusDraft = Color(0xFFF59E0B);
   static const Color statusDraftTint = Color(0xFFFEF9EE);
 
+  // Switch colors
+  static const Color switchTrack = Color(0xFFB8B8BD);
+  static const Color switchTrackActive = Color(0xFF30C516);
+
   // Shared UI elements
   static const Color lightBlackScreen = Color(0xFF000000);
   static const Color bgDarkSurface = Color(0xFF1C1C1E);
@@ -30,6 +34,10 @@ class AppColors {
   static const Color borderFocus = Color(0xFF3B5BDB);
   static const Color borderError = Color(0xFFEF3838);
   static const Color borderDark = Color(0xFF3A3A3C);
+
+  //Text colors
+  static const Color textPrimary = Color(0xFF111113);
+  static const Color textSecondary = Color(0xFF737378);
 
   // Button backgrounds
   static Color get buttonBackgroundPrimary => brandPrimary;

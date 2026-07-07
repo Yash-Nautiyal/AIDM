@@ -12,9 +12,14 @@ import '../../../../core/theme/app_theme_extension.dart';
 
 import '../../../../core/widgets/button/app_button1.dart';
 import '../../../../core/widgets/button/app_button2.dart';
+import '../../../../core/widgets/carousel/app_carousel_dots.dart';
 import '../../../../core/widgets/input/app_input2.dart';
 import '../../../../core/widgets/input/app_input1.dart';
 import '../../../../core/widgets/nav/app_navbar.dart';
+import '../../../../core/widgets/toggle/app_toggle.dart';
+import '../../../../core/widgets/datepicker/app_date_picker.dart';
+import '../../../../core/widgets/datepicker/app_time_picker.dart';
+import '../../../../core/widgets/datepicker/show_app_date_picker.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -25,6 +30,24 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = AppNavBarItem.dashboard.index;
+  int _carouselIndex = 0;
+  late final PageController _carouselController;
+  bool _switchValue = false;
+  DateTime _selectedDate = DateTime.now();
+  TimeOfDay _selectedTime = TimeOfDay.now();
+  static const int _carouselItemCount = 3;
+
+  @override
+  void initState() {
+    super.initState();
+    _carouselController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _carouselController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -176,6 +199,139 @@ class _DashboardPageState extends State<DashboardPage> {
             isLoading: true,
             variant: AppButton2Variant.tertiary,
             onPressed: () {},
+          ),
+          const SizedBox(height: AppDimensions.spacing3xl),
+          Text(
+            'Carousel dots',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: theme.textPrimary,
+            ),
+          ),
+          const SizedBox(height: AppDimensions.spacingMd),
+          SizedBox(
+            height: 160,
+            child: PageView.builder(
+              controller: _carouselController,
+              itemCount: _carouselItemCount,
+              onPageChanged: (index) => setState(() => _carouselIndex = index),
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: AppDimensions.spacingXs,
+                  ),
+                  decoration: BoxDecoration(
+                    color: theme.backgroundInput,
+                    borderRadius: BorderRadius.circular(AppDimensions.radiusLg),
+                    border: Border.all(color: theme.borderDefault),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Slide ${index + 1}',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: theme.textSecondary,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: AppDimensions.spacingMd),
+          Center(
+            child: AppCarouselDots(
+              count: _carouselItemCount,
+              currentIndex: _carouselIndex,
+              onDotTap: (index) {
+                _carouselController.animateToPage(
+                  index,
+                  duration: AppAnimations.contentDuration,
+                  curve: AppAnimations.standardCurve,
+                );
+              },
+            ),
+          ),
+
+          SizedBox(height: AppDimensions.spacing3xl),
+          Text(
+            'Switch',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: theme.textPrimary,
+            ),
+          ),
+          const SizedBox(height: AppDimensions.spacingMd),
+          AppToggle(
+            value: _switchValue,
+            onChanged: (value) {
+              setState(() {
+                _switchValue = value;
+              });
+            },
+          ),
+          const SizedBox(height: AppDimensions.spacing3xl),
+          Text(
+            'Date picker',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: theme.textPrimary,
+            ),
+          ),
+          const SizedBox(height: AppDimensions.spacingMd),
+          AppDatePicker(
+            initialDate: _selectedDate,
+            onDateChanged: (date) => setState(() => _selectedDate = date),
+            onClear: () => setState(() => _selectedDate = DateTime.now()),
+            onDone: () {},
+          ),
+          const SizedBox(height: AppDimensions.spacing3xl),
+          Text(
+            'Time picker',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: theme.textPrimary,
+            ),
+          ),
+          const SizedBox(height: AppDimensions.spacingMd),
+          AppTimePicker(
+            initialTime: _selectedTime,
+            onTimeChanged: (time) => setState(() => _selectedTime = time),
+            onClear: () => setState(() => _selectedTime = TimeOfDay.now()),
+            onDone: () {},
+          ),
+          const SizedBox(height: AppDimensions.spacingMd),
+          AppButton2(
+            label: 'Open date picker',
+            variant: AppButton2Variant.tertiary,
+            onPressed: () async {
+              final date = await showAppDatePicker(
+                context,
+                initialDate: _selectedDate,
+              );
+              if (date != null) {
+                setState(() => _selectedDate = date);
+              }
+            },
+          ),
+          const SizedBox(height: AppDimensions.spacingMd),
+          AppButton2(
+            label: 'Open time picker',
+            variant: AppButton2Variant.tertiary,
+            onPressed: () async {
+              final time = await showAppTimePicker(
+                context,
+                initialTime: _selectedTime,
+              );
+              if (time != null) {
+                setState(() => _selectedTime = time);
+              }
+            },
           ),
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constant/app_dimensions.dart';
+import '../../theme/app_colors.dart';
 import '../../theme/app_theme_extension.dart';
 
 class AppInput2 extends StatefulWidget {
@@ -101,14 +102,18 @@ class _AppInput2State extends State<AppInput2> {
         textInputAction: widget.textInputAction,
         onChanged: widget.onChanged,
         onSubmitted: widget.onSubmitted,
-        style: TextStyle(fontSize: 15, height: 1.4, color: theme.textPrimary),
+        style: TextStyle(
+          fontSize: 15,
+          height: 1.4,
+          color: AppColors.textPrimary,
+        ),
         cursorColor: theme.borderFocus,
         decoration: InputDecoration(
           hintText: widget.hintText,
           hintStyle: TextStyle(
             fontSize: 15,
             height: 1.4,
-            color: theme.textTertiary,
+            color: AppColors.lightTextTertiary,
           ),
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 12,

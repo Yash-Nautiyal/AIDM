@@ -34,6 +34,10 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
   final Color buttonTertiaryBorder;
   final Color buttonInactive;
 
+  // Switch
+  final Color switchTrack;
+  final Color switchTrackActive;
+
   // Status
   final Color statusLive;
   final Color statusLiveTint;
@@ -70,6 +74,8 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     required this.buttonBackgroundTertiary,
     required this.buttonTertiaryBorder,
     required this.buttonInactive,
+    required this.switchTrack,
+    required this.switchTrackActive,
     required this.statusLive,
     required this.statusLiveTint,
     required this.statusUpcoming,
@@ -107,6 +113,8 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     buttonBackgroundTertiary: AppColors.buttonBackgroundTertiary,
     buttonTertiaryBorder: AppColors.buttonTertiaryBorder,
     buttonInactive: AppColors.lightButtonInactive,
+    switchTrack: AppColors.switchTrack,
+    switchTrackActive: AppColors.switchTrackActive,
     statusLive: AppColors.statusLive,
     statusLiveTint: AppColors.statusLiveTint,
     statusUpcoming: AppColors.statusUpcoming,
@@ -144,6 +152,8 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     buttonBackgroundTertiary: AppColors.buttonBackgroundTertiary,
     buttonTertiaryBorder: AppColors.buttonTertiaryBorder,
     buttonInactive: AppColors.darkButtonInactive,
+    switchTrack: AppColors.switchTrack,
+    switchTrackActive: AppColors.switchTrackActive,
     statusLive: AppColors.statusLive,
     statusLiveTint: AppColors.statusLiveTint,
     statusUpcoming: AppColors.statusUpcoming,
@@ -181,6 +191,8 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     Color? buttonBackgroundTertiary,
     Color? buttonTertiaryBorder,
     Color? buttonInactive,
+    Color? switchTrack,
+    Color? switchTrackActive,
     Color? statusLive,
     Color? statusLiveTint,
     Color? statusUpcoming,
@@ -220,6 +232,8 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
           buttonBackgroundTertiary ?? this.buttonBackgroundTertiary,
       buttonTertiaryBorder: buttonTertiaryBorder ?? this.buttonTertiaryBorder,
       buttonInactive: buttonInactive ?? this.buttonInactive,
+      switchTrack: switchTrack ?? this.switchTrack,
+      switchTrackActive: switchTrackActive ?? this.switchTrackActive,
       statusLive: statusLive ?? this.statusLive,
       statusLiveTint: statusLiveTint ?? this.statusLiveTint,
       statusUpcoming: statusUpcoming ?? this.statusUpcoming,
@@ -291,6 +305,12 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
         t,
       )!,
       buttonInactive: Color.lerp(buttonInactive, other.buttonInactive, t)!,
+      switchTrack: Color.lerp(switchTrack, other.switchTrack, t)!,
+      switchTrackActive: Color.lerp(
+        switchTrackActive,
+        other.switchTrackActive,
+        t,
+      )!,
       statusLive: Color.lerp(statusLive, other.statusLive, t)!,
       statusLiveTint: Color.lerp(statusLiveTint, other.statusLiveTint, t)!,
       statusUpcoming: Color.lerp(statusUpcoming, other.statusUpcoming, t)!,

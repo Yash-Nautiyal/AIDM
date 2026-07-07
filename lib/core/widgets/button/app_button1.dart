@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../constant/app_dimensions.dart';
 import '../../theme/app_theme_extension.dart';
+import '../../theme/typography/app_typography_extension.dart';
 
 class AppButton1 extends StatelessWidget {
   const AppButton1({
@@ -32,6 +33,7 @@ class AppButton1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
+    final typography = Theme.of(context).extension<AppTypographyExtension>()!;
     final backgroundColor = _backgroundColor(theme);
     final textColor = theme.brandPrimaryTint;
 
@@ -71,12 +73,7 @@ class AppButton1 extends StatelessWidget {
                   ],
                   Text(
                     label,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      height: 1.4,
-                      color: textColor,
-                    ),
+                    style: typography.label.copyWith(color: textColor),
                   ),
                 ],
               ),

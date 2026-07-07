@@ -1,7 +1,9 @@
+import 'package:aidm/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/app_dimensions.dart';
 import '../../theme/app_theme_extension.dart';
+import '../../theme/typography/app_typography_extension.dart';
 
 enum AppButton2Variant { secondary, tertiary }
 
@@ -33,8 +35,9 @@ class AppButton2 extends StatelessWidget {
       return switch (variant) {
         AppButton2Variant.secondary =>
           theme.buttonBackgroundSecondary.withValues(alpha: 0.6),
-        AppButton2Variant.tertiary =>
-          theme.buttonBackgroundTertiary.withValues(alpha: 0.6),
+        AppButton2Variant.tertiary => theme.buttonBackgroundTertiary.withValues(
+          alpha: 0.6,
+        ),
       };
     }
     return switch (variant) {
@@ -44,13 +47,14 @@ class AppButton2 extends StatelessWidget {
   }
 
   Color _textColor(AppThemeExtension theme) {
-    if (_isTertiary) return theme.textPrimary;
+    if (_isTertiary) return AppColors.textSecondary;
     return theme.brandPrimaryTint;
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
+    final typography = Theme.of(context).extension<AppTypographyExtension>()!;
     final backgroundColor = _backgroundColor(theme);
     final textColor = _textColor(theme);
 
@@ -64,7 +68,10 @@ class AppButton2 extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: borderRadius,
         side: _isTertiary
-            ? BorderSide(color: theme.buttonTertiaryBorder, width: 1)
+            ? BorderSide(
+                color: theme.buttonTertiaryBorder.withValues(alpha: 0.6),
+                width: 1,
+              )
             : BorderSide.none,
       ),
       clipBehavior: Clip.antiAlias,
@@ -90,15 +97,7 @@ class AppButton2 extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                 ],
-                Text(
-                  label,
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    height: 1.4,
-                    color: textColor,
-                  ),
-                ),
+                Text(label, style: typography.label.copyWith(color: textColor)),
               ],
             ),
           ),

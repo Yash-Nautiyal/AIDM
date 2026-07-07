@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../constant/app_animations.dart';
 import '../../constant/app_dimensions.dart';
 import '../../theme/app_theme_extension.dart';
+import '../../theme/typography/app_typography_extension.dart';
 
 enum AppNavBarItem { dashboard, webinars, calendar, recordings, more }
 
@@ -124,6 +125,7 @@ class _NavBarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
+    final typography = Theme.of(context).extension<AppTypographyExtension>()!;
     final iconColor = isSelected ? Colors.white : theme.textSecondary;
     final labelColor = isSelected ? theme.brandPrimary : theme.textSecondary;
 
@@ -170,12 +172,7 @@ class _NavBarItem extends StatelessWidget {
             AnimatedDefaultTextStyle(
               duration: AppAnimations.navDuration,
               curve: AppAnimations.standardCurve,
-              style: TextStyle(
-                fontSize: AppDimensions.navLabelFontSize,
-                height: AppDimensions.navLabelLineHeight,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                color: labelColor,
-              ),
+              style: typography.nav.copyWith(color: labelColor),
               child: Text(
                 item.label,
                 maxLines: 1,
