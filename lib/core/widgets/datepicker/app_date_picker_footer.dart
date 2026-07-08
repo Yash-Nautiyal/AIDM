@@ -1,4 +1,4 @@
-import 'package:aidm/core/widgets/button/app_button1.dart';
+import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/app_dimensions.dart';

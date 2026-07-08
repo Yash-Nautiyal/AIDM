@@ -14,6 +14,7 @@ abstract class AppAssets {
       '${_imagePath}phone_notifications.png';
   static const String calendarNotificationsImg =
       '${_imagePath}calendar_notifications.png';
+  static const String premiumImg = '${_imagePath}crown.png';
 
   // icons
   static const String calendar1Icon = '${_iconPath}calendar1.svg';
@@ -21,6 +22,7 @@ abstract class AppAssets {
   static const String homeIcon = '${_iconPath}home.svg';
   static const String menuIcon = '${_iconPath}menu.svg';
   static const String recordingIcon = '${_iconPath}recording.svg';
+  static const String premiumIcon = '${_iconPath}crown.svg';
 
   // illustrations
   static const String calendarAlertIll =

@@ -10,8 +10,7 @@ import '../../../../core/constant/app_dimensions.dart';
 
 import '../../../../core/theme/app_theme_extension.dart';
 
-import '../../../../core/widgets/button/app_button1.dart';
-import '../../../../core/widgets/button/app_button2.dart';
+import '../../../../core/widgets/button/app_button.dart';
 import '../../../../core/widgets/carousel/app_carousel_dots.dart';
 import '../../../../core/widgets/input/app_input2.dart';
 import '../../../../core/widgets/input/app_input1.dart';
@@ -173,33 +172,8 @@ class _DashboardPageState extends State<DashboardPage> {
           SizedBox(height: AppDimensions.spacingMd),
           const AppButton1(label: 'Button', enabled: false),
           SizedBox(height: AppDimensions.spacingMd),
-          Text(
-            'Buttons 2',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: theme.textPrimary,
-            ),
-          ),
-          SizedBox(height: AppDimensions.spacingMd),
-          AppButton2(
-            label: 'Button',
-            variant: AppButton2Variant.secondary,
-            onPressed: () {},
-          ),
-          SizedBox(height: AppDimensions.spacingMd),
-          AppButton2(
-            label: 'Create Webinar',
-            variant: AppButton2Variant.tertiary,
-            onPressed: () {},
-          ),
-          SizedBox(height: AppDimensions.spacingMd),
-          AppButton2(
-            label: 'Create Webinar',
-            isLoading: true,
-            variant: AppButton2Variant.tertiary,
-            onPressed: () {},
-          ),
+          const AppButton1(label: 'Button', type: AppButton1Type.secondary),
+
           SizedBox(height: AppDimensions.spacing3xl),
           Text(
             'Carousel dots',
@@ -306,9 +280,8 @@ class _DashboardPageState extends State<DashboardPage> {
             onDone: () {},
           ),
           SizedBox(height: AppDimensions.spacingMd),
-          AppButton2(
+          AppButton1(
             label: 'Open date picker',
-            variant: AppButton2Variant.tertiary,
             onPressed: () async {
               final date = await showAppDatePicker(
                 context,
@@ -320,9 +293,8 @@ class _DashboardPageState extends State<DashboardPage> {
             },
           ),
           SizedBox(height: AppDimensions.spacingMd),
-          AppButton2(
+          AppButton1(
             label: 'Open time picker',
-            variant: AppButton2Variant.tertiary,
             onPressed: () async {
               final time = await showAppTimePicker(
                 context,

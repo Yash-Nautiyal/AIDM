@@ -5,17 +5,16 @@ import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/core/utils/responsive_extension.dart';
-import 'package:aidm/core/widgets/button/app_button1.dart';
-import 'package:aidm/core/widgets/button/app_button2.dart';
+import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:aidm/core/widgets/carousel/app_carousel_dots.dart';
 import 'package:aidm/core/widgets/dialog/ios_action_sheet.dart';
 import 'package:aidm/core/widgets/input/app_input1.dart';
-import 'package:aidm/feature/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../widgets/sliding_page_layout.dart';
+import 'premium_page.dart';
 
 class PermissionPage extends StatefulWidget {
   const PermissionPage({super.key});
@@ -86,7 +85,7 @@ class _PermissionPageState extends State<PermissionPage>
   void _finishOnboarding() {
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => const DashboardPage()),
+      MaterialPageRoute(builder: (context) => const PremiumPage()),
       (_) => false,
     );
   }
@@ -332,11 +331,7 @@ class _ProfileSlide extends StatelessWidget {
       ),
       actions: [
         AppButton1(label: 'Continue', onPressed: onContinue),
-        AppButton2(
-          label: 'Not Now',
-          variant: AppButton2Variant.tertiary,
-          onPressed: onNotNow,
-        ),
+        AppButton1(label: 'Not Now', onPressed: onNotNow, enabled: false),
       ],
     );
   }

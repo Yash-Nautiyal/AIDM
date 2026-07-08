@@ -70,7 +70,6 @@ class AppColors {
 
   // Button backgrounds
   static Color get buttonBackgroundPrimary => brandPrimary;
-  static const Color buttonBackgroundSecondary = Color(0xFF3B5BDB);
   static const Color buttonBackgroundTertiary = Color(0xFFFFFFFF);
   static const Color buttonTertiaryBorder = Color(0xFFE8E8ED);
 
@@ -103,6 +102,15 @@ class AppColors {
     ),
   ];
 
+  static List<BoxShadow> get lightCardShadow => [
+    const BoxShadow(
+      color: Color(0x0F000000),
+      offset: Offset(1, 4),
+      blurRadius: 16,
+      spreadRadius: 0,
+    ),
+  ];
+
   // ---------------------------------------------------------------------------
   // DARK MODE COLORS
   // ---------------------------------------------------------------------------
@@ -127,6 +135,15 @@ class AppColors {
       color: const Color(0xFF000000).withValues(alpha: 0.30),
       blurRadius: 24,
       offset: const Offset(0, -5),
+    ),
+  ];
+
+  static List<BoxShadow> get darkCardShadow => [
+    BoxShadow(
+      color: const Color(0xFF000000).withValues(alpha: 0.25),
+      offset: const Offset(0, 4),
+      blurRadius: 16,
+      spreadRadius: 0,
     ),
   ];
 }

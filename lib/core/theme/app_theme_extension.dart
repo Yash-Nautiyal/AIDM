@@ -11,6 +11,7 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
   // Shadow
   final List<BoxShadow> bottomNavShadow;
   final List<BoxShadow> buttonShadow;
+  final List<BoxShadow> cardShadow;
 
   // Gradient
   final LinearGradient gradientBrandPurple;
@@ -39,7 +40,6 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
 
   // Button
   final Color buttonBackgroundPrimary;
-  final Color buttonBackgroundSecondary;
   final Color buttonBackgroundTertiary;
   final Color buttonTertiaryBorder;
   final Color buttonInactive;
@@ -68,6 +68,7 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     required this.brandPurpleTint,
     required this.bottomNavShadow,
     required this.buttonShadow,
+    required this.cardShadow,
     required this.gradientBrandPurple,
     required this.gradientActiveBlue,
     required this.gradientYellow,
@@ -86,7 +87,6 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     required this.borderError,
     required this.borderDark,
     required this.buttonBackgroundPrimary,
-    required this.buttonBackgroundSecondary,
     required this.buttonBackgroundTertiary,
     required this.buttonTertiaryBorder,
     required this.buttonInactive,
@@ -113,6 +113,7 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     brandPurpleTint: AppColors.brandPurpleTint,
     bottomNavShadow: AppColors.lightBottomNavShadow,
     buttonShadow: AppColors.lightButtonShadow,
+    cardShadow: AppColors.lightCardShadow,
     gradientBrandPurple: AppColors.gradientBrandPurple,
     gradientActiveBlue: AppColors.gradientActiveBlue,
     gradientYellow: AppColors.gradientYellow,
@@ -131,7 +132,6 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     borderError: AppColors.borderError,
     borderDark: AppColors.borderDark,
     buttonBackgroundPrimary: AppColors.buttonBackgroundPrimary,
-    buttonBackgroundSecondary: AppColors.buttonBackgroundSecondary,
     buttonBackgroundTertiary: AppColors.buttonBackgroundTertiary,
     buttonTertiaryBorder: AppColors.buttonTertiaryBorder,
     buttonInactive: AppColors.lightButtonInactive,
@@ -158,6 +158,7 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     brandPurpleTint: AppColors.brandPurpleTint,
     bottomNavShadow: AppColors.darkBottomNavShadow,
     buttonShadow: AppColors.darkButtonShadow,
+    cardShadow: AppColors.darkCardShadow,
     gradientBrandPurple: AppColors.gradientBrandPurple,
     gradientActiveBlue: AppColors.gradientActiveBlue,
     gradientYellow: AppColors.gradientYellow,
@@ -176,7 +177,6 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     borderError: AppColors.borderError,
     borderDark: AppColors.borderDark,
     buttonBackgroundPrimary: AppColors.buttonBackgroundPrimary,
-    buttonBackgroundSecondary: AppColors.buttonBackgroundSecondary,
     buttonBackgroundTertiary: AppColors.buttonBackgroundTertiary,
     buttonTertiaryBorder: AppColors.buttonTertiaryBorder,
     buttonInactive: AppColors.darkButtonInactive,
@@ -203,6 +203,7 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     Color? brandPurpleTint,
     List<BoxShadow>? bottomNavShadow,
     List<BoxShadow>? buttonShadow,
+    List<BoxShadow>? cardShadow,
     LinearGradient? gradientBrandPurple,
     LinearGradient? gradientActiveBlue,
     LinearGradient? gradientYellow,
@@ -221,7 +222,6 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
     Color? borderError,
     Color? borderDark,
     Color? buttonBackgroundPrimary,
-    Color? buttonBackgroundSecondary,
     Color? buttonBackgroundTertiary,
     Color? buttonTertiaryBorder,
     Color? buttonInactive,
@@ -246,6 +246,7 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
       brandPurpleTint: brandPurpleTint ?? this.brandPurpleTint,
       bottomNavShadow: bottomNavShadow ?? this.bottomNavShadow,
       buttonShadow: buttonShadow ?? this.buttonShadow,
+      cardShadow: cardShadow ?? this.cardShadow,
       gradientBrandPurple: gradientBrandPurple ?? this.gradientBrandPurple,
       gradientActiveBlue: gradientActiveBlue ?? this.gradientActiveBlue,
       gradientYellow: gradientYellow ?? this.gradientYellow,
@@ -266,8 +267,6 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
       borderDark: borderDark ?? this.borderDark,
       buttonBackgroundPrimary:
           buttonBackgroundPrimary ?? this.buttonBackgroundPrimary,
-      buttonBackgroundSecondary:
-          buttonBackgroundSecondary ?? this.buttonBackgroundSecondary,
       buttonBackgroundTertiary:
           buttonBackgroundTertiary ?? this.buttonBackgroundTertiary,
       buttonTertiaryBorder: buttonTertiaryBorder ?? this.buttonTertiaryBorder,
@@ -307,6 +306,7 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
           BoxShadow.lerpList(bottomNavShadow, other.bottomNavShadow, t) ?? [],
       buttonShadow:
           BoxShadow.lerpList(buttonShadow, other.buttonShadow, t) ?? [],
+      cardShadow: BoxShadow.lerpList(cardShadow, other.cardShadow, t) ?? [],
       gradientBrandPurple: LinearGradient.lerp(
         gradientBrandPurple,
         other.gradientBrandPurple,
@@ -353,11 +353,7 @@ class AppThemeExtension extends ThemeExtension<AppThemeExtension> {
         other.buttonBackgroundPrimary,
         t,
       )!,
-      buttonBackgroundSecondary: Color.lerp(
-        buttonBackgroundSecondary,
-        other.buttonBackgroundSecondary,
-        t,
-      )!,
+
       buttonBackgroundTertiary: Color.lerp(
         buttonBackgroundTertiary,
         other.buttonBackgroundTertiary,

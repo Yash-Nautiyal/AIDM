@@ -1,5 +1,4 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
-import 'package:aidm/core/theme/app_colors.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/core/utils/responsive_extension.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +74,7 @@ class _IosActionSheet extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Material(
-                color: Colors.white,
+                color: theme.backgroundPage,
                 borderRadius: BorderRadius.circular(14.r),
                 clipBehavior: Clip.antiAlias,
                 child: Column(
@@ -86,7 +85,7 @@ class _IosActionSheet extends StatelessWidget {
                         Divider(
                           height: 1,
                           thickness: 0.5,
-                          color: AppColors.buttonTertiaryBorder,
+                          color: theme.borderDefault,
                         ),
                       _ActionSheetTile(
                         theme: theme,
