@@ -1,3 +1,4 @@
+import 'package:aidm/core/constant/app_assets.dart';
 import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
@@ -51,16 +52,16 @@ class _AuthPageLayoutState extends State<AuthPageLayout> {
             return SingleChildScrollView(
               padding: EdgeInsets.symmetric(
                 horizontal: AppDimensions.pagePadding,
-              ),
+              ).copyWith(top: AppDimensions.spacing3xl),
               child: Column(
                 children: [
                   SizedBox(height: AppDimensions.spacing3xl),
                   SvgPicture.asset(
-                    'assets/logo/logo 1.svg',
+                    AppAssets.appLogo,
                     width: AppDimensions.logoWidth,
                     height: AppDimensions.logoHeight,
                   ),
-                  SizedBox(height: AppDimensions.spacing3xl),
+                  SizedBox(height: AppDimensions.spacingMd),
                   Text(
                     widget.title,
                     style: typography.h1.copyWith(color: theme.brandPrimary),

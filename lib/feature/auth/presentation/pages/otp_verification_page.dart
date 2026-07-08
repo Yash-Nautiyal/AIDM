@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:aidm/core/constant/app_assets.dart';
 import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
@@ -96,17 +97,19 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
       backgroundColor: theme.backgroundPage,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: AppDimensions.pagePadding),
+          padding: EdgeInsets.symmetric(
+            horizontal: AppDimensions.pagePadding,
+          ).copyWith(top: AppDimensions.spacing3xl),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(height: AppDimensions.spacing3xl),
               SvgPicture.asset(
-                'assets/logo/logo 1.svg',
+                AppAssets.appLogo,
                 width: AppDimensions.logoWidth,
                 height: AppDimensions.logoHeight,
               ),
-              SizedBox(height: AppDimensions.spacing3xl),
+              SizedBox(height: AppDimensions.spacingMd),
               Text(
                 'Enter Verification\nCode',
                 style: typography.h1.copyWith(color: theme.brandPrimary),
@@ -117,7 +120,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Verification Code',
-                  style: typography.labelMedium.copyWith(
+                  style: typography.bodyMedium16.copyWith(
                     color: theme.textPrimary,
                   ),
                 ),
@@ -127,9 +130,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Code sent to ${widget.email}',
-                  style: typography.captionLight.copyWith(
-                    color: theme.textTertiary,
-                  ),
+                  style: typography.body.copyWith(color: theme.textTertiary),
                 ),
               ),
               SizedBox(height: AppDimensions.spacingLg),
@@ -141,21 +142,24 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                 ),
               ),
               SizedBox(height: AppDimensions.spacingLg),
-              RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  style: typography.bodyMedium.copyWith(
-                    color: theme.textSecondary,
-                  ),
-                  children: [
-                    const TextSpan(text: 'Code expires in '),
-                    TextSpan(
-                      text: _formattedTimer,
-                      style: typography.bodyMedium.copyWith(
-                        color: theme.brandPrimary,
-                      ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    style: typography.bodyMedium.copyWith(
+                      color: theme.textSecondary,
                     ),
-                  ],
+                    children: [
+                      const TextSpan(text: 'Code expires in '),
+                      TextSpan(
+                        text: _formattedTimer,
+                        style: typography.bodyMedium.copyWith(
+                          color: theme.brandPrimary,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(height: AppDimensions.spacing3xl),

@@ -1,3 +1,4 @@
+import 'package:aidm/core/constant/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -18,11 +19,11 @@ extension AppNavBarItemX on AppNavBarItem {
   };
 
   String get iconAsset => switch (this) {
-    AppNavBarItem.dashboard => 'assets/icons/home.svg',
-    AppNavBarItem.webinars => 'assets/icons/calendar1.svg',
-    AppNavBarItem.calendar => 'assets/icons/calender2.svg',
-    AppNavBarItem.recordings => 'assets/icons/recording.svg',
-    AppNavBarItem.more => 'assets/icons/menu.svg',
+    AppNavBarItem.dashboard => AppAssets.homeIcon,
+    AppNavBarItem.webinars => AppAssets.calendar1Icon,
+    AppNavBarItem.calendar => AppAssets.calendar2Icon,
+    AppNavBarItem.recordings => AppAssets.recordingIcon,
+    AppNavBarItem.more => AppAssets.menuIcon,
   };
 }
 

@@ -1,3 +1,4 @@
+import 'package:aidm/core/constant/app_assets.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constant/app_dimensions.dart';
@@ -23,7 +24,7 @@ class WelocomePage extends StatelessWidget {
           child: Column(
             children: [
               Image.asset(
-                'assets/illustrations/Welcome_screen.png',
+                AppAssets.welcomeScreenImg,
                 // height: screenHeight * 0.5,
                 fit: BoxFit.cover,
                 width: double.infinity,
