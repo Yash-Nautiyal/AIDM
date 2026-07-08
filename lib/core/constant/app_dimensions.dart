@@ -38,4 +38,17 @@ abstract final class AppDimensions {
   static double get radiusSm => 9.r;
   static double get radiusMd => 12.r;
   static double get radiusLg => 16.r;
+
+  // OTP input
+  static double get otpBoxWidth => 55.w;
+  static double get otpBoxHeight => 58.h;
+  static double get otpBoxRadius => 12.r;
+  static double get otpBoxGap => 10.w;
+  static const double otpBoxBorderWidth = 0.8;
+  static double get otpBoxPaddingVertical => 11.h;
+  static double get otpBoxPaddingHorizontal => 25.w;
+
+  //logo
+  static double get logoWidth => 150.w;
+  static double get logoHeight => 100.h;
 }
