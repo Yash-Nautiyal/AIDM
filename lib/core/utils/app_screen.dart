@@ -14,11 +14,6 @@ class AppScreen {
         MediaQuery.maybeSizeOf(context) ??
         MediaQueryData.fromView(View.of(context)).size;
     _setSize(size);
-    print('screenWidth: $screenWidth');
-    print('screenHeight: $screenHeight');
-    print('scaleWidth: $scaleWidth');
-    print('scaleHeight: $scaleHeight');
-    print('scaleText: $scaleText');
   }
 
   static void _setSize(Size size) {

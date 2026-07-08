@@ -10,6 +10,10 @@ abstract class AppAssets {
 
   // images
   static const String welcomeScreenImg = '${_imagePath}welcome_screen.png';
+  static const String phoneNotificationsImg =
+      '${_imagePath}phone_notifications.png';
+  static const String calendarNotificationsImg =
+      '${_imagePath}calendar_notifications.png';
 
   // icons
   static const String calendar1Icon = '${_iconPath}calendar1.svg';

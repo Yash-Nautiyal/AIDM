@@ -7,7 +7,7 @@ import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/core/widgets/button/app_button1.dart';
 import 'package:aidm/core/widgets/input/app_otp_input.dart';
 import 'package:aidm/feature/auth/presentation/widgets/auth_legal_footer.dart';
-import 'package:aidm/feature/dashboard/presentation/pages/dashboard_page.dart';
+import 'permission_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -74,7 +74,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
 
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => const DashboardPage()),
+      MaterialPageRoute(builder: (context) => const PermissionPage()),
       (_) => false,
     );
   }
