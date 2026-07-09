@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/constant/app_dimensions.dart';
 import '../../../../core/theme/app_theme_extension.dart';
-import '../widgets/home_header.dart';
-import '../widgets/home_meeting_row.dart';
-import '../widgets/home_upgrade_card.dart';
-import '../widgets/home_webinar_cards.dart';
-import '../widgets/home_webinar_list_view.dart';
+import '../widgets/sections/home_header.dart';
+import '../widgets/sections/home_meeting_row.dart';
+import '../widgets/sections/home_upgrade_card.dart';
+import '../widgets/sheets/join/join_webinar_sheet.dart';
+import '../widgets/sheets/start/start_webinar_sheet.dart';
+import '../widgets/webinar_list/home_webinar_cards.dart';
+import '../widgets/sections/home_webinar_list.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -29,6 +31,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: theme.backgroundPage,
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
+        shape: const CircleBorder(),
         backgroundColor: theme.brandPrimary,
         child: const Icon(Icons.add_rounded, color: Colors.white),
       ),
@@ -48,13 +51,13 @@ class HomePage extends StatelessWidget {
               HomeUpgradeCard(onUpgradeTap: () {}),
               SizedBox(height: AppDimensions.spacingVertical2xl),
               HomeMeetingRow(
-                onStartTap: () {},
-                onJoinTap: () {},
+                onStartTap: () => showStartWebinarSheet(context),
+                onJoinTap: () => showJointWebinarSheet(context),
                 onScheduleTap: () {},
                 onRecordingsTap: () {},
               ),
               SizedBox(height: AppDimensions.spacingVertical2xl),
-              HomeWebinarListView(
+              HomeWebinarList(
                 title: 'No upcoming webinars',
                 subtitle: 'The Scheduled webinars will be listed here',
                 webinars: webinars,

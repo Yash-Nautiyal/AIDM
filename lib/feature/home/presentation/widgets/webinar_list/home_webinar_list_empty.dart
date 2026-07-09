@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constant/app_dimensions.dart';
-import '../../../../core/theme/app_theme_extension.dart';
-import '../../../../core/theme/typography/app_typography_extension.dart';
+import '../../../../../core/constant/app_dimensions.dart';
+import '../../../../../core/theme/app_theme_extension.dart';
+import '../../../../../core/theme/typography/app_typography_extension.dart';
 
 class HomeWebinarListEmpty extends StatelessWidget {
   const HomeWebinarListEmpty({

@@ -4,13 +4,13 @@ import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/date_time_utils.dart';
-import 'home_webinar_cards.dart';
-import 'home_webinar_date_filter.dart';
-import 'home_webinar_list_empty.dart';
+import '../../../../../core/utils/date_time_utils.dart';
+import '../webinar_list/home_webinar_cards.dart';
+import '../webinar_list/home_webinar_date_filter.dart';
+import '../webinar_list/home_webinar_list_empty.dart';
 
-class HomeWebinarListView extends StatefulWidget {
-  const HomeWebinarListView({
+class HomeWebinarList extends StatefulWidget {
+  const HomeWebinarList({
     super.key,
     required this.title,
     required this.subtitle,
@@ -30,10 +30,10 @@ class HomeWebinarListView extends StatefulWidget {
   final DateTime? initialDate;
 
   @override
-  State<HomeWebinarListView> createState() => _HomeWebinarListViewState();
+  State<HomeWebinarList> createState() => _HomeWebinarListState();
 }
 
-class _HomeWebinarListViewState extends State<HomeWebinarListView> {
+class _HomeWebinarListState extends State<HomeWebinarList> {
   late DateTime _selectedDate;
   int _slideDirection = 1;
 
@@ -81,7 +81,7 @@ class _HomeWebinarListViewState extends State<HomeWebinarListView> {
           onPrevTap: _goToPreviousDay,
           onNextTap: _goToNextDay,
         ),
-        SizedBox(height: AppDimensions.spacingVertical2xl),
+        SizedBox(height: AppDimensions.spacingVerticalMd),
         AppAnimations.contentSwitcher(
           switchKey:
               '${_selectedDate.toIso8601String()}-$hasWebinars-${visibleWebinars.length}',

@@ -161,7 +161,7 @@ class HomeWebinarCard extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Container(
-                    width: 4,
+                    width: 4.w,
                     decoration: BoxDecoration(
                       color: theme.brandPrimary,
                       borderRadius: BorderRadius.circular(

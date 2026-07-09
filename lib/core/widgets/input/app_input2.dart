@@ -17,6 +17,8 @@ class AppInput2 extends StatefulWidget {
     this.obscureText = false,
     this.keyboardType,
     this.textInputAction,
+    this.showBorder = false,
+    this.showShadow = false,
   });
 
   final TextEditingController? controller;
@@ -28,6 +30,8 @@ class AppInput2 extends StatefulWidget {
   final bool obscureText;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
+  final bool showBorder;
+  final bool showShadow;
 
   @override
   State<AppInput2> createState() => _AppInput2State();
@@ -77,22 +81,26 @@ class _AppInput2State extends State<AppInput2> {
     final typography = Theme.of(context).extension<AppTypographyExtension>()!;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: theme.brandPrimaryTint,
+        color: theme.backgroundPage,
         borderRadius: BorderRadius.horizontal(
           left: Radius.circular(AppDimensions.radiusSm),
           right: Radius.circular(AppDimensions.radiusSm),
         ),
         border: isFocused
             ? Border.all(color: theme.borderFocus, width: 1)
+            : widget.showBorder
+            ? Border.all(color: theme.borderDefault, width: 1)
             : null,
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x0D000000),
-            offset: Offset(0, 2),
-            blurRadius: 8,
-            spreadRadius: 0,
-          ),
-        ],
+        boxShadow: widget.showShadow
+            ? const [
+                BoxShadow(
+                  color: Color(0x0D000000),
+                  offset: Offset(0, 2),
+                  blurRadius: 8,
+                  spreadRadius: 0,
+                ),
+              ]
+            : null,
       ),
       child: TextField(
         controller: widget.controller,

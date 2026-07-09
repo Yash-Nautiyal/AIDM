@@ -88,7 +88,7 @@ class _ChevronButton extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(999),
+        borderRadius: BorderRadius.circular(AppDimensions.radiusXl),
         splashColor: theme.brandPrimary.withValues(alpha: 0.08),
         highlightColor: theme.brandPrimary.withValues(alpha: 0.04),
         child: Padding(

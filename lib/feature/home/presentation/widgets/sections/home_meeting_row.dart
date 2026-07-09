@@ -103,23 +103,32 @@ class _HomeQuickActionTile extends StatelessWidget {
 
     return Column(
       children: [
-        Container(
-          height: 60.h,
-          width: 60.h,
-          decoration: BoxDecoration(
-            gradient: action.background,
+        Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: action.onTap,
             borderRadius: BorderRadius.circular(AppDimensions.radiusLg),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                action.icon,
-                alignment: Alignment.center,
-                height: 20.h,
-                colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+            splashColor: Colors.white.withValues(alpha: 0.12),
+            highlightColor: Colors.white.withValues(alpha: 0.08),
+            child: Ink(
+              height: 60.h,
+              width: 60.h,
+              decoration: BoxDecoration(
+                gradient: action.background,
+                borderRadius: BorderRadius.circular(AppDimensions.radiusLg),
               ),
-            ],
+              child: Center(
+                child: SvgPicture.asset(
+                  action.icon,
+                  alignment: Alignment.center,
+                  height: 20.h,
+                  colorFilter: const ColorFilter.mode(
+                    Colors.white,
+                    BlendMode.srcIn,
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
         SizedBox(height: AppDimensions.spacingSm),

@@ -50,6 +50,8 @@ abstract final class AppDimensions {
   static double get radiusMd => 12.r;
   static double get radiusLg => 16.r;
   static double get radiusXl => 20.r;
+  static double get radius2xl => 24.r;
+  static double get radius3xl => 28.r;
 
   // OTP input
   static double get otpBoxWidth => 55.w;
@@ -63,4 +65,11 @@ abstract final class AppDimensions {
   //logo
   static double get logoWidth => 150.w;
   static double get logoHeight => 100.h;
+
+  // Icon Width
+  static double get iconWidthXs => 10.w;
+  static double get iconWidthSm => 12.w;
+  static double get iconWidthMd => 16.w;
+  static double get iconWidthLg => 20.w;
+  static double get iconWidthXl => 28.w;
 }
