@@ -23,6 +23,11 @@ abstract class AppAssets {
   static const String menuIcon = '${_iconPath}menu.svg';
   static const String recordingIcon = '${_iconPath}recording.svg';
   static const String premiumIcon = '${_iconPath}crown.svg';
+  static const String recorderIcon = '${_iconPath}recorder.svg';
+  static const String addIcon = '${_iconPath}plus.svg';
+  static const String notificationIcon = '${_iconPath}notification.svg';
+  static const String alarmIcon = '${_iconPath}alarm.svg';
+  static const String messagesIcon = '${_iconPath}messages.svg';
 
   // illustrations
   static const String calendarAlertIll =
@@ -32,4 +37,5 @@ abstract class AppAssets {
       '${_illustrationPath}phone_notifications.svg';
   static const String welcomeScreenIll =
       '${_illustrationPath}welcome_screen.svg';
+  static const String cardPoster = '${_illustrationPath}card_poster.svg';
 }

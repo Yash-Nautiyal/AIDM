@@ -5,7 +5,7 @@ import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/core/utils/responsive_extension.dart';
 import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:aidm/core/widgets/card/app_card.dart';
-import 'package:aidm/feature/dashboard/presentation/pages/dashboard_page.dart';
+import 'package:aidm/feature/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constant/app_assets.dart';
@@ -26,7 +26,7 @@ class PremiumPage extends StatelessWidget {
   void _goToDashboard(BuildContext context) {
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (_) => const DashboardPage()),
+      MaterialPageRoute(builder: (_) => const HomePage(key: Key('home_page'))),
       (_) => false,
     );
   }

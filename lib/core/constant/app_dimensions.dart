@@ -11,8 +11,19 @@ abstract final class AppDimensions {
   static double get spacing2xl => 24.w;
   static double get spacing3xl => 32.w;
 
+  //Padding Vertical
+  static double get spacingVerticalXs => 4.h;
+  static double get spacingVerticalSm => 8.h;
+  static double get spacingVerticalMd => 12.h;
+  static double get spacingVerticalLg => 16.h;
+  static double get spacingVerticalXl => 20.h;
+  static double get spacingVertical2xl => 24.h;
+  static double get spacingVertical3xl => 32.h;
+
   // Button
   static double get buttonHeight => 50.h;
+  static double get buttonHeightMd => 40.h;
+  static double get buttonHeightSm => 30.h;
 
   // Nav bar
   static double get navBarHeight => 74.h;
@@ -38,6 +49,7 @@ abstract final class AppDimensions {
   static double get radiusSm => 9.r;
   static double get radiusMd => 12.r;
   static double get radiusLg => 16.r;
+  static double get radiusXl => 20.r;
 
   // OTP input
   static double get otpBoxWidth => 55.w;

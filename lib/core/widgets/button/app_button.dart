@@ -16,6 +16,7 @@ class AppButton1 extends StatelessWidget {
     this.isLoading = false,
     this.enabled = true,
     this.expand = true,
+    this.height,
   });
 
   final String label;
@@ -24,7 +25,7 @@ class AppButton1 extends StatelessWidget {
   final bool isLoading;
   final bool enabled;
   final bool expand;
-
+  final double? height;
   bool get _isInteractive => enabled && !isLoading && onPressed != null;
 
   Color _backgroundColor(AppThemeExtension theme) {
@@ -72,7 +73,7 @@ class AppButton1 extends StatelessWidget {
 
     return SizedBox(
       width: expand ? double.infinity : null,
-      height: AppDimensions.buttonHeight,
+      height: height ?? AppDimensions.buttonHeight,
       child: Material(
         color: backgroundColor,
         shape: RoundedRectangleBorder(
