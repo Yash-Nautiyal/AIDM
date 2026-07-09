@@ -57,7 +57,7 @@ class HomeUpgradeCard extends StatelessWidget {
                     children: [
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: AppButton1(
+                        child: AppButton(
                           height: AppDimensions.buttonHeightMd,
                           label: 'Upgrade Now',
                           type: AppButton1Type.secondary,

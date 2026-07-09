@@ -151,7 +151,7 @@ class _CloseButton extends StatelessWidget {
           padding: EdgeInsets.all(AppDimensions.spacingSm),
           child: SvgPicture.asset(
             AppAssets.closeIcon,
-            width: AppDimensions.iconWidthXs,
+            width: AppDimensions.iconSizehSm,
             colorFilter: ColorFilter.mode(theme.textSecondary, BlendMode.srcIn),
           ),
         ),

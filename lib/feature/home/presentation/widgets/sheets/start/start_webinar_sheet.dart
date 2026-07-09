@@ -18,7 +18,7 @@ Future<void> showStartWebinarSheet(BuildContext context) {
     context,
     header: const AppBottomSheetHeader(title: 'Start Webinar'),
     body: const _StartWebinarSheet(),
-    footer: AppButton1(
+    footer: AppButton(
       label: 'Start Now',
       onPressed: () => Navigator.of(context).pop(),
     ),
@@ -104,12 +104,9 @@ class _StartWebinarSheetState extends State<_StartWebinarSheet> {
         StartSheetSettingsRow(
           title: 'Auto Record',
           subtitle: 'Save recording after session ends',
-          trailing: Transform.scale(
-            scale: 0.8,
-            child: AppToggle(
-              value: _autoRecord,
-              onChanged: (value) => setState(() => _autoRecord = value),
-            ),
+          trailing: AppToggle(
+            value: _autoRecord,
+            onChanged: (value) => setState(() => _autoRecord = value),
           ),
         ),
       ],

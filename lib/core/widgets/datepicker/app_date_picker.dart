@@ -16,6 +16,8 @@ class AppDatePicker extends StatefulWidget {
     this.onClear,
     this.onDone,
     this.showFooter = true,
+    this.transparent = false,
+    this.showShadow = true,
   });
 
   final DateTime? initialDate;
@@ -25,6 +27,8 @@ class AppDatePicker extends StatefulWidget {
   final VoidCallback? onClear;
   final VoidCallback? onDone;
   final bool showFooter;
+  final bool transparent;
+  final bool showShadow;
 
   @override
   State<AppDatePicker> createState() => _AppDatePickerState();
@@ -102,22 +106,34 @@ class _AppDatePickerState extends State<AppDatePicker> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
+    final typography = Theme.of(context).extension<AppTypographyExtension>()!;
     final now = DateTime.now();
     final firstDate = widget.firstDate ?? DateTime(now.year - 100);
     final lastDate = widget.lastDate ?? DateTime(now.year + 100);
 
     return AppDatePickerCard(
+      transparent: widget.transparent,
+      showShadow: widget.showShadow,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           DatePickerTheme(
             data: _datePickerTheme(theme),
-            child: CalendarDatePicker(
-              initialDate: _selectedDate,
-              firstDate: firstDate,
-              lastDate: lastDate,
-              currentDate: now,
-              onDateChanged: _handleDateChanged,
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                textTheme: Theme.of(context).textTheme.copyWith(
+                  titleSmall: typography.bodyMedium16.copyWith(
+                    color: theme.textPrimary,
+                  ),
+                ),
+              ),
+              child: CalendarDatePicker(
+                initialDate: _selectedDate,
+                firstDate: firstDate,
+                lastDate: lastDate,
+                currentDate: now,
+                onDateChanged: _handleDateChanged,
+              ),
             ),
           ),
           if (widget.showFooter)

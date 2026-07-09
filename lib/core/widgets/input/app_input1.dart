@@ -17,6 +17,7 @@ class AppInput extends StatefulWidget {
     this.obscureText = false,
     this.keyboardType,
     this.textInputAction,
+    this.prefixIcon,
   });
 
   final TextEditingController? controller;
@@ -28,7 +29,7 @@ class AppInput extends StatefulWidget {
   final bool obscureText;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
-
+  final Widget? prefixIcon;
   @override
   State<AppInput> createState() => _AppInputState();
 }
@@ -98,6 +99,7 @@ class _AppInputState extends State<AppInput> {
         style: typography.body16.copyWith(color: theme.textPrimary),
         cursorColor: theme.borderFocus,
         decoration: InputDecoration(
+          prefixIcon: widget.prefixIcon,
           hintText: widget.hintText,
           hintStyle: typography.body16.copyWith(color: theme.textTertiary),
           contentPadding: EdgeInsets.symmetric(

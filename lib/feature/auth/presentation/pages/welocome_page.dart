@@ -55,7 +55,7 @@ class WelocomePage extends StatelessWidget {
 
                     // const Spacer(),
                     SizedBox(height: AppDimensions.spacing2xl),
-                    AppButton1(
+                    AppButton(
                       label: 'Get Started',
                       onPressed: () {
                         Navigator.push(

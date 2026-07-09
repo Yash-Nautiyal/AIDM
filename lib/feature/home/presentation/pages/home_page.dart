@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/constant/app_dimensions.dart';
 import '../../../../core/theme/app_theme_extension.dart';
+import 'schedule_page.dart';
 import '../widgets/sections/home_header.dart';
 import '../widgets/sections/home_meeting_row.dart';
 import '../widgets/sections/home_upgrade_card.dart';
@@ -53,7 +54,11 @@ class HomePage extends StatelessWidget {
               HomeMeetingRow(
                 onStartTap: () => showStartWebinarSheet(context),
                 onJoinTap: () => showJointWebinarSheet(context),
-                onScheduleTap: () {},
+                onScheduleTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const SchedulePage()),
+                  );
+                },
                 onRecordingsTap: () {},
               ),
               SizedBox(height: AppDimensions.spacingVertical2xl),

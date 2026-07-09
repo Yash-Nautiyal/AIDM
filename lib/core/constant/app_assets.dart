@@ -29,6 +29,7 @@ abstract class AppAssets {
   static const String alarmIcon = '${_iconPath}alarm.svg';
   static const String messagesIcon = '${_iconPath}messages.svg';
   static const String closeIcon = '${_iconPath}cross.svg';
+  static const String searchIcon = '${_iconPath}search.svg';
 
   // illustrations
   static const String calendarAlertIll =

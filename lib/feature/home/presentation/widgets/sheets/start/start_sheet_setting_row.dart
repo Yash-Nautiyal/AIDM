@@ -23,8 +23,9 @@ class StartSheetSettingsRow extends StatelessWidget {
     final typography = Theme.of(context).extension<AppTypographyExtension>()!;
 
     final content = Padding(
-      padding: EdgeInsets.symmetric(vertical: AppDimensions.spacingVerticalMd),
+      padding: EdgeInsets.symmetric(vertical: AppDimensions.spacingVerticalLg),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             child: Column(
@@ -36,13 +37,15 @@ class StartSheetSettingsRow extends StatelessWidget {
                     color: theme.textPrimary,
                   ),
                 ),
-                SizedBox(height: AppDimensions.spacingVerticalXs),
-                Text(
-                  subtitle,
-                  style: typography.captionLight.copyWith(
-                    color: theme.textSecondary,
+                if (subtitle.isNotEmpty) ...[
+                  SizedBox(height: AppDimensions.spacingVerticalXs),
+                  Text(
+                    subtitle,
+                    style: typography.captionLight.copyWith(
+                      color: theme.textSecondary,
+                    ),
                   ),
-                ),
+                ],
               ],
             ),
           ),

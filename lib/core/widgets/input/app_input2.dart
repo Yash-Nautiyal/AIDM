@@ -19,6 +19,7 @@ class AppInput2 extends StatefulWidget {
     this.textInputAction,
     this.showBorder = false,
     this.showShadow = false,
+    this.trailing,
   });
 
   final TextEditingController? controller;
@@ -32,6 +33,7 @@ class AppInput2 extends StatefulWidget {
   final TextInputAction? textInputAction;
   final bool showBorder;
   final bool showShadow;
+  final Widget? trailing;
 
   @override
   State<AppInput2> createState() => _AppInput2State();
@@ -102,29 +104,40 @@ class _AppInput2State extends State<AppInput2> {
               ]
             : null,
       ),
-      child: TextField(
-        controller: widget.controller,
-        focusNode: _focusNode,
-        enabled: widget.enabled,
-        obscureText: widget.obscureText,
-        keyboardType: widget.keyboardType,
-        textInputAction: widget.textInputAction,
-        onChanged: widget.onChanged,
-        onSubmitted: widget.onSubmitted,
-        style: typography.body16.copyWith(color: theme.textPrimary),
-        cursorColor: theme.borderFocus,
-        decoration: InputDecoration(
-          hintText: widget.hintText,
-          hintStyle: typography.body16.copyWith(color: theme.textTertiary),
-          contentPadding: EdgeInsets.symmetric(
-            horizontal: 12.w,
-            vertical: 11.h,
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: widget.controller,
+              focusNode: _focusNode,
+              enabled: widget.enabled,
+              obscureText: widget.obscureText,
+              keyboardType: widget.keyboardType,
+              textInputAction: widget.textInputAction,
+              onChanged: widget.onChanged,
+              onSubmitted: widget.onSubmitted,
+              style: typography.body16.copyWith(color: theme.textPrimary),
+              cursorColor: theme.borderFocus,
+              decoration: InputDecoration(
+                hintText: widget.hintText,
+                hintStyle: typography.body16.copyWith(color: theme.textTertiary),
+                contentPadding: EdgeInsets.symmetric(
+                  horizontal: 12.w,
+                  vertical: 11.h,
+                ),
+                border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+              ),
+            ),
           ),
-          border: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          disabledBorder: InputBorder.none,
-        ),
+          if (widget.trailing != null)
+            Padding(
+              padding: EdgeInsets.only(right: AppDimensions.spacingSm),
+              child: widget.trailing!,
+            ),
+        ],
       ),
     );
   }

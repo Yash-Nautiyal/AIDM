@@ -24,8 +24,7 @@ class AppDatePickerFooter extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: AppDimensions.spacingLg,
-        vertical: AppDimensions.spacingMd,
-      ),
+      ).copyWith(bottom: AppDimensions.spacingVerticalXs),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -36,7 +35,7 @@ class AppDatePickerFooter extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: AppButton1(
+            child: AppButton(
               onPressed: onDone,
               label: doneLabel,
               expand: false,

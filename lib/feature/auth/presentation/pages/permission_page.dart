@@ -229,7 +229,7 @@ class _NotificationsSlide extends StatelessWidget {
         fit: BoxFit.contain,
       ),
       actions: [
-        AppButton1(
+        AppButton(
           label: 'Enable notifications',
           onPressed: onEnableNotifications,
         ),
@@ -255,7 +255,7 @@ class _CalendarSlide extends StatelessWidget {
         height: 319.h,
         fit: BoxFit.contain,
       ),
-      actions: [AppButton1(label: 'Continue', onPressed: onContinue)],
+      actions: [AppButton(label: 'Continue', onPressed: onContinue)],
     );
   }
 }
@@ -330,8 +330,8 @@ class _ProfileSlide extends StatelessWidget {
         ],
       ),
       actions: [
-        AppButton1(label: 'Continue', onPressed: onContinue),
-        AppButton1(label: 'Not Now', onPressed: onNotNow, enabled: false),
+        AppButton(label: 'Continue', onPressed: onContinue),
+        AppButton(label: 'Not Now', onPressed: onNotNow, enabled: false),
       ],
     );
   }

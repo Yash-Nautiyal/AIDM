@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 abstract final class AppAnimations {
   static const Duration navDuration = Duration(milliseconds: 280);
   static const Duration contentDuration = Duration(milliseconds: 300);
+  static const Duration contentReverseDuration = Duration(milliseconds: 220);
   static const Duration sheetDuration = Duration(milliseconds: 300);
 
   static const Curve standardCurve = Curves.easeOutCubic;
@@ -12,6 +13,7 @@ abstract final class AppAnimations {
   static const Curve backdropCurve = Curves.easeOut;
 
   static const double navSelectedScale = 1.06;
+  static const double expandChevronTurns = 0.5;
   static const double contentSlideOffset = 0.03;
   static const double dateContentSlideOffset = 0.08;
   static const double titleSlideOffset = 0.25;
@@ -182,6 +184,42 @@ abstract final class AppAnimations {
         key: ValueKey(switchKey),
         child: child,
       ),
+    );
+  }
+
+  /// Expands/collapses content with a shared height animation (e.g. dropdown lists).
+  static Widget expandCollapse({
+    required bool isExpanded,
+    required Widget child,
+    Widget collapsedChild = const SizedBox.shrink(),
+    Duration duration = contentDuration,
+    Duration reverseDuration = contentReverseDuration,
+    Curve curve = standardCurve,
+    Alignment alignment = Alignment.topCenter,
+  }) {
+    return AnimatedSize(
+      duration: duration,
+      reverseDuration: reverseDuration,
+      curve: curve,
+      alignment: alignment,
+      clipBehavior: Clip.hardEdge,
+      child: isExpanded ? child : collapsedChild,
+    );
+  }
+
+  /// Rotates a chevron for expand/collapse affordances.
+  static Widget expandChevron({
+    required bool isExpanded,
+    required Widget child,
+    Duration duration = contentDuration,
+    Curve curve = standardCurve,
+    double turns = expandChevronTurns,
+  }) {
+    return AnimatedRotation(
+      turns: isExpanded ? turns : 0,
+      duration: duration,
+      curve: curve,
+      child: child,
     );
   }
 }

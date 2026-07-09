@@ -96,7 +96,7 @@ class _AuthPageLayoutState extends State<AuthPageLayout> {
                     ),
                   ),
                   SizedBox(height: AppDimensions.spacing2xl),
-                  AppButton1(
+                  AppButton(
                     label: widget.buttonLabel,
                     onPressed: _handlePrimaryPressed,
                   ),

@@ -83,7 +83,7 @@ class PremiumPage extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    AppButton1(
+                    AppButton(
                       label: 'Get Started',
                       onPressed: () => _goToDashboard(context),
                     ),

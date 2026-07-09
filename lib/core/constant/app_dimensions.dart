@@ -25,6 +25,11 @@ abstract final class AppDimensions {
   static double get buttonHeightMd => 40.h;
   static double get buttonHeightSm => 30.h;
 
+  // App bar
+  static double get appBarHeight => 56.h;
+  static double get appBarBottomPadding => spacingVerticalMd;
+  static double get appBarTotalHeight => appBarHeight + appBarBottomPadding;
+
   // Nav bar
   static double get navBarHeight => 74.h;
   static double get navIconSize => 20.w;
@@ -66,10 +71,10 @@ abstract final class AppDimensions {
   static double get logoWidth => 150.w;
   static double get logoHeight => 100.h;
 
-  // Icon Width
-  static double get iconWidthXs => 10.w;
-  static double get iconWidthSm => 12.w;
-  static double get iconWidthMd => 16.w;
-  static double get iconWidthLg => 20.w;
-  static double get iconWidthXl => 28.w;
+  // Icon
+  static double get iconSizehXs => 10.sp;
+  static double get iconSizehSm => 12.sp;
+  static double get iconSizehMd => 16.sp;
+  static double get iconSizehLg => 20.sp;
+  static double get iconSizehXl => 28.sp;
 }

@@ -17,6 +17,8 @@ class AppTimePicker extends StatefulWidget {
     this.onDone,
     this.showFooter = true,
     this.use24HourFormat = false,
+    this.transparent = false,
+    this.showShadow = true,
   });
 
   final TimeOfDay? initialTime;
@@ -25,6 +27,8 @@ class AppTimePicker extends StatefulWidget {
   final VoidCallback? onDone;
   final bool showFooter;
   final bool use24HourFormat;
+  final bool transparent;
+  final bool showShadow;
 
   @override
   State<AppTimePicker> createState() => _AppTimePickerState();
@@ -86,9 +90,13 @@ class _AppTimePickerState extends State<AppTimePicker> {
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
     final typography = Theme.of(context).extension<AppTypographyExtension>()!;
     final brightness = Theme.of(context).brightness;
-    final background = AppDatePickerCard.backgroundColor(theme, brightness);
+    final background = widget.transparent
+        ? Colors.transparent
+        : AppDatePickerCard.backgroundColor(theme, brightness);
 
     return AppDatePickerCard(
+      transparent: widget.transparent,
+      showShadow: widget.showShadow,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -114,9 +122,8 @@ class _AppTimePickerState extends State<AppTimePicker> {
             ),
           ),
           if (!widget.use24HourFormat) ...[
-            SizedBox(height: AppDimensions.spacingSm),
             _AmPmSegment(isPm: _isPm, onChanged: _handlePeriodChanged),
-            SizedBox(height: AppDimensions.spacingMd),
+            SizedBox(height: AppDimensions.spacingVerticalSm),
           ],
           if (widget.showFooter)
             AppDatePickerFooter(onClear: _handleClear, onDone: _handleDone),

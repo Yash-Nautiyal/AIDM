@@ -7,8 +7,8 @@ import '../../theme/typography/app_typography_extension.dart';
 
 enum AppButton1Type { primary, secondary }
 
-class AppButton1 extends StatelessWidget {
-  const AppButton1({
+class AppButton extends StatelessWidget {
+  const AppButton({
     super.key,
     required this.label,
     this.onPressed,

@@ -163,7 +163,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                 ),
               ),
               SizedBox(height: AppDimensions.spacing3xl),
-              AppButton1(
+              AppButton(
                 label: 'Verify',
                 enabled: _isOtpComplete,
                 isLoading: _isLoading,

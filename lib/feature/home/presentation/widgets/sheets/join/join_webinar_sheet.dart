@@ -12,7 +12,7 @@ Future<void> showJointWebinarSheet(BuildContext context) {
     context,
     header: const AppBottomSheetHeader(title: 'Join Webinar'),
     body: const _JoinWebinarSheet(),
-    footer: AppButton1(
+    footer: AppButton(
       label: 'Join Now',
       onPressed: () => Navigator.of(context).pop(),
     ),

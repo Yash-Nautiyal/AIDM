@@ -11,18 +11,21 @@ class AppToggle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
-    return Switch(
-      value: value,
-      onChanged: onChanged,
-      trackColor: WidgetStateProperty.resolveWith((states) {
-        if (states.contains(WidgetState.selected)) {
-          return theme.switchTrackActive;
-        }
-        return theme.switchTrack;
-      }),
-      thumbColor: WidgetStatePropertyAll(theme.brandPrimaryTint),
-      trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
-      trackOutlineWidth: const WidgetStatePropertyAll(0),
+    return Transform.scale(
+      scale: 0.8,
+      child: Switch(
+        value: value,
+        onChanged: onChanged,
+        trackColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return theme.switchTrackActive;
+          }
+          return theme.switchTrack;
+        }),
+        thumbColor: WidgetStatePropertyAll(theme.brandPrimaryTint),
+        trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
+        trackOutlineWidth: const WidgetStatePropertyAll(0),
+      ),
     );
   }
 }
