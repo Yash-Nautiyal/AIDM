@@ -19,6 +19,7 @@ abstract class AppAssets {
   // icons
   static const String calendar1Icon = '${_iconPath}calendar1.svg';
   static const String calendar2Icon = '${_iconPath}calendar2.svg';
+  static const String calendarDatedIcon = '${_iconPath}calendar_dated.svg';
   static const String homeIcon = '${_iconPath}home.svg';
   static const String menuIcon = '${_iconPath}menu.svg';
   static const String recordingIcon = '${_iconPath}recording.svg';
@@ -28,8 +29,11 @@ abstract class AppAssets {
   static const String notificationIcon = '${_iconPath}notification.svg';
   static const String alarmIcon = '${_iconPath}alarm.svg';
   static const String messagesIcon = '${_iconPath}messages.svg';
+  static const String messageIcon = '${_iconPath}message.svg';
   static const String closeIcon = '${_iconPath}cross.svg';
   static const String searchIcon = '${_iconPath}search.svg';
+  static const String paperClipIcon = '${_iconPath}clip.svg';
+  static const String linkIcon = '${_iconPath}link.svg';
 
   // illustrations
   static const String calendarAlertIll =

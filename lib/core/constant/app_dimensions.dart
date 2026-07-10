@@ -71,10 +71,14 @@ abstract final class AppDimensions {
   static double get logoWidth => 150.w;
   static double get logoHeight => 100.h;
 
+  // Notification
+  static double get notificationAvatarRadius => 23.sp;
+  static double get notificationEventAvatarRadius => 27.sp;
+
   // Icon
-  static double get iconSizehXs => 10.sp;
-  static double get iconSizehSm => 12.sp;
-  static double get iconSizehMd => 16.sp;
-  static double get iconSizehLg => 20.sp;
-  static double get iconSizehXl => 28.sp;
+  static double get iconSizeXs => 10.sp;
+  static double get iconSizeSm => 12.sp;
+  static double get iconSizeMd => 16.sp;
+  static double get iconSizeLg => 20.sp;
+  static double get iconSizeXl => 28.sp;
 }

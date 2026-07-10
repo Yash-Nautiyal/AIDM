@@ -45,11 +45,15 @@ class HomeHeader extends StatelessWidget {
             ],
           ),
         ),
-        SvgPicture.asset(
-          AppAssets.notificationIcon,
-          alignment: Alignment.center,
-          height: 24.h,
-          colorFilter: ColorFilter.mode(theme.textPrimary, BlendMode.srcIn),
+        GestureDetector(
+          onTap: onNotificationsTap,
+          behavior: HitTestBehavior.opaque,
+          child: SvgPicture.asset(
+            AppAssets.notificationIcon,
+            alignment: Alignment.center,
+            height: 24.h,
+            colorFilter: ColorFilter.mode(theme.textPrimary, BlendMode.srcIn),
+          ),
         ),
       ],
     );

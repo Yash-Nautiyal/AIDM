@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/constant/app_dimensions.dart';
 import '../../../../core/theme/app_theme_extension.dart';
+import 'notification_page.dart';
 import 'schedule_page.dart';
 import '../widgets/sections/home_header.dart';
 import '../widgets/sections/home_meeting_row.dart';
@@ -47,7 +48,16 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const HomeHeader(userName: 'Dunge'),
+              HomeHeader(
+                userName: 'Dunge',
+                onNotificationsTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const NotificationPage(),
+                    ),
+                  );
+                },
+              ),
               SizedBox(height: AppDimensions.spacingVertical2xl),
               HomeUpgradeCard(onUpgradeTap: () {}),
               SizedBox(height: AppDimensions.spacingVertical2xl),

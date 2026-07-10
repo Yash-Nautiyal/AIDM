@@ -179,7 +179,7 @@ class _DateTimeField extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 iconAsset,
-                width: AppDimensions.iconSizehMd,
+                width: AppDimensions.iconSizeMd,
                 colorFilter: ColorFilter.mode(
                   theme.textSecondary,
                   BlendMode.srcIn,
