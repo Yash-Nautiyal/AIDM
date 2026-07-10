@@ -1,5 +1,4 @@
-import 'package:aidm/feature/home/presentation/pages/home_page.dart';
-import 'package:aidm/feature/recordings/presentation/pages/recordings_page.dart';
+import 'package:aidm/feature/webinar/presentation/pages/webinar_page.dart';
 import 'package:flutter/material.dart';
 
 import 'core/theme/app_theme.dart';
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: const RecordingsPage(),
+      home: const WebinarPage(),
     );
   }
 }

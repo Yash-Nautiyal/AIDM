@@ -15,6 +15,7 @@ abstract class AppAssets {
   static const String calendarNotificationsImg =
       '${_imagePath}calendar_notifications.png';
   static const String premiumImg = '${_imagePath}crown.png';
+  static const String calendarWebinarImg = '${_imagePath}calendar_webinar.png';
 
   // icons
   static const String calendar1Icon = '${_iconPath}calendar1.svg';
@@ -38,6 +39,8 @@ abstract class AppAssets {
   static const String deleteIcon = '${_iconPath}bin.svg';
   static const String downloadIcon = '${_iconPath}download.svg';
   static const String shareIcon = '${_iconPath}share.svg';
+  static const String editIcon = '${_iconPath}edit.svg';
+  static const String copyIcon = '${_iconPath}copy.svg';
 
   // illustrations
   static const String calendarAlertIll =
@@ -48,4 +51,6 @@ abstract class AppAssets {
   static const String welcomeScreenIll =
       '${_illustrationPath}welcome_screen.svg';
   static const String cardPoster = '${_illustrationPath}card_poster.svg';
+  static const String calendarWebinarIll =
+      '${_illustrationPath}calendar_webinar.svg';
 }

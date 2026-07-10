@@ -17,6 +17,7 @@ class AppButton extends StatelessWidget {
     this.enabled = true,
     this.expand = true,
     this.height,
+    this.delete = false,
   });
 
   final String label;
@@ -26,6 +27,7 @@ class AppButton extends StatelessWidget {
   final bool enabled;
   final bool expand;
   final double? height;
+  final bool delete;
   bool get _isInteractive => enabled && !isLoading && onPressed != null;
 
   Color _backgroundColor(AppThemeExtension theme) {
@@ -43,7 +45,11 @@ class AppButton extends StatelessWidget {
     if (isLoading) return theme.brandPrimaryTint;
 
     if (type == AppButton1Type.secondary) {
-      return enabled ? theme.brandPrimary : theme.textSecondary;
+      return enabled
+          ? delete
+                ? theme.textDanger
+                : theme.brandPrimary
+          : theme.textSecondary;
     }
 
     if (!enabled) return theme.textSecondary;
@@ -52,7 +58,11 @@ class AppButton extends StatelessWidget {
 
   Color? _borderColor(AppThemeExtension theme) {
     if (type == AppButton1Type.secondary) {
-      return enabled ? theme.brandPrimary : null;
+      return enabled
+          ? delete
+                ? theme.textDanger
+                : theme.brandPrimary
+          : null;
     }
 
     return null;
