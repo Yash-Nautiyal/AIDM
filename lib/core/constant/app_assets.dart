@@ -34,6 +34,10 @@ abstract class AppAssets {
   static const String searchIcon = '${_iconPath}search.svg';
   static const String paperClipIcon = '${_iconPath}clip.svg';
   static const String linkIcon = '${_iconPath}link.svg';
+  static const String uploadIcon = '${_iconPath}upload.svg';
+  static const String deleteIcon = '${_iconPath}bin.svg';
+  static const String downloadIcon = '${_iconPath}download.svg';
+  static const String shareIcon = '${_iconPath}share.svg';
 
   // illustrations
   static const String calendarAlertIll =

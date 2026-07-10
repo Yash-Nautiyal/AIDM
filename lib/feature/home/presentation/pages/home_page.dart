@@ -1,3 +1,4 @@
+import 'package:aidm/feature/recordings/presentation/pages/recordings_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constant/app_dimensions.dart';
@@ -69,7 +70,13 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (_) => const SchedulePage()),
                   );
                 },
-                onRecordingsTap: () {},
+                onRecordingsTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const RecordingsPage(),
+                    ),
+                  );
+                },
               ),
               SizedBox(height: AppDimensions.spacingVertical2xl),
               HomeWebinarList(
