@@ -59,8 +59,7 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
                           color: theme.textPrimary,
                           size: 25.sp,
                         ),
-                        onPressed:
-                            onBack ?? () => maybeMoveBack(context),
+                        onPressed: onBack ?? () => maybeMoveBack(context),
                       )
                     : const SizedBox(width: kMinInteractiveDimension),
                 middle: Text(
@@ -70,7 +69,15 @@ class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
                 centerMiddle: true,
                 trailing: actions == null
                     ? const SizedBox(width: kMinInteractiveDimension)
-                    : Row(mainAxisSize: MainAxisSize.min, children: actions!),
+                    : Padding(
+                        padding: EdgeInsets.only(
+                          right: AppDimensions.spacingLg,
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: actions!,
+                        ),
+                      ),
               ),
             ),
             SizedBox(height: AppDimensions.appBarBottomPadding),

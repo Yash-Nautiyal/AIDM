@@ -1,11 +1,12 @@
+import 'package:aidm/core/constant/app_assets.dart';
 import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/widgets/app_bar/app_appbar.dart';
+import 'package:aidm/core/widgets/button/app_circle_button.dart';
 import 'package:aidm/core/widgets/datepicker/app_date_picker.dart';
 import 'package:aidm/feature/calendar/presentation/pages/calendar_search_page.dart';
 import 'package:aidm/feature/calendar/presentation/widgets/calendar_connect_banner.dart';
 import 'package:aidm/feature/calendar/presentation/widgets/calendar_empty_state.dart';
-import 'package:aidm/feature/calendar/presentation/widgets/calendar_search_action_button.dart';
 import 'package:aidm/feature/webinar/domain/entities/webinar.dart';
 import 'package:aidm/feature/webinar/presentation/pages/webinar_details_page.dart';
 import 'package:aidm/feature/webinar/presentation/widgets/list/webinar_tile.dart';
@@ -165,7 +166,9 @@ class _CalendarPageState extends State<CalendarPage> {
         glassOpacity: .1,
         glassy: true,
         blurSigma: 10,
-        actions: [CalendarSearchActionButton(onPressed: _openSearch)],
+        actions: [
+          AppCircleButton(onTap: _openSearch, iconPath: AppAssets.searchIcon),
+        ],
       ),
       body: SafeArea(
         child: CustomScrollView(

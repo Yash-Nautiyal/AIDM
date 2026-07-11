@@ -4,6 +4,7 @@ import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/feature/auth/presentation/pages/sign_in_page.dart';
+import 'package:aidm/feature/more/presenation/pages/attachments_page.dart';
 import 'package:aidm/feature/more/presenation/pages/profile_page.dart';
 import 'package:aidm/feature/more/presenation/pages/subscription_page.dart';
 import 'package:aidm/feature/more/presenation/widgets/more/more_email_preference_section.dart';
@@ -20,6 +21,10 @@ class MorePage extends StatelessWidget {
 
   void _openProfile(BuildContext context) {
     moveTo(context, const ProfilePage());
+  }
+
+  void _openAttachments(BuildContext context) {
+    moveTo(context, const AttachmentsPage());
   }
 
   void _openSubscription(BuildContext context) {
@@ -60,9 +65,10 @@ class MorePage extends StatelessWidget {
                     assetPath: AppAssets.userIcon,
                     onTap: () => _openProfile(context),
                   ),
-                  const MoreMenuSvgItem(
+                  MoreMenuSvgItem(
                     title: 'Attachments',
                     assetPath: AppAssets.paperClipIcon,
+                    onTap: () => _openAttachments(context),
                   ),
                   MoreMenuSvgItem(
                     title: 'Subscription',

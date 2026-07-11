@@ -3,6 +3,7 @@ abstract class AppAssets {
   static const String _logoPath = 'assets/logo/';
   static const String _imagePath = 'assets/images/';
   static const String _iconPath = 'assets/icons/';
+  static const String _fileIconPath = 'assets/icons/file/';
   static const String _illustrationPath = 'assets/illustrations/';
 
   // logo
@@ -44,6 +45,16 @@ abstract class AppAssets {
   static const String codeIcon = '${_iconPath}code.svg';
   static const String fileIcon = '${_iconPath}file.svg';
   static const String userIcon = '${_iconPath}user.svg';
+  // file icons
+  static const String filePdfIcon = '${_fileIconPath}pdf.svg';
+  static const String fileDocIcon = '${_fileIconPath}doc.svg';
+  static const String fileXlsIcon = '${_fileIconPath}xls.svg';
+  static const String filePptIcon = '${_fileIconPath}ppt.svg';
+  static const String fileImgIcon = '${_fileIconPath}img.svg';
+  static const String fileVideoIcon = '${_fileIconPath}video.svg';
+  static const String fileAudioIcon = '${_fileIconPath}audio.svg';
+  static const String fileZipIcon = '${_fileIconPath}zip.svg';
+  static const String fileRarIcon = '${_fileIconPath}rar.svg';
 
   // illustrations
   static const String calendarAlertIll =

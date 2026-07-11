@@ -20,8 +20,8 @@ abstract final class AppAnimations {
   static const double dateContentSlideOffset = 0.08;
   static const double titleSlideOffset = 0.25;
   static const double pageRouteSlideOffset = 1;
-  static const double backdropBlurSigma = 5;
-  static const double backdropOverlayOpacity = 0.25;
+  static const double backdropBlurSigma = 2;
+  static const double backdropOverlayOpacity = 0.3;
   static const double appBarBlurSigma = 20;
   static const double appBarGlassOpacity = 0.45;
 
@@ -129,10 +129,7 @@ abstract final class AppAnimations {
     return Stack(
       alignment: Alignment.topCenter,
       clipBehavior: Clip.none,
-      children: [
-        ...previousChildren,
-        ?currentChild,
-      ],
+      children: [...previousChildren, ?currentChild],
     );
   }
 
@@ -180,16 +177,17 @@ abstract final class AppAnimations {
     required int direction,
     double slideOffset = dateContentSlideOffset,
   }) {
-    final slideAnimation = Tween<Offset>(
-      begin: Offset(direction * slideOffset, 0),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: animation,
-        curve: standardCurve,
-        reverseCurve: exitCurve,
-      ),
-    );
+    final slideAnimation =
+        Tween<Offset>(
+          begin: Offset(direction * slideOffset, 0),
+          end: Offset.zero,
+        ).animate(
+          CurvedAnimation(
+            parent: animation,
+            curve: standardCurve,
+            reverseCurve: exitCurve,
+          ),
+        );
 
     final fadeAnimation = CurvedAnimation(
       parent: animation,
@@ -222,10 +220,7 @@ abstract final class AppAnimations {
         direction: direction,
         slideOffset: slideOffset,
       ),
-      child: KeyedSubtree(
-        key: ValueKey(switchKey),
-        child: child,
-      ),
+      child: KeyedSubtree(key: ValueKey(switchKey), child: child),
     );
   }
 

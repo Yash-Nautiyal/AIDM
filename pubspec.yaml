@@ -62,6 +62,7 @@ flutter:
 
   assets:
     - assets/icons/
+    - assets/icons/file/
     - assets/logo/
     - assets/fonts/PlusJakartaSans/
     - assets/illustrations/

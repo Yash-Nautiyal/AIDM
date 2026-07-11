@@ -1,67 +1,117 @@
-abstract class FileUtils {
-  // static String getFileIcon(String fileType) {
-  //   final extension = fileType.split('/').last.toLowerCase();
+import 'package:aidm/core/constant/app_assets.dart';
+import 'package:flutter/material.dart';
 
-  //   switch (extension) {
-  //     case 'txt':
-  //     case 'text':
-  //     case 'markdown':
-  //     case 'md':
-  //       return 'assets/icons/file/ic-txt.svg';
-  //     case 'zip':
-  //     case 'rar':
-  //       return 'assets/icons/file/ic-zip.svg';
-  //     case 'pdf':
-  //       return 'assets/icons/file/ic-pdf.svg';
-  //     case 'doc':
-  //     case 'docx':
-  //     case 'word':
-  //       return 'assets/icons/file/ic-document.svg';
-  //     case 'xls':
-  //     case 'xlsx':
-  //     case 'csv':
-  //     case 'excel':
-  //       return 'assets/icons/file/ic-excel.svg';
-  //     case 'ppt':
-  //     case 'pptx':
-  //     case 'powerpoint':
-  //       return 'assets/icons/file/ic-power-point.svg';
-  //     case 'jpg':
-  //     case 'jpeg':
-  //     case 'png':
-  //     case 'gif':
-  //     case 'image':
-  //       return 'assets/icons/file/ic-img.svg';
-  //     case 'mp4':
-  //     case 'mkv':
-  //     case 'avi':
-  //     case 'video':
-  //       return 'assets/icons/file/ic-video.svg';
-  //     case 'mp3':
-  //     case 'wav':
-  //     case 'audio':
-  //       return 'assets/icons/file/ic-audio.svg';
-  //     case 'folder':
-  //       return 'assets/icons/file/ic-folder.svg';
-  //     case 'photoshop':
-  //       return 'assets/icons/file/ic-pts.svg';
-  //     case 'illustrator':
-  //       return 'assets/icons/file/ic-ai.svg';
-  //     default:
-  //       return 'assets/icons/file/ic-file.svg';
-  //   }
-  // }
+class FileTypeVisual {
+  const FileTypeVisual({
+    required this.label,
+    required this.color,
+    required this.iconPath,
+  });
+
+  final String label;
+  final Color color;
+  final String iconPath;
+}
+
+abstract class FileUtils {
+  static String getFileIcon(String fileType) {
+    return getFileTypeVisual(fileType).iconPath;
+  }
+
+  static FileTypeVisual getFileTypeVisual(String fileType) {
+    final extension = _normalizeExtension(fileType);
+
+    return switch (extension) {
+      'pdf' => const FileTypeVisual(
+        label: 'PDF',
+        color: Color(0xFFEF3838),
+        iconPath: AppAssets.filePdfIcon,
+      ),
+      'zip' || 'rar' || '7z' => const FileTypeVisual(
+        label: 'ZIP',
+        color: Color(0xFFF59E0B),
+        iconPath: AppAssets.fileZipIcon,
+      ),
+      'ppt' || 'pptx' || 'powerpoint' => const FileTypeVisual(
+        label: 'PPT',
+        color: Color(0xFFEA580C),
+        iconPath: AppAssets.filePptIcon,
+      ),
+      'doc' || 'docx' || 'word' => const FileTypeVisual(
+        label: 'DOC',
+        color: Color(0xFF3762E3),
+        iconPath: AppAssets.fileDocIcon,
+      ),
+      'jpg' ||
+      'jpeg' ||
+      'png' ||
+      'gif' ||
+      'webp' ||
+      'heic' ||
+      'image' ||
+      'img' => const FileTypeVisual(
+        label: 'IMG',
+        color: Color(0xFF0D9488),
+        iconPath: AppAssets.fileImgIcon,
+      ),
+      'xls' || 'xlsx' || 'csv' || 'excel' => const FileTypeVisual(
+        label: 'XLS',
+        color: Color(0xFF16A34A),
+        iconPath: AppAssets.fileIcon,
+      ),
+      'mp4' || 'mkv' || 'avi' || 'mov' || 'video' => const FileTypeVisual(
+        label: 'VID',
+        color: Color(0xFF6648FA),
+        iconPath: AppAssets.fileIcon,
+      ),
+      'mp3' || 'wav' || 'aac' || 'audio' => const FileTypeVisual(
+        label: 'AUD',
+        color: Color(0xFF8B5CF6),
+        iconPath: AppAssets.fileIcon,
+      ),
+      'txt' || 'text' || 'md' || 'markdown' => const FileTypeVisual(
+        label: 'TXT',
+        color: Color(0xFF737378),
+        iconPath: AppAssets.fileIcon,
+      ),
+      _ => FileTypeVisual(
+        label: extension.length > 3
+            ? extension.substring(0, 3).toUpperCase()
+            : extension.toUpperCase(),
+        color: const Color(0xFF737378),
+        iconPath: AppAssets.fileIcon,
+      ),
+    };
+  }
 
   static String formatFileSize(int bytes) {
     if (bytes < 1024) {
       return '$bytes B';
     } else if (bytes < 1024 * 1024) {
-      final kb = (bytes / 1024).toStringAsFixed(2);
+      final kb = (bytes / 1024).toStringAsFixed(1);
       return '$kb KB';
     } else {
-      final mb = (bytes / (1024 * 1024)).toStringAsFixed(2);
+      final mb = (bytes / (1024 * 1024)).toStringAsFixed(1);
       return '$mb MB';
     }
+  }
+
+  static String formatAttachmentDate(DateTime date) {
+    const months = <String>[
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    return '${months[date.month - 1]} ${date.day}, ${date.year}';
   }
 
   static String getExtensionFromMime(String mimeType) {
@@ -95,5 +145,16 @@ abstract class FileUtils {
         }
         return 'unknown';
     }
+  }
+
+  static String _normalizeExtension(String fileType) {
+    final trimmed = fileType.trim().toLowerCase();
+    if (trimmed.contains('/')) {
+      return getExtensionFromMime(trimmed);
+    }
+    if (trimmed.contains('.')) {
+      return trimmed.split('.').last;
+    }
+    return trimmed;
   }
 }
