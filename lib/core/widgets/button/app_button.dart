@@ -96,7 +96,7 @@ class AppButton extends StatelessWidget {
           splashColor: textColor.withValues(alpha: 0.12),
           highlightColor: textColor.withValues(alpha: 0.08),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: AppDimensions.spacing2xl),
+            padding: EdgeInsets.symmetric(horizontal: 20.sp),
             child: Center(
               child: Row(
                 mainAxisSize: expand ? MainAxisSize.max : MainAxisSize.min,

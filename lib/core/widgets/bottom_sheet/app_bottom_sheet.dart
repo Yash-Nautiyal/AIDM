@@ -1,5 +1,6 @@
 import 'package:aidm/core/constant/app_assets.dart';
 import 'package:aidm/core/constant/app_dimensions.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:flutter/material.dart';
@@ -123,7 +124,7 @@ class AppBottomSheetHeader extends StatelessWidget {
             child:
                 trailing ??
                 _CloseButton(
-                  onClose: onClose ?? () => Navigator.of(context).pop(),
+                  onClose: onClose ?? () => moveBack(context),
                 ),
           ),
         ],

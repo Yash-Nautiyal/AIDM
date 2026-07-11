@@ -1,3 +1,4 @@
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/app_dimensions.dart';
@@ -24,8 +25,8 @@ Future<DateTime?> showAppDatePicker(
           firstDate: firstDate,
           lastDate: lastDate,
           onDateChanged: (date) => result = date,
-          onClear: () => Navigator.of(context).pop<DateTime?>(null),
-          onDone: () => Navigator.of(context).pop<DateTime>(result!),
+          onClear: () => moveBack<DateTime?>(context, null),
+          onDone: () => moveBack<DateTime>(context, result!),
         ),
       );
     },
@@ -48,8 +49,8 @@ Future<TimeOfDay?> showAppTimePicker(
         child: AppTimePicker(
           initialTime: initialTime,
           onTimeChanged: (time) => result = time,
-          onClear: () => Navigator.of(context).pop<TimeOfDay?>(null),
-          onDone: () => Navigator.of(context).pop<TimeOfDay>(result!),
+          onClear: () => moveBack<TimeOfDay?>(context, null),
+          onDone: () => moveBack<TimeOfDay>(context, result!),
         ),
       );
     },

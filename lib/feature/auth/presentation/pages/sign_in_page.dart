@@ -1,3 +1,4 @@
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/auth_page_layout.dart';
@@ -10,12 +11,7 @@ class SignInPage extends StatelessWidget {
   void _navigateToOtp(BuildContext context, String email) {
     if (email.isEmpty) return;
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => OtpVerificationPage(email: email),
-      ),
-    );
+    moveTo(context, OtpVerificationPage(email: email));
   }
 
   @override
@@ -27,10 +23,7 @@ class SignInPage extends StatelessWidget {
       secondaryActionLabel: 'Sign Up',
       onPrimaryPressed: (email) => _navigateToOtp(context, email),
       onSecondaryPressed: () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const SignUpPage()),
-        );
+        moveTo(context, const SignUpPage(), replace: true);
       },
     );
   }

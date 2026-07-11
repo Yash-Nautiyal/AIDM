@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:aidm/core/constant/app_assets.dart';
 import 'package:aidm/core/constant/app_dimensions.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/core/widgets/button/app_button.dart';
@@ -72,11 +73,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
 
     if (!mounted) return;
 
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => const PermissionPage()),
-      (_) => false,
-    );
+    moveTo(context, const PermissionPage(), clearStack: true);
   }
 
   void _handleResend() {

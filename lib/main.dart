@@ -1,8 +1,8 @@
-import 'package:aidm/feature/webinar/presentation/pages/webinar_page.dart';
 import 'package:flutter/material.dart';
 
 import 'core/theme/app_theme.dart';
 import 'core/utils/app_screen.dart';
+import 'core/widgets/nav/app_shell.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: const WebinarPage(),
+      home: const AppShell(),
     );
   }
 }

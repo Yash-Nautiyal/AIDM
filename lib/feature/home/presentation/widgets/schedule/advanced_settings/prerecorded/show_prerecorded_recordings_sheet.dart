@@ -3,6 +3,7 @@ import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/core/utils/responsive_extension.dart';
 import 'package:aidm/core/widgets/bottom_sheet/show_app_bottom_sheet.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 
 class PrerecordedRecordingItem {
@@ -65,7 +66,7 @@ class _PrerecordedRecordingsSheet extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () => moveBack(context),
                 child: Text(
                   'Cancel',
                   style: typography.label.copyWith(color: theme.brandPrimary),
@@ -86,7 +87,7 @@ class _PrerecordedRecordingsSheet extends StatelessWidget {
             final item = recordings[index];
             final isSelected = item.id == selected?.id;
             return InkWell(
-              onTap: () => Navigator.of(context).pop(item),
+              onTap: () => moveBack(context, item),
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   vertical: AppDimensions.spacingVerticalLg,

@@ -1,6 +1,7 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
-import 'package:aidm/core/widgets/app_bar/app_app_bar.dart';
+import 'package:aidm/core/widgets/app_bar/app_appbar.dart';
 import 'package:aidm/core/widgets/datepicker/app_date_picker.dart';
 import 'package:aidm/core/widgets/datepicker/app_time_picker.dart';
 import 'package:flutter/material.dart';
@@ -216,28 +217,21 @@ class _SchedulePageState extends State<SchedulePage> {
                 repeatOptions: repeatOptions,
                 onRepeatChanged: (v) => setState(() => _repeatValue = v),
                 onTimeZoneTap: () async {
-                  final result = await Navigator.of(context).push<String>(
-                    MaterialPageRoute(
-                      builder: (_) => ScheduleTimeZonePage(
-                        initialValue: _timeZoneValue,
-                      ),
-                    ),
+                  final result = await moveTo<String>(
+                    context,
+                    ScheduleTimeZonePage(initialValue: _timeZoneValue),
                   );
                   if (result == null) return;
                   setState(() => _timeZoneValue = result);
                 },
                 onAdvancedTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => const ScheduleAdvancedSettingsPage(),
-                    ),
-                  );
+                  moveTo(context, const ScheduleAdvancedSettingsPage());
                 },
               ),
               SizedBox(height: AppDimensions.spacingVertical3xl),
               ScheduleFooter(
                 onSave: () {},
-                onCancel: () => Navigator.of(context).maybePop(),
+                onCancel: () => maybeMoveBack(context),
               ),
             ],
           ),
@@ -246,4 +240,3 @@ class _SchedulePageState extends State<SchedulePage> {
     );
   }
 }
-

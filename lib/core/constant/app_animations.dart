@@ -7,6 +7,8 @@ abstract final class AppAnimations {
   static const Duration contentDuration = Duration(milliseconds: 300);
   static const Duration contentReverseDuration = Duration(milliseconds: 220);
   static const Duration sheetDuration = Duration(milliseconds: 300);
+  static const Duration pageRouteDuration = navDuration;
+  static const Duration pageRouteReverseDuration = contentReverseDuration;
 
   static const Curve standardCurve = Curves.easeOutCubic;
   static const Curve exitCurve = Curves.easeInCubic;
@@ -17,8 +19,11 @@ abstract final class AppAnimations {
   static const double contentSlideOffset = 0.03;
   static const double dateContentSlideOffset = 0.08;
   static const double titleSlideOffset = 0.25;
+  static const double pageRouteSlideOffset = 1;
   static const double backdropBlurSigma = 5;
   static const double backdropOverlayOpacity = 0.25;
+  static const double appBarBlurSigma = 20;
+  static const double appBarGlassOpacity = 0.45;
 
   /// Fades in a blurred, dimmed backdrop. Stays fixed while sheet content slides.
   static Widget blurredBackdrop({
@@ -129,6 +134,43 @@ abstract final class AppAnimations {
         ?currentChild,
       ],
     );
+  }
+
+  /// Slide + fade transition for full-screen page routes.
+  static Widget pageSlideTransition({
+    required Animation<double> animation,
+    required Widget child,
+    double slideOffset = pageRouteSlideOffset,
+  }) {
+    final curved = CurvedAnimation(
+      parent: animation,
+      curve: standardCurve,
+      reverseCurve: exitCurve,
+    );
+
+    final slideAnimation = Tween<Offset>(
+      begin: Offset(slideOffset, 0),
+      end: Offset.zero,
+    ).animate(curved);
+
+    return SlideTransition(
+      position: slideAnimation,
+      child: FadeTransition(opacity: curved, child: child),
+    );
+  }
+
+  /// Fade transition for full-screen page routes.
+  static Widget pageFadeTransition({
+    required Animation<double> animation,
+    required Widget child,
+  }) {
+    final curved = CurvedAnimation(
+      parent: animation,
+      curve: standardCurve,
+      reverseCurve: exitCurve,
+    );
+
+    return FadeTransition(opacity: curved, child: child);
   }
 
   /// Slide + fade transition for content that changes directionally (e.g. date nav).

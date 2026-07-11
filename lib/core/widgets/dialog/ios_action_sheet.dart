@@ -1,4 +1,5 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/core/utils/responsive_extension.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +93,7 @@ class _IosActionSheet extends StatelessWidget {
                         label: options[i].label,
                         typography: typography,
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          moveBack(context);
                           options[i].onPressed();
                         },
                       ),
@@ -107,7 +108,7 @@ class _IosActionSheet extends StatelessWidget {
                   theme: theme,
                   label: cancelLabel,
                   typography: typography,
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () => moveBack(context),
                 ),
               ),
             ],

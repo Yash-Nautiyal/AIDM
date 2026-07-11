@@ -1,6 +1,7 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
-import 'package:aidm/core/widgets/app_bar/app_app_bar.dart';
+import 'package:aidm/core/widgets/app_bar/app_appbar.dart';
 import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:aidm/core/widgets/dialog/ios_action_sheet.dart';
 import 'package:aidm/feature/webinar/domain/entities/webinar.dart';
@@ -87,7 +88,7 @@ class _WebinarEditPageState extends State<WebinarEditPage> {
       watermark: _watermark,
       attachments: _attachments,
     );
-    Navigator.of(context).pop(WebinarEditSaved(updated));
+    moveBack(context, WebinarEditSaved(updated));
   }
 
   Future<void> _confirmDelete() async {
@@ -97,7 +98,7 @@ class _WebinarEditPageState extends State<WebinarEditPage> {
         IosActionSheetOption(
           label: 'Delete Webinar',
           onPressed: () {
-            Navigator.of(context).pop(WebinarEditDeleted(_draft.id));
+            moveBack(context, WebinarEditDeleted(_draft.id));
           },
         ),
       ],

@@ -6,6 +6,7 @@ import 'package:aidm/core/widgets/bottom_sheet/app_bottom_sheet.dart';
 import 'package:aidm/core/widgets/bottom_sheet/show_app_bottom_sheet.dart';
 import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:aidm/core/widgets/input/app_input2.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -62,7 +63,7 @@ class _RecordingUploadSheetBodyState extends State<_RecordingUploadSheetBody> {
   void _upload() {
     final title = _titleController.text.trim();
     if (title.isEmpty || _selectedFileName == null) return;
-    Navigator.of(context).pop(title);
+    moveBack(context, title);
   }
 
   @override

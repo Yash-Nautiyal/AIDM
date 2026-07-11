@@ -1,4 +1,5 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ Future<String?> showAppBottomSheetOptions(
     body: AppBottomSheetOptionsList(
       options: options,
       selected: selected,
-      onSelected: (value) => Navigator.of(context).pop(value),
+      onSelected: (value) => moveBack(context, value),
     ),
   );
 }

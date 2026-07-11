@@ -1,4 +1,5 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/feature/recordings/domain/entities/recording.dart';
 import 'package:aidm/feature/recordings/presentation/widgets/recordings/player/recording_info_section.dart';
@@ -41,7 +42,7 @@ class _RecordingPlayerPageState extends State<RecordingPlayerPage> {
             currentChapterIndex: _activeChapterIndex,
             currentPosition: _currentPosition,
             isPlaying: _isPlaying,
-            onBack: () => Navigator.of(context).maybePop(),
+            onBack: () => maybeMoveBack(context),
             onTogglePlay: () => setState(() => _isPlaying = !_isPlaying),
           ),
           Expanded(

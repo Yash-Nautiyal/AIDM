@@ -5,8 +5,8 @@ import 'package:aidm/core/utils/responsive_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class WebinarFab extends StatelessWidget {
-  const WebinarFab({super.key, required this.onPressed});
+class AppFloatingButton extends StatelessWidget {
+  const AppFloatingButton({super.key, required this.onPressed});
 
   final VoidCallback onPressed;
 
@@ -23,8 +23,8 @@ class WebinarFab extends StatelessWidget {
         onTap: onPressed,
         customBorder: const CircleBorder(),
         child: SizedBox(
-          width: 56.w,
-          height: 56.w,
+          width: 56.sp,
+          height: 56.sp,
           child: Center(
             child: SvgPicture.asset(
               AppAssets.addIcon,

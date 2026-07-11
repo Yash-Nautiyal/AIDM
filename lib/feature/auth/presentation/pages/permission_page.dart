@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:aidm/core/constant/app_assets.dart';
 import 'package:aidm/core/constant/app_dimensions.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/core/utils/responsive_extension.dart';
@@ -83,11 +84,7 @@ class _PermissionPageState extends State<PermissionPage>
   }
 
   void _finishOnboarding() {
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => const PremiumPage()),
-      (_) => false,
-    );
+    moveTo(context, const PremiumPage(), clearStack: true);
   }
 
   Future<void> _requestNotificationPermission() async {

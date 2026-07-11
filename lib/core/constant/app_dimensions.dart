@@ -21,7 +21,7 @@ abstract final class AppDimensions {
   static double get spacingVertical3xl => 32.h;
 
   // Button
-  static double get buttonHeight => 50.h;
+  static double get buttonHeight => 50.sp;
   static double get buttonHeightMd => 40.h;
   static double get buttonHeightSm => 30.h;
 
@@ -31,17 +31,17 @@ abstract final class AppDimensions {
   static double get appBarTotalHeight => appBarHeight + appBarBottomPadding;
 
   // Nav bar
-  static double get navBarHeight => 74.h;
-  static double get navIconSize => 20.w;
-  static double get navPillHorizontalPadding => 16.w;
-  static double get navPillVerticalPadding => 8.h;
+  static double get navBarHeight => 74.sp;
+  static double get navIconSize => 20.sp;
+  static double get navPillHorizontalPadding => 16.sp;
+  static double get navPillVerticalPadding => 8.sp;
   static double get navPillRadius => 20.r;
   static double get navItemRadius => 12.r;
 
   // Nav text math
-  static double get navLabelFontSize => 11.sp;
+  static double get navLabelFontSize => 12.sp;
   static double get navLabelLineHeight => 1.2;
-  static double get navLabelGap => 4.h;
+  static double get navLabelGap => 4.sp;
   static double get navLabelHeight => navLabelFontSize * navLabelLineHeight;
 
   // Computed layout bounds

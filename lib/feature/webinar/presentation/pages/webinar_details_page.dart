@@ -1,7 +1,8 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/utils/share_utils.dart';
-import 'package:aidm/core/widgets/app_bar/app_app_bar.dart';
+import 'package:aidm/core/widgets/app_bar/app_appbar.dart';
 import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:aidm/feature/home/presentation/widgets/sheets/start/start_webinar_sheet.dart';
 import 'package:aidm/feature/webinar/domain/entities/webinar.dart';
@@ -30,21 +31,20 @@ class _WebinarDetailsPageState extends State<WebinarDetailsPage> {
   }
 
   Future<void> _openEdit() async {
-    final result = await Navigator.of(context).push<WebinarEditResult>(
-      MaterialPageRoute(
-        builder: (_) => WebinarEditPage(webinar: _webinar),
-      ),
+    final result = await moveTo<WebinarEditResult>(
+      context,
+      WebinarEditPage(webinar: _webinar),
     );
     if (!mounted || result == null) return;
 
     switch (result) {
       case WebinarEditSaved(:final webinar):
         setState(() => _webinar = webinar);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Webinar saved')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Webinar saved')));
       case WebinarEditDeleted():
-        Navigator.of(context).pop(result);
+        moveBack(context, result);
     }
   }
 
@@ -71,14 +71,14 @@ class _WebinarDetailsPageState extends State<WebinarDetailsPage> {
       canPop: false,
       onPopInvokedWithResult: (didPop, _) {
         if (didPop) return;
-        Navigator.of(context).pop(WebinarEditSaved(_webinar));
+        moveBack(context, WebinarEditSaved(_webinar));
       },
       child: Scaffold(
         backgroundColor: theme.backgroundPage,
         appBar: AppAppBar(
           title: 'Webinar Details',
           showBack: true,
-          onBack: () => Navigator.of(context).pop(WebinarEditSaved(_webinar)),
+          onBack: () => moveBack(context, WebinarEditSaved(_webinar)),
         ),
         body: SafeArea(
           child: Column(
@@ -95,10 +95,7 @@ class _WebinarDetailsPageState extends State<WebinarDetailsPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      WebinarSummaryCard(
-                        webinar: _webinar,
-                        onEdit: _openEdit,
-                      ),
+                      WebinarSummaryCard(webinar: _webinar, onEdit: _openEdit),
                       SizedBox(height: AppDimensions.spacingVerticalLg),
                       WebinarInviteSection(
                         inviteLink: _webinar.inviteLink,
@@ -117,10 +114,7 @@ class _WebinarDetailsPageState extends State<WebinarDetailsPage> {
                 ),
                 child: Column(
                   children: [
-                    AppButton(
-                      label: 'Start Webinar',
-                      onPressed: _startWebinar,
-                    ),
+                    AppButton(label: 'Start Webinar', onPressed: _startWebinar),
                     SizedBox(height: AppDimensions.spacingVerticalMd),
                     AppButton(
                       key: _shareButtonKey,

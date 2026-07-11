@@ -5,6 +5,7 @@ import 'package:aidm/core/widgets/bottom_sheet/app_bottom_sheet.dart';
 import 'package:aidm/core/widgets/bottom_sheet/show_app_bottom_sheet.dart';
 import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:aidm/core/widgets/input/app_input2.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 
 Future<String?> showWebinarTitleEditSheet(
@@ -51,7 +52,7 @@ class _WebinarTitleEditSheetState extends State<_WebinarTitleEditSheet> {
   void _save() {
     final value = _controller.text.trim();
     if (!_canSave) return;
-    Navigator.of(context).pop(value);
+    moveBack(context, value);
   }
 
   @override

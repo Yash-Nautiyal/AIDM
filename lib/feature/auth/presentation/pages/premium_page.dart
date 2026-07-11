@@ -1,11 +1,12 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_colors.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/core/utils/responsive_extension.dart';
 import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:aidm/core/widgets/card/app_card.dart';
-import 'package:aidm/feature/home/presentation/pages/home_page.dart';
+import 'package:aidm/core/widgets/nav/app_shell.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constant/app_assets.dart';
@@ -24,10 +25,10 @@ class PremiumPage extends StatelessWidget {
   ];
 
   void _goToDashboard(BuildContext context) {
-    Navigator.pushAndRemoveUntil(
+    moveTo(
       context,
-      MaterialPageRoute(builder: (_) => const HomePage(key: Key('home_page'))),
-      (_) => false,
+      const AppShell(key: Key('app_shell')),
+      clearStack: true,
     );
   }
 

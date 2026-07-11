@@ -1,4 +1,5 @@
 import 'package:aidm/core/constant/app_assets.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constant/app_dimensions.dart';
@@ -58,12 +59,7 @@ class WelocomePage extends StatelessWidget {
                     AppButton(
                       label: 'Get Started',
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SignUpPage(),
-                          ),
-                        );
+                        moveTo(context, const SignUpPage());
                       },
                     ),
                   ],

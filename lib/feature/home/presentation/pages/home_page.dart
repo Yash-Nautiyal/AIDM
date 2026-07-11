@@ -1,7 +1,9 @@
-import 'package:aidm/feature/recordings/presentation/pages/recordings_page.dart';
+import 'package:aidm/core/routes/app_router.dart';
+import 'package:aidm/core/widgets/button/app_floating_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constant/app_dimensions.dart';
+import '../../../../core/widgets/nav/app_shell.dart';
 import '../../../../core/theme/app_theme_extension.dart';
 import 'notification_page.dart';
 import 'schedule_page.dart';
@@ -32,12 +34,7 @@ class HomePage extends StatelessWidget {
     ];
     return Scaffold(
       backgroundColor: theme.backgroundPage,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        shape: const CircleBorder(),
-        backgroundColor: theme.brandPrimary,
-        child: const Icon(Icons.add_rounded, color: Colors.white),
-      ),
+      floatingActionButton: AppFloatingButton(onPressed: () {}),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.only(
@@ -52,11 +49,7 @@ class HomePage extends StatelessWidget {
               HomeHeader(
                 userName: 'Dunge',
                 onNotificationsTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => const NotificationPage(),
-                    ),
-                  );
+                  moveTo(context, const NotificationPage());
                 },
               ),
               SizedBox(height: AppDimensions.spacingVertical2xl),
@@ -66,16 +59,10 @@ class HomePage extends StatelessWidget {
                 onStartTap: () => showStartWebinarSheet(context),
                 onJoinTap: () => showJointWebinarSheet(context),
                 onScheduleTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const SchedulePage()),
-                  );
+                  moveTo(context, const SchedulePage());
                 },
                 onRecordingsTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => const RecordingsPage(),
-                    ),
-                  );
+                  AppShell.maybeOf(context)?.onTabSelected(3);
                 },
               ),
               SizedBox(height: AppDimensions.spacingVertical2xl),

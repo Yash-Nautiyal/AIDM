@@ -1,8 +1,7 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/theme/app_colors.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
-import 'package:aidm/core/widgets/app_bar/app_app_bar.dart';
-import 'package:aidm/core/widgets/nav/app_navbar.dart';
+import 'package:aidm/core/widgets/app_bar/app_appbar.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/notification.dart';
@@ -61,14 +60,6 @@ class NotificationPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: theme.backgroundPage,
       appBar: const AppAppBar(title: 'Notification', showBack: true),
-      bottomNavigationBar: AppNavbar(
-        currentIndex: 0,
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.of(context).maybePop();
-          }
-        },
-      ),
       body: SafeArea(
         child: Column(
           children: [

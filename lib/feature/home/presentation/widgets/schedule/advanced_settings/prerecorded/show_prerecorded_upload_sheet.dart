@@ -3,6 +3,7 @@ import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/core/widgets/bottom_sheet/show_app_bottom_sheet.dart';
 import 'package:aidm/core/widgets/button/app_button.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -32,7 +33,7 @@ class _PrerecordedUploadSheetState extends State<_PrerecordedUploadSheet> {
     try {
       final file = await _picker.pickVideo(source: ImageSource.gallery);
       if (!mounted || file == null) return;
-      Navigator.of(context).pop(file.name);
+      moveBack(context, file.name);
     } finally {
       if (mounted) setState(() => _isPicking = false);
     }

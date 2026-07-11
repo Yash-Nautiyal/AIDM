@@ -1,14 +1,15 @@
-import 'package:aidm/core/constant/app_dimensions.dart';
-import 'package:aidm/core/theme/app_theme_extension.dart';
-import 'package:aidm/core/widgets/app_bar/app_app_bar.dart';
-import 'package:aidm/feature/home/presentation/pages/schedule_page.dart';
-import 'package:aidm/feature/webinar/domain/entities/webinar.dart';
-import 'package:aidm/feature/webinar/presentation/pages/webinar_details_page.dart';
-import 'package:aidm/feature/webinar/presentation/widgets/list/webinar_fab.dart';
-import 'package:aidm/feature/webinar/presentation/widgets/list/webinar_list_empty.dart';
-import 'package:aidm/feature/webinar/presentation/widgets/list/webinar_tab_row.dart';
-import 'package:aidm/feature/webinar/presentation/widgets/list/webinar_tile.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
+import '../../../../core/constant/app_dimensions.dart';
+import '../../../../core/theme/app_theme_extension.dart';
+import '../../../../core/widgets/app_bar/app_appbar.dart';
+import '../../../../core/widgets/button/app_floating_button.dart';
+import '../../../home/presentation/pages/schedule_page.dart';
+import '../../domain/entities/webinar.dart';
+import '../widgets/list/webinar_list_empty.dart';
+import '../widgets/list/webinar_tab_row.dart';
+import '../widgets/list/webinar_tile.dart';
+import 'webinar_details_page.dart';
 
 class WebinarPage extends StatefulWidget {
   const WebinarPage({super.key});
@@ -83,8 +84,9 @@ class _WebinarPageState extends State<WebinarPage> {
   }
 
   Future<void> _openDetails(Webinar webinar) async {
-    final result = await Navigator.of(context).push<WebinarEditResult>(
-      MaterialPageRoute(builder: (_) => WebinarDetailsPage(webinar: webinar)),
+    final result = await moveTo<WebinarEditResult>(
+      context,
+      WebinarDetailsPage(webinar: webinar),
     );
     if (!mounted || result == null) return;
 
@@ -98,16 +100,14 @@ class _WebinarPageState extends State<WebinarPage> {
     });
 
     if (result is WebinarEditDeleted && mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Webinar deleted')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Webinar deleted')));
     }
   }
 
   void _openSchedule() {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => const SchedulePage()),
-    );
+    moveTo(context, const SchedulePage());
   }
 
   @override
@@ -118,11 +118,10 @@ class _WebinarPageState extends State<WebinarPage> {
     return Scaffold(
       backgroundColor: theme.backgroundPage,
       appBar: const AppAppBar(title: 'Webinars'),
-      floatingActionButton: WebinarFab(onPressed: _openSchedule),
+      floatingActionButton: AppFloatingButton(onPressed: _openSchedule),
       body: SafeArea(
         child: Column(
           children: [
-            Divider(height: 1, thickness: 1, color: theme.borderDefault),
             Padding(
               padding: EdgeInsets.fromLTRB(
                 AppDimensions.pagePadding,

@@ -1,6 +1,7 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
-import 'package:aidm/core/widgets/app_bar/app_app_bar.dart';
+import 'package:aidm/core/widgets/app_bar/app_appbar.dart';
 import 'package:aidm/feature/recordings/domain/entities/recording.dart';
 import 'package:aidm/feature/recordings/presentation/pages/recording_player_page.dart';
 import 'package:aidm/feature/recordings/presentation/widgets/recordings/list/recording_filter_row.dart';
@@ -106,11 +107,7 @@ class _RecordingsPageState extends State<RecordingsPage> {
   }
 
   void _openPlayer(Recording recording) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => RecordingPlayerPage(recording: recording),
-      ),
-    );
+    moveTo(context, RecordingPlayerPage(recording: recording));
   }
 
   void _onOptionSelected(Recording recording, RecordingOption option) {
@@ -134,7 +131,6 @@ class _RecordingsPageState extends State<RecordingsPage> {
       body: SafeArea(
         child: Column(
           children: [
-            Divider(height: 1, thickness: 1, color: theme.borderDefault),
             Padding(
               padding: EdgeInsets.fromLTRB(
                 AppDimensions.pagePadding,

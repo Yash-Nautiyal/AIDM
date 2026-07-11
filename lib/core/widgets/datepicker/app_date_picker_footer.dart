@@ -2,6 +2,7 @@ import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/app_dimensions.dart';
+import '../../theme/app_theme_extension.dart';
 import '../../theme/typography/app_typography_extension.dart';
 
 class AppDatePickerFooter extends StatelessWidget {
@@ -21,6 +22,7 @@ class AppDatePickerFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final typography = Theme.of(context).extension<AppTypographyExtension>()!;
+    final theme = Theme.of(context).extension<AppThemeExtension>()!;
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: AppDimensions.spacingLg,
@@ -31,7 +33,12 @@ class AppDatePickerFooter extends StatelessWidget {
           Expanded(
             child: InkWell(
               onTap: onClear,
-              child: Center(child: Text(clearLabel, style: typography.label)),
+              child: Center(
+                child: Text(
+                  clearLabel,
+                  style: typography.label.copyWith(color: theme.brandPrimary),
+                ),
+              ),
             ),
           ),
           Expanded(

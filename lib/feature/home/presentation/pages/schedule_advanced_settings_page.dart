@@ -2,7 +2,7 @@ import 'package:aidm/core/constant/app_animations.dart';
 import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
-import 'package:aidm/core/widgets/app_bar/app_app_bar.dart';
+import 'package:aidm/core/widgets/app_bar/app_appbar.dart';
 import 'package:aidm/core/widgets/toggle/app_toggle.dart';
 import 'package:aidm/feature/home/presentation/widgets/schedule/advanced_settings/fields/advanced_passcode_fields.dart';
 import 'package:aidm/feature/home/presentation/widgets/schedule/advanced_settings/fields/advanced_prerecorded_fields.dart';
@@ -96,8 +96,10 @@ class _ScheduleAdvancedSettingsPageState
   int _repeatInterval = 1;
   String _repeatEnds = 'After N times';
   int _repeatOccurrences = 2;
-  String _recordingVisibility = ScheduleAdvancedRecordingFields.visibilityOptions.first;
-  PrerecordedVideoSource _prerecordedVideoSource = PrerecordedVideoSource.recordings;
+  String _recordingVisibility =
+      ScheduleAdvancedRecordingFields.visibilityOptions.first;
+  PrerecordedVideoSource _prerecordedVideoSource =
+      PrerecordedVideoSource.recordings;
   PrerecordedRecordingItem? _selectedPrerecordedRecording;
   String? _uploadedPrerecordedFileName;
 
@@ -227,12 +229,10 @@ class _ScheduleAdvancedSettingsPageState
                           recordings: _prerecordedRecordings,
                           onVideoSourceChanged: (v) =>
                               setState(() => _prerecordedVideoSource = v),
-                          onRecordingSelected: (v) => setState(
-                            () => _selectedPrerecordedRecording = v,
-                          ),
-                          onFileUploaded: (v) => setState(
-                            () => _uploadedPrerecordedFileName = v,
-                          ),
+                          onRecordingSelected: (v) =>
+                              setState(() => _selectedPrerecordedRecording = v),
+                          onFileUploaded: (v) =>
+                              setState(() => _uploadedPrerecordedFileName = v),
                         ),
                       ),
                     if (setting.keyName == 'require_passcode')

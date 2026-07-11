@@ -41,6 +41,9 @@ abstract class AppAssets {
   static const String shareIcon = '${_iconPath}share.svg';
   static const String editIcon = '${_iconPath}edit.svg';
   static const String copyIcon = '${_iconPath}copy.svg';
+  static const String codeIcon = '${_iconPath}code.svg';
+  static const String fileIcon = '${_iconPath}file.svg';
+  static const String userIcon = '${_iconPath}user.svg';
 
   // illustrations
   static const String calendarAlertIll =
@@ -53,4 +56,8 @@ abstract class AppAssets {
   static const String cardPoster = '${_illustrationPath}card_poster.svg';
   static const String calendarWebinarIll =
       '${_illustrationPath}calendar_webinar.svg';
+  static const String paymentSuccessIll =
+      '${_illustrationPath}payment_success.svg';
+  static const String paymentFailedIll =
+      '${_illustrationPath}payment_failed.svg';
 }

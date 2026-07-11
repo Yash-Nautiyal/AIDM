@@ -1,3 +1,4 @@
+import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/widgets/input/app_input2.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ Future<void> showJointWebinarSheet(BuildContext context) {
     body: const _JoinWebinarSheet(),
     footer: AppButton(
       label: 'Join Now',
-      onPressed: () => Navigator.of(context).pop(),
+      onPressed: () => moveBack(context),
     ),
   );
 }
