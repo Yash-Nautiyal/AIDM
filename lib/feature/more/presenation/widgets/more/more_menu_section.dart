@@ -1,14 +1,16 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
+import 'package:aidm/core/widgets/card/app_bordered_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 sealed class MoreMenuItem {
-  const MoreMenuItem({required this.title, this.onTap});
+  const MoreMenuItem({required this.title, this.onTap, this.iconSize});
 
   final String title;
   final VoidCallback? onTap;
+  final double? iconSize;
 }
 
 class MoreMenuIconItem extends MoreMenuItem {
@@ -16,6 +18,7 @@ class MoreMenuIconItem extends MoreMenuItem {
     required super.title,
     required this.icon,
     super.onTap,
+    super.iconSize,
   });
 
   final IconData icon;
@@ -26,6 +29,7 @@ class MoreMenuSvgItem extends MoreMenuItem {
     required super.title,
     required this.assetPath,
     super.onTap,
+    super.iconSize,
   });
 
   final String assetPath;
@@ -40,12 +44,7 @@ class MoreMenuSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: theme.backgroundPage,
-        border: Border.all(color: theme.borderDefault),
-        borderRadius: BorderRadius.circular(AppDimensions.radiusLg),
-      ),
+    return AppBorderedCard(
       child: Column(
         children: List.generate(items.length, (index) {
           final item = items[index];
@@ -118,14 +117,14 @@ class _MenuIcon extends StatelessWidget {
     return switch (item) {
       MoreMenuSvgItem(:final assetPath) => SvgPicture.asset(
         assetPath,
-        width: AppDimensions.iconSizeLg,
-        height: AppDimensions.iconSizeLg,
+        width: item.iconSize ?? AppDimensions.iconSizeMd,
+        height: item.iconSize ?? AppDimensions.iconSizeMd,
         colorFilter: ColorFilter.mode(theme.textPrimary, BlendMode.srcIn),
       ),
       MoreMenuIconItem(:final icon) => Icon(
         icon,
         color: theme.textPrimary,
-        size: AppDimensions.iconSizeLg,
+        size: item.iconSize ?? AppDimensions.iconSizeMd,
       ),
     };
   }

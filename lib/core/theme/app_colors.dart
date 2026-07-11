@@ -105,9 +105,9 @@ class AppColors {
   static List<BoxShadow> get lightCardShadow => [
     const BoxShadow(
       color: Color(0x0F000000),
-      offset: Offset(1, 4),
+      offset: Offset(0, 4),
       blurRadius: 16,
-      spreadRadius: 0,
+      spreadRadius: 1,
     ),
   ];
 

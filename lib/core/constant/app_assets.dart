@@ -24,7 +24,7 @@ abstract class AppAssets {
   static const String homeIcon = '${_iconPath}home.svg';
   static const String menuIcon = '${_iconPath}menu.svg';
   static const String recordingIcon = '${_iconPath}recording.svg';
-  static const String premiumIcon = '${_iconPath}crown.svg';
+  static const String premiumIcon = '${_iconPath}crown2.svg';
   static const String recorderIcon = '${_iconPath}recorder.svg';
   static const String addIcon = '${_iconPath}plus.svg';
   static const String notificationIcon = '${_iconPath}notification.svg';

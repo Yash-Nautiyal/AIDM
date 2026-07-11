@@ -5,9 +5,10 @@ import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/feature/auth/presentation/pages/sign_in_page.dart';
 import 'package:aidm/feature/more/presenation/pages/profile_page.dart';
-import 'package:aidm/feature/more/presenation/widgets/more_email_preference_section.dart';
-import 'package:aidm/feature/more/presenation/widgets/more_menu_section.dart';
-import 'package:aidm/feature/more/presenation/widgets/more_profile_header.dart';
+import 'package:aidm/feature/more/presenation/pages/subscription_page.dart';
+import 'package:aidm/feature/more/presenation/widgets/more/more_email_preference_section.dart';
+import 'package:aidm/feature/more/presenation/widgets/more/more_menu_section.dart';
+import 'package:aidm/feature/more/presenation/widgets/more/more_profile_header.dart';
 import 'package:flutter/material.dart';
 
 class MorePage extends StatelessWidget {
@@ -19,6 +20,10 @@ class MorePage extends StatelessWidget {
 
   void _openProfile(BuildContext context) {
     moveTo(context, const ProfilePage());
+  }
+
+  void _openSubscription(BuildContext context) {
+    moveTo(context, const SubscriptionPage());
   }
 
   void _signOut(BuildContext context) {
@@ -50,30 +55,32 @@ class MorePage extends StatelessWidget {
               SizedBox(height: AppDimensions.spacingVertical2xl),
               MoreMenuSection(
                 items: [
-                  MoreMenuIconItem(
+                  MoreMenuSvgItem(
                     title: 'Profile',
-                    icon: Icons.person_outline_rounded,
+                    assetPath: AppAssets.userIcon,
                     onTap: () => _openProfile(context),
                   ),
-                  MoreMenuSvgItem(
+                  const MoreMenuSvgItem(
                     title: 'Attachments',
                     assetPath: AppAssets.paperClipIcon,
                   ),
                   MoreMenuSvgItem(
                     title: 'Subscription',
                     assetPath: AppAssets.premiumIcon,
+                    onTap: () => _openSubscription(context),
                   ),
-                  const MoreMenuIconItem(
+                  MoreMenuSvgItem(
                     title: 'Integration',
-                    icon: Icons.code_rounded,
+                    assetPath: AppAssets.codeIcon,
+                    iconSize: AppDimensions.iconSizeSm,
                   ),
-                  const MoreMenuIconItem(
+                  const MoreMenuSvgItem(
                     title: 'Terms & conditions',
-                    icon: Icons.description_outlined,
+                    assetPath: AppAssets.fileIcon,
                   ),
-                  const MoreMenuIconItem(
+                  const MoreMenuSvgItem(
                     title: 'Privacy policy',
-                    icon: Icons.description_outlined,
+                    assetPath: AppAssets.fileIcon,
                   ),
                 ],
               ),
@@ -84,10 +91,7 @@ class MorePage extends StatelessWidget {
                 onTap: () => _signOut(context),
                 child: Text(
                   'Sign Out',
-                  style: typography.labelLarge.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: theme.textDanger,
-                  ),
+                  style: typography.label.copyWith(color: theme.textDanger),
                 ),
               ),
             ],

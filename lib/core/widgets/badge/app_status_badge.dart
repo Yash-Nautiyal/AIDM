@@ -12,12 +12,13 @@ class AppStatusBadge extends StatelessWidget {
     required this.label,
     this.showDot = true,
     this.blurSigma = 12,
+    this.color,
   });
 
   final String label;
   final bool showDot;
   final double blurSigma;
-
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
@@ -31,7 +32,7 @@ class AppStatusBadge extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15.sp, vertical: 5.sp),
           decoration: BoxDecoration(
-            color: theme.brandPrimaryTint.withValues(alpha: 0.18),
+            color: color ?? theme.brandPrimaryTint.withValues(alpha: 0.18),
             borderRadius: radius,
           ),
           child: Row(

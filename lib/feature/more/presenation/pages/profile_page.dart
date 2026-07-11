@@ -2,9 +2,9 @@ import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/core/widgets/app_bar/app_appbar.dart';
-import 'package:aidm/feature/more/presenation/widgets/delete_account_dialog.dart';
-import 'package:aidm/feature/more/presenation/widgets/profile_avatar_editor.dart';
-import 'package:aidm/feature/more/presenation/widgets/profile_labeled_field.dart';
+import 'package:aidm/feature/more/presenation/widgets/more/delete_account_dialog.dart';
+import 'package:aidm/feature/more/presenation/widgets/more/profile_avatar_editor.dart';
+import 'package:aidm/feature/more/presenation/widgets/more/profile_labeled_field.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {

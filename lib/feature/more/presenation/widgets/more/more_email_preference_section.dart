@@ -1,6 +1,7 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
+import 'package:aidm/core/widgets/card/app_bordered_card.dart';
 import 'package:aidm/core/widgets/toggle/app_toggle.dart';
 import 'package:flutter/material.dart';
 
@@ -21,12 +22,7 @@ class _MoreEmailPreferenceSectionState
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
     final typography = Theme.of(context).extension<AppTypographyExtension>()!;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: theme.backgroundPage,
-        border: Border.all(color: theme.borderDefault),
-        borderRadius: BorderRadius.circular(AppDimensions.radiusLg),
-      ),
+    return AppBorderedCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -37,13 +33,7 @@ class _MoreEmailPreferenceSectionState
               AppDimensions.spacingLg,
               AppDimensions.spacingVerticalMd,
             ),
-            child: Text(
-              'Email Preference',
-              style: typography.labelLarge.copyWith(
-                fontWeight: FontWeight.w700,
-                color: theme.textPrimary,
-              ),
-            ),
+            child: Text('Email Preference', style: typography.labelLarge),
           ),
           Divider(height: 1, thickness: 1, color: theme.borderDefault),
           Padding(
@@ -60,10 +50,7 @@ class _MoreEmailPreferenceSectionState
                     children: [
                       Text(
                         'Webinar reminder emails',
-                        style: typography.labelLarge.copyWith(
-                          fontWeight: FontWeight.w700,
-                          color: theme.textPrimary,
-                        ),
+                        style: typography.bodyMedium,
                       ),
                       SizedBox(height: AppDimensions.spacingVerticalXs),
                       Text(
