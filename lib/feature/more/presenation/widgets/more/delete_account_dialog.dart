@@ -23,10 +23,10 @@ class DeleteAccountDialog extends StatelessWidget {
       'for legal compliance but will be anonymised.';
 
   void _confirmDelete(BuildContext context) {
-    Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-      pageRoute(page: const SignInPage()),
-      (_) => false,
-    );
+    Navigator.of(
+      context,
+      rootNavigator: true,
+    ).pushAndRemoveUntil(pageRoute(page: const SignInPage()), (_) => false);
   }
 
   @override
@@ -36,7 +36,7 @@ class DeleteAccountDialog extends StatelessWidget {
 
     return Dialog(
       backgroundColor: Colors.transparent,
-      insetPadding: EdgeInsets.symmetric(horizontal: AppDimensions.pagePadding),
+      insetPadding: EdgeInsets.symmetric(horizontal: AppDimensions.spacing2xl),
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: theme.backgroundPage,
@@ -64,9 +64,7 @@ class DeleteAccountDialog extends StatelessWidget {
                 ),
               ),
               SizedBox(height: AppDimensions.spacingVerticalLg),
-              _DeleteAccountButton(
-                onPressed: () => _confirmDelete(context),
-              ),
+              _DeleteAccountButton(onPressed: () => _confirmDelete(context)),
             ],
           ),
         ),
@@ -92,10 +90,7 @@ class _DeleteAccountButton extends StatelessWidget {
       child: InkWell(
         onTap: onPressed,
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 20.sp,
-            vertical: 12.h,
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 12.h),
           child: Text(
             'Delete my account',
             style: typography.label.copyWith(color: theme.brandPrimaryTint),

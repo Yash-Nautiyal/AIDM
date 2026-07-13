@@ -66,12 +66,7 @@ class _CalendarSearchPageState extends State<CalendarSearchPage> {
             ),
             Divider(height: 1, thickness: 1, color: theme.borderDefault),
             Padding(
-              padding: EdgeInsets.fromLTRB(
-                AppDimensions.pagePadding,
-                AppDimensions.spacingVerticalLg,
-                AppDimensions.pagePadding,
-                0,
-              ),
+              padding: AppDimensions.pagePadding.copyWith(bottom: 0),
               child: Row(
                 children: [
                   CalendarFilterChip(

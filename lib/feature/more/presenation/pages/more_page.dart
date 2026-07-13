@@ -3,8 +3,9 @@ import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
-import 'package:aidm/feature/auth/presentation/pages/sign_in_page.dart';
+import 'package:aidm/feature/auth/presentation/pages/welocome_page.dart';
 import 'package:aidm/feature/more/presenation/pages/attachments_page.dart';
+import 'package:aidm/feature/more/presenation/pages/integration_page.dart';
 import 'package:aidm/feature/more/presenation/pages/profile_page.dart';
 import 'package:aidm/feature/more/presenation/pages/subscription_page.dart';
 import 'package:aidm/feature/more/presenation/widgets/more/more_email_preference_section.dart';
@@ -31,8 +32,12 @@ class MorePage extends StatelessWidget {
     moveTo(context, const SubscriptionPage());
   }
 
+  void _openIntegration(BuildContext context) {
+    moveTo(context, const IntegrationPage());
+  }
+
   void _signOut(BuildContext context) {
-    moveTo(context, const SignInPage(), clearStack: true);
+    moveTo(context, const WelocomePage(), clearStack: true);
   }
 
   @override
@@ -44,12 +49,7 @@ class MorePage extends StatelessWidget {
       backgroundColor: theme.backgroundPage,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(
-            AppDimensions.pagePadding,
-            AppDimensions.spacingVertical2xl,
-            AppDimensions.pagePadding,
-            AppDimensions.spacingVertical3xl,
-          ),
+          padding: AppDimensions.pagePadding,
           child: Column(
             children: [
               const MoreProfileHeader(
@@ -79,6 +79,7 @@ class MorePage extends StatelessWidget {
                     title: 'Integration',
                     assetPath: AppAssets.codeIcon,
                     iconSize: AppDimensions.iconSizeSm,
+                    onTap: () => _openIntegration(context),
                   ),
                   const MoreMenuSvgItem(
                     title: 'Terms & conditions',

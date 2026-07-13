@@ -135,7 +135,7 @@ class _ScheduleTimeZonePageState extends State<ScheduleTimeZonePage> {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: AppDimensions.pagePadding,
+                horizontal: AppDimensions.spacing2xl,
               ),
               child: AppInput(
                 controller: _searchController,
@@ -151,7 +151,7 @@ class _ScheduleTimeZonePageState extends State<ScheduleTimeZonePage> {
               child: ListView.separated(
                 itemCount: filtered.length,
                 padding: EdgeInsets.symmetric(
-                  horizontal: AppDimensions.pagePadding,
+                  horizontal: AppDimensions.spacing2xl,
                 ),
                 itemBuilder: (context, index) {
                   final item = filtered[index];

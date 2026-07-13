@@ -25,9 +25,7 @@ class SlidingPageLayout extends StatelessWidget {
     final typography = Theme.of(context).extension<AppTypographyExtension>()!;
 
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: AppDimensions.pagePadding,
-      ).copyWith(top: AppDimensions.spacing3xl),
+      padding: AppDimensions.pagePadding,
       child: Column(
         children: [
           SizedBox(height: AppDimensions.spacing3xl),

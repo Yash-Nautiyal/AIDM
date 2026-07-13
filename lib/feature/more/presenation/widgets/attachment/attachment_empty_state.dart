@@ -15,7 +15,7 @@ class AttachmentEmptyState extends StatelessWidget {
     final typography = Theme.of(context).extension<AppTypographyExtension>()!;
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: AppDimensions.pagePadding),
+      padding: EdgeInsets.symmetric(horizontal: AppDimensions.spacing2xl),
       child: Column(
         children: [
           const Spacer(flex: 2),

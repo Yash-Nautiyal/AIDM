@@ -54,7 +54,7 @@ class _PrerecordedRecordingsSheet extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: AppDimensions.pagePadding,
+            horizontal: AppDimensions.spacing2xl,
             vertical: AppDimensions.spacingVerticalLg,
           ),
           child: Row(
@@ -79,7 +79,7 @@ class _PrerecordedRecordingsSheet extends StatelessWidget {
         ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          padding: EdgeInsets.symmetric(horizontal: AppDimensions.pagePadding),
+          padding: EdgeInsets.symmetric(horizontal: AppDimensions.spacing2xl),
           itemCount: recordings.length,
           separatorBuilder: (_, __) =>
               Divider(color: theme.borderDefault, height: 1),

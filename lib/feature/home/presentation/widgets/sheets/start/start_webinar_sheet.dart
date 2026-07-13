@@ -3,10 +3,8 @@ import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/core/widgets/bottom_sheet/app_bottom_sheet.dart';
 import 'package:aidm/core/widgets/bottom_sheet/show_app_bottom_sheet.dart';
-import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:aidm/core/widgets/input/app_input2.dart';
 import 'package:aidm/core/widgets/toggle/app_toggle.dart';
-import 'package:aidm/core/routes/app_router.dart';
 import 'package:flutter/material.dart';
 
 import 'start_sheet_privacy.dart';
@@ -19,10 +17,11 @@ Future<void> showStartWebinarSheet(BuildContext context) {
     context,
     header: const AppBottomSheetHeader(title: 'Start Webinar'),
     body: const _StartWebinarSheet(),
-    footer: AppButton(
-      label: 'Start Now',
-      onPressed: () => moveBack(context),
-    ),
+    showFooterButton: true,
+    footerButtonLabel: 'Start Now',
+    onFooterButtonPressed: () => {
+      // TODO: Implement start webinar logic
+    },
   );
 }
 

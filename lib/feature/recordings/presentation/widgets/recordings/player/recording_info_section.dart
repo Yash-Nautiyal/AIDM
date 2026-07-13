@@ -24,12 +24,7 @@ class RecordingInfoSection extends StatelessWidget {
     final typography = Theme.of(context).extension<AppTypographyExtension>()!;
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(
-        AppDimensions.pagePadding,
-        AppDimensions.spacingVerticalLg,
-        AppDimensions.pagePadding,
-        AppDimensions.spacingVerticalMd,
-      ),
+      padding: AppDimensions.pagePadding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

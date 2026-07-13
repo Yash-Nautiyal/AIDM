@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+
 import '../utils/responsive_extension.dart';
 
 abstract final class AppDimensions {
-  // Page layout
-  static double get pagePadding => 24.w;
+  // Page layou
   static double get spacingXs => 4.w;
   static double get spacingSm => 8.w;
   static double get spacingMd => 12.w;
@@ -19,6 +20,14 @@ abstract final class AppDimensions {
   static double get spacingVerticalXl => 20.h;
   static double get spacingVertical2xl => 24.h;
   static double get spacingVertical3xl => 32.h;
+
+  //Padding
+  static EdgeInsets get pagePadding => EdgeInsets.fromLTRB(
+    AppDimensions.spacing2xl,
+    AppDimensions.spacingVerticalLg,
+    AppDimensions.spacing2xl,
+    AppDimensions.spacingVerticalLg,
+  );
 
   // Button
   static double get buttonHeight => 50.sp;
@@ -68,8 +77,8 @@ abstract final class AppDimensions {
   static double get otpBoxPaddingHorizontal => 25.w;
 
   //logo
-  static double get logoWidth => 150.w;
-  static double get logoHeight => 100.h;
+  static double get logoWidth => 150.sp;
+  static double get logoHeight => 100.sp;
 
   // Notification
   static double get notificationAvatarRadius => 23.sp;

@@ -27,7 +27,7 @@ class RecordingOverviewSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppDimensions.pagePadding),
+          padding: EdgeInsets.symmetric(horizontal: AppDimensions.spacing2xl),
           child: Text(
             'Overview',
             style: typography.label.copyWith(color: theme.brandPrimary),

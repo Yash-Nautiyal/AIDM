@@ -132,12 +132,7 @@ class _RecordingsPageState extends State<RecordingsPage> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(
-                AppDimensions.pagePadding,
-                AppDimensions.spacingVerticalLg,
-                AppDimensions.pagePadding,
-                AppDimensions.spacingVerticalMd,
-              ),
+              padding: AppDimensions.pagePadding,
               child: RecordingFilterRow(
                 selectedFilter: _selectedFilter,
                 onFilterChanged: (filter) {
@@ -148,12 +143,7 @@ class _RecordingsPageState extends State<RecordingsPage> {
             ),
             Expanded(
               child: ListView.separated(
-                padding: EdgeInsets.fromLTRB(
-                  AppDimensions.pagePadding,
-                  0,
-                  AppDimensions.pagePadding,
-                  AppDimensions.spacingVertical3xl,
-                ),
+                padding: AppDimensions.pagePadding.copyWith(top: 0),
                 itemCount: recordings.length,
                 separatorBuilder: (_, _) => Divider(
                   height: 1,

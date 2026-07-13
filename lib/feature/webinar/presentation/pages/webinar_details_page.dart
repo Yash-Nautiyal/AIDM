@@ -86,12 +86,7 @@ class _WebinarDetailsPageState extends State<WebinarDetailsPage> {
               Divider(height: 1, thickness: 1, color: theme.borderDefault),
               Expanded(
                 child: SingleChildScrollView(
-                  padding: EdgeInsets.fromLTRB(
-                    AppDimensions.pagePadding,
-                    AppDimensions.spacingVerticalLg,
-                    AppDimensions.pagePadding,
-                    AppDimensions.spacingVerticalLg,
-                  ),
+                  padding: AppDimensions.pagePadding,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -106,12 +101,7 @@ class _WebinarDetailsPageState extends State<WebinarDetailsPage> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(
-                  AppDimensions.pagePadding,
-                  AppDimensions.spacingVerticalSm,
-                  AppDimensions.pagePadding,
-                  AppDimensions.spacingVerticalLg,
-                ),
+                padding: AppDimensions.pagePadding,
                 child: Column(
                   children: [
                     AppButton(label: 'Start Webinar', onPressed: _startWebinar),

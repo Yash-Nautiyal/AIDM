@@ -25,12 +25,7 @@ class CalendarSearchBar extends StatelessWidget {
     final typography = Theme.of(context).extension<AppTypographyExtension>()!;
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(
-        AppDimensions.pagePadding,
-        AppDimensions.spacingVerticalSm,
-        AppDimensions.pagePadding,
-        AppDimensions.spacingVerticalMd,
-      ),
+      padding: AppDimensions.pagePadding,
       child: Row(
         children: [
           Expanded(

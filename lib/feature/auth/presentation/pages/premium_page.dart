@@ -25,11 +25,7 @@ class PremiumPage extends StatelessWidget {
   ];
 
   void _goToDashboard(BuildContext context) {
-    moveTo(
-      context,
-      const AppShell(key: Key('app_shell')),
-      clearStack: true,
-    );
+    moveTo(context, const AppShell(key: Key('app_shell')), clearStack: true);
   }
 
   @override
@@ -41,9 +37,7 @@ class PremiumPage extends StatelessWidget {
       backgroundColor: theme.backgroundPage,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppDimensions.pagePadding,
-          ).copyWith(top: AppDimensions.spacing3xl),
+          padding: AppDimensions.pagePadding,
           child: Column(
             children: [
               Expanded(

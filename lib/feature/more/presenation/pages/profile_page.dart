@@ -67,12 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(
-            AppDimensions.pagePadding,
-            AppDimensions.spacingVertical2xl,
-            AppDimensions.pagePadding,
-            AppDimensions.spacingVertical3xl,
-          ),
+          padding: AppDimensions.pagePadding,
           child: Column(
             children: [
               ProfileAvatarEditor(

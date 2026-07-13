@@ -63,15 +63,9 @@ class NotificationPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Divider(height: 1, thickness: 1, color: theme.borderDefault),
             Expanded(
               child: ListView.separated(
-                padding: EdgeInsets.fromLTRB(
-                  AppDimensions.pagePadding,
-                  AppDimensions.spacingVerticalLg,
-                  AppDimensions.pagePadding,
-                  AppDimensions.spacingVertical3xl,
-                ),
+                padding: AppDimensions.pagePadding,
                 itemCount: _sections.length,
                 separatorBuilder: (_, _) =>
                     SizedBox(height: AppDimensions.spacingVerticalSm),

@@ -37,12 +37,7 @@ class HomePage extends StatelessWidget {
       floatingActionButton: AppFloatingButton(onPressed: () {}),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.only(
-            bottom: AppDimensions.spacingVertical3xl,
-            top: AppDimensions.spacingVerticalMd,
-            left: AppDimensions.pagePadding,
-            right: AppDimensions.pagePadding,
-          ),
+          padding: AppDimensions.pagePadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

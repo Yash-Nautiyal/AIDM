@@ -176,14 +176,10 @@ class _SchedulePageState extends State<SchedulePage> {
 
     return Scaffold(
       backgroundColor: theme.backgroundPage,
-      appBar: const AppAppBar(title: 'New Webinar'),
+      appBar: const AppAppBar(title: 'New Webinar', showBack: true),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.only(
-            left: AppDimensions.pagePadding,
-            right: AppDimensions.pagePadding,
-            top: AppDimensions.spacingVerticalLg,
-          ),
+          padding: AppDimensions.pagePadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

@@ -14,10 +14,7 @@ Future<String?> showAppBottomSheetOptions(
   return showAppBottomSheet<String>(
     context,
     showHeaderDivider: false,
-    padding: EdgeInsets.symmetric(
-      horizontal: AppDimensions.pagePadding,
-      vertical: AppDimensions.spacingVerticalLg,
-    ),
+    padding: AppDimensions.pagePadding,
     body: AppBottomSheetOptionsList(
       options: options,
       selected: selected,

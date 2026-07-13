@@ -181,7 +181,7 @@ class _ScheduleAdvancedSettingsPageState
       appBar: const AppAppBar(title: 'Advance Settings', showBack: true),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(AppDimensions.pagePadding),
+          padding: AppDimensions.pagePadding,
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(color: theme.borderDefault),

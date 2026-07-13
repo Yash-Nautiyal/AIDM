@@ -45,12 +45,7 @@ class PaymentStatusPage extends StatelessWidget {
       appBar: const AppAppBar(title: 'Payment Success', showBack: true),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(
-            AppDimensions.pagePadding,
-            AppDimensions.spacingVertical2xl,
-            AppDimensions.pagePadding,
-            AppDimensions.spacingVertical3xl,
-          ),
+          padding: AppDimensions.pagePadding,
           child: Column(
             children: [
               _PaymentStatusIcon(isSuccess: _isSuccess, color: accentColor),

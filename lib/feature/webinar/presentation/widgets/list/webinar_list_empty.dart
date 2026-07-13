@@ -18,7 +18,7 @@ class WebinarListEmpty extends StatelessWidget {
 
     return Center(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: AppDimensions.pagePadding),
+        padding: EdgeInsets.symmetric(horizontal: AppDimensions.spacing2xl),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -123,12 +123,7 @@ class _WebinarPageState extends State<WebinarPage> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(
-                AppDimensions.pagePadding,
-                AppDimensions.spacingVerticalLg,
-                AppDimensions.pagePadding,
-                AppDimensions.spacingVerticalMd,
-              ),
+              padding: AppDimensions.pagePadding,
               child: WebinarTabRow(
                 selectedTab: _selectedTab,
                 onTabChanged: (tab) => setState(() => _selectedTab = tab),
@@ -138,12 +133,7 @@ class _WebinarPageState extends State<WebinarPage> {
               child: webinars.isEmpty
                   ? WebinarListEmpty(onSchedule: _openSchedule)
                   : ListView.separated(
-                      padding: EdgeInsets.fromLTRB(
-                        AppDimensions.pagePadding,
-                        0,
-                        AppDimensions.pagePadding,
-                        AppDimensions.spacingVertical3xl + 56,
-                      ),
+                      padding: AppDimensions.pagePadding.copyWith(top: 0),
                       itemCount: webinars.length,
                       separatorBuilder: (_, _) =>
                           SizedBox(height: AppDimensions.spacingVerticalMd),

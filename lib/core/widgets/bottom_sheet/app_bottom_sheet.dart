@@ -6,6 +6,8 @@ import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../button/app_button.dart';
+
 class AppBottomSheet extends StatelessWidget {
   const AppBottomSheet({
     super.key,
@@ -16,6 +18,9 @@ class AppBottomSheet extends StatelessWidget {
     this.showFooterDivider = false,
     this.scrollBody = false,
     this.padding,
+    this.showFooterButton = false,
+    this.onFooterButtonPressed,
+    this.footerButtonLabel,
   });
 
   final Widget? header;
@@ -25,18 +30,15 @@ class AppBottomSheet extends StatelessWidget {
   final bool showFooterDivider;
   final bool scrollBody;
   final EdgeInsetsGeometry? padding;
-
+  final bool showFooterButton;
+  final VoidCallback? onFooterButtonPressed;
+  final String? footerButtonLabel;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
     final bottomInset = MediaQuery.viewInsetsOf(context).bottom;
     final maxHeight = MediaQuery.sizeOf(context).height * 0.92;
-    final contentPadding =
-        padding ??
-        EdgeInsets.symmetric(horizontal: AppDimensions.pagePadding).copyWith(
-          top: AppDimensions.spacingVerticalLg,
-          bottom: AppDimensions.spacingVertical2xl,
-        );
+    final contentPadding = padding ?? AppDimensions.pagePadding;
 
     final bodyWidget = scrollBody
         ? Flexible(
@@ -74,13 +76,21 @@ class AppBottomSheet extends StatelessWidget {
                     ],
                   ],
                   bodyWidget,
-                  if (footer != null) ...[
+                  if (footer != null || showFooterButton) ...[
                     if (showFooterDivider) ...[
                       SizedBox(height: AppDimensions.spacingVerticalMd),
                       Divider(height: 1, color: theme.borderDefault),
                     ],
                     SizedBox(height: AppDimensions.spacingVertical2xl),
-                    footer!,
+                    showFooterButton
+                        ? AppButton(
+                            label: footerButtonLabel ?? '',
+                            onPressed: () {
+                              onFooterButtonPressed?.call();
+                              moveBack(context);
+                            },
+                          )
+                        : footer!,
                   ],
                 ],
               ),
@@ -123,9 +133,7 @@ class AppBottomSheetHeader extends StatelessWidget {
             alignment: Alignment.centerRight,
             child:
                 trailing ??
-                _CloseButton(
-                  onClose: onClose ?? () => moveBack(context),
-                ),
+                _CloseButton(onClose: onClose ?? () => moveBack(context)),
           ),
         ],
       ),

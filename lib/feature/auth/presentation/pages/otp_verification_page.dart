@@ -94,9 +94,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
       backgroundColor: theme.backgroundPage,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppDimensions.pagePadding,
-          ).copyWith(top: AppDimensions.spacing3xl),
+          padding: AppDimensions.pagePadding,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

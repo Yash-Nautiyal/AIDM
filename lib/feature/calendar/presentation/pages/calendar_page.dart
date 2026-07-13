@@ -174,12 +174,7 @@ class _CalendarPageState extends State<CalendarPage> {
         child: CustomScrollView(
           slivers: [
             SliverPadding(
-              padding: EdgeInsets.fromLTRB(
-                AppDimensions.pagePadding,
-                AppDimensions.spacingVerticalLg,
-                AppDimensions.pagePadding,
-                AppDimensions.spacingVerticalLg,
-              ),
+              padding: AppDimensions.pagePadding,
               sliver: SliverToBoxAdapter(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -216,12 +211,7 @@ class _CalendarPageState extends State<CalendarPage> {
             ),
             if (!_isConnected)
               SliverPadding(
-                padding: EdgeInsets.fromLTRB(
-                  AppDimensions.pagePadding,
-                  AppDimensions.spacingVertical2xl,
-                  AppDimensions.pagePadding,
-                  AppDimensions.spacingVertical2xl,
-                ),
+                padding: AppDimensions.pagePadding,
                 sliver: SliverToBoxAdapter(
                   child: CalendarEmptyState(onConnectTap: _connectCalendar),
                 ),
@@ -244,12 +234,7 @@ class _CalendarPageState extends State<CalendarPage> {
               )
             else
               SliverPadding(
-                padding: EdgeInsets.fromLTRB(
-                  AppDimensions.pagePadding,
-                  AppDimensions.spacingVerticalLg,
-                  AppDimensions.pagePadding,
-                  AppDimensions.spacingVertical2xl,
-                ),
+                padding: AppDimensions.pagePadding,
                 sliver: SliverList.separated(
                   itemCount: events.length,
                   separatorBuilder: (_, _) =>

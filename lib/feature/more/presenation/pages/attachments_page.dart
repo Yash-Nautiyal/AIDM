@@ -127,12 +127,7 @@ class _AttachmentsPageState extends State<AttachmentsPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(
-                AppDimensions.pagePadding,
-                AppDimensions.spacingVerticalLg,
-                AppDimensions.pagePadding,
-                AppDimensions.spacingVerticalMd,
-              ),
+              padding: AppDimensions.pagePadding,
               child: Row(
                 children: [
                   Expanded(
@@ -151,12 +146,7 @@ class _AttachmentsPageState extends State<AttachmentsPage> {
               child: count == 0
                   ? AttachmentEmptyState(onUpload: _openAddSheet)
                   : ListView.separated(
-                      padding: EdgeInsets.fromLTRB(
-                        AppDimensions.pagePadding,
-                        0,
-                        AppDimensions.pagePadding,
-                        AppDimensions.spacingVertical3xl,
-                      ),
+                      padding: AppDimensions.pagePadding.copyWith(top: 0),
                       itemCount: count,
                       separatorBuilder: (_, _) =>
                           SizedBox(height: AppDimensions.spacingVerticalMd),

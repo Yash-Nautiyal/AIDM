@@ -22,6 +22,7 @@ class WelocomePage extends StatelessWidget {
       body: SafeArea(
         // top: false,
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
               Image.asset(
@@ -32,9 +33,7 @@ class WelocomePage extends StatelessWidget {
               ),
               // const SizedBox(height: AppDimensions.spacingLg),
               Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppDimensions.pagePadding,
-                ),
+                padding: AppDimensions.pagePadding.copyWith(bottom: 0, top: 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [

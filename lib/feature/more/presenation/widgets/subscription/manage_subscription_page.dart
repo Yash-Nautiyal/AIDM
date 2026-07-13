@@ -36,12 +36,7 @@ class _ManageSubscriptionPageState extends State<ManageSubscriptionPage> {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: EdgeInsets.fromLTRB(
-                  AppDimensions.pagePadding,
-                  AppDimensions.spacingVerticalLg,
-                  AppDimensions.pagePadding,
-                  AppDimensions.spacingVerticalLg,
-                ),
+                padding: AppDimensions.pagePadding,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -104,12 +99,7 @@ class _ManageSubscriptionPageState extends State<ManageSubscriptionPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(
-                AppDimensions.pagePadding,
-                AppDimensions.spacingVerticalSm,
-                AppDimensions.pagePadding,
-                AppDimensions.spacingVerticalLg,
-              ),
+              padding: AppDimensions.pagePadding,
               child: AppButton(
                 label: 'Add License',
                 type: AppButton1Type.secondary,

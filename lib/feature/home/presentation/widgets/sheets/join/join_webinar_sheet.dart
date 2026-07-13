@@ -1,4 +1,3 @@
-import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/widgets/input/app_input2.dart';
 import 'package:flutter/material.dart';
 
@@ -6,17 +5,17 @@ import '../../../../../../core/constant/app_dimensions.dart';
 import '../../../../../../core/theme/typography/app_typography_extension.dart';
 import '../../../../../../core/widgets/bottom_sheet/app_bottom_sheet.dart';
 import '../../../../../../core/widgets/bottom_sheet/show_app_bottom_sheet.dart';
-import '../../../../../../core/widgets/button/app_button.dart';
 
 Future<void> showJointWebinarSheet(BuildContext context) {
   return showAppBottomSheet<void>(
     context,
     header: const AppBottomSheetHeader(title: 'Join Webinar'),
     body: const _JoinWebinarSheet(),
-    footer: AppButton(
-      label: 'Join Now',
-      onPressed: () => moveBack(context),
-    ),
+    showFooterButton: true,
+    footerButtonLabel: 'Join Now',
+    onFooterButtonPressed: () => {
+      // TODO: Implement join webinar logic
+    },
   );
 }
 

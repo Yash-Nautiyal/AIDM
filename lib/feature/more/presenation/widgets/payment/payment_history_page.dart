@@ -82,12 +82,7 @@ class PaymentHistoryPage extends StatelessWidget {
       appBar: const AppAppBar(title: 'Payment History', showBack: true),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(
-            AppDimensions.pagePadding,
-            AppDimensions.spacingVerticalLg,
-            AppDimensions.pagePadding,
-            AppDimensions.spacingVertical3xl,
-          ),
+          padding: AppDimensions.pagePadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

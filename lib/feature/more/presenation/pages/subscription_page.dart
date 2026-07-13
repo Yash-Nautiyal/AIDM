@@ -39,12 +39,7 @@ class SubscriptionPage extends StatelessWidget {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: EdgeInsets.fromLTRB(
-                  AppDimensions.pagePadding,
-                  AppDimensions.spacingVerticalLg,
-                  AppDimensions.pagePadding,
-                  AppDimensions.spacingVerticalLg,
-                ),
+                padding: AppDimensions.pagePadding,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -97,12 +92,7 @@ class SubscriptionPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(
-                AppDimensions.pagePadding,
-                AppDimensions.spacingVerticalSm,
-                AppDimensions.pagePadding,
-                AppDimensions.spacingVerticalLg,
-              ),
+              padding: AppDimensions.pagePadding,
               child: Column(
                 children: [
                   AppButton(

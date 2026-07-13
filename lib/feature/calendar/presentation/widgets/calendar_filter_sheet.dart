@@ -61,7 +61,7 @@ class _CalendarFilterSheetBodyState<T>
       children: [
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: AppDimensions.pagePadding,
+            horizontal: AppDimensions.spacing2xl,
             vertical: AppDimensions.spacingVerticalMd,
           ),
           child: Row(
@@ -112,7 +112,7 @@ class _CalendarFilterSheetBodyState<T>
                   onTap: () => setState(() => _selected = option),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: AppDimensions.pagePadding,
+                      horizontal: AppDimensions.spacing2xl,
                       vertical: AppDimensions.spacingVerticalLg,
                     ),
                     child: Row(
@@ -143,8 +143,8 @@ class _CalendarFilterSheetBodyState<T>
                   height: 1,
                   thickness: 1,
                   color: theme.borderDefault,
-                  indent: AppDimensions.pagePadding,
-                  endIndent: AppDimensions.pagePadding,
+                  indent: AppDimensions.spacing2xl,
+                  endIndent: AppDimensions.spacing2xl,
                 ),
             ],
           );

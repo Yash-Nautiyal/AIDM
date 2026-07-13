@@ -50,9 +50,7 @@ class _AuthPageLayoutState extends State<AuthPageLayout> {
         child: LayoutBuilder(
           builder: (context, constraints) {
             return SingleChildScrollView(
-              padding: EdgeInsets.symmetric(
-                horizontal: AppDimensions.pagePadding,
-              ).copyWith(top: AppDimensions.spacing3xl),
+              padding: AppDimensions.pagePadding,
               child: Column(
                 children: [
                   SizedBox(height: AppDimensions.spacing3xl),
