@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
-import 'package:aidm/core/utils/responsive_extension.dart';
+import 'package:aidm/core/utils/app/responsive_extension.dart';
 import 'package:flutter/material.dart';
 
 class AppStatusBadge extends StatelessWidget {

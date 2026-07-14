@@ -1,7 +1,7 @@
 import 'package:aidm/core/routes/shell_routes.dart';
 import 'package:flutter/material.dart';
 
-import 'app_navbar.dart';
+import '../nav/app_navbar.dart';
 
 class AppShell extends StatefulWidget {
   const AppShell({super.key, this.initialIndex = 0});

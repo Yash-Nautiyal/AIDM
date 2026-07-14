@@ -3,7 +3,9 @@ import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
-import 'package:aidm/feature/auth/presentation/pages/welocome_page.dart';
+import 'package:aidm/feature/auth/presentation/bloc/session/session_bloc.dart';
+import 'package:aidm/feature/auth/presentation/bloc/session/session_event.dart';
+import 'package:aidm/feature/auth/presentation/bloc/session/session_state.dart';
 import 'package:aidm/feature/more/presenation/pages/attachments_page.dart';
 import 'package:aidm/feature/more/presenation/pages/integration_page.dart';
 import 'package:aidm/feature/more/presenation/pages/profile_page.dart';
@@ -12,12 +14,11 @@ import 'package:aidm/feature/more/presenation/widgets/more/more_email_preference
 import 'package:aidm/feature/more/presenation/widgets/more/more_menu_section.dart';
 import 'package:aidm/feature/more/presenation/widgets/more/more_profile_header.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MorePage extends StatelessWidget {
   const MorePage({super.key});
 
-  static const _displayName = 'Dunge';
-  static const _email = 'dunge@example.com';
   static const _joinedDate = 'Joined 02 July 2026';
 
   void _openProfile(BuildContext context) {
@@ -37,13 +38,14 @@ class MorePage extends StatelessWidget {
   }
 
   void _signOut(BuildContext context) {
-    moveTo(context, const WelocomePage(), clearStack: true);
+    context.read<SessionBloc>().add(const SessionSignedOut());
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
     final typography = Theme.of(context).extension<AppTypographyExtension>()!;
+    final user = context.watch<SessionBloc>().state.sessionOrNull;
 
     return Scaffold(
       backgroundColor: theme.backgroundPage,
@@ -52,9 +54,9 @@ class MorePage extends StatelessWidget {
           padding: AppDimensions.pagePadding,
           child: Column(
             children: [
-              const MoreProfileHeader(
-                displayName: _displayName,
-                email: _email,
+              MoreProfileHeader(
+                displayName: user?.greetingName ?? '',
+                email: user?.email ?? '',
                 joinedDate: _joinedDate,
               ),
               SizedBox(height: AppDimensions.spacingVertical2xl),

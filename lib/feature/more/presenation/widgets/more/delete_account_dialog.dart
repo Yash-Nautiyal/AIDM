@@ -1,10 +1,11 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
-import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
-import 'package:aidm/core/utils/responsive_extension.dart';
-import 'package:aidm/feature/auth/presentation/pages/sign_in_page.dart';
+import 'package:aidm/core/utils/app/responsive_extension.dart';
+import 'package:aidm/feature/auth/presentation/bloc/session/session_bloc.dart';
+import 'package:aidm/feature/auth/presentation/bloc/session/session_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 Future<void> showDeleteAccountDialog(BuildContext context) {
   return showDialog<void>(
@@ -23,10 +24,8 @@ class DeleteAccountDialog extends StatelessWidget {
       'for legal compliance but will be anonymised.';
 
   void _confirmDelete(BuildContext context) {
-    Navigator.of(
-      context,
-      rootNavigator: true,
-    ).pushAndRemoveUntil(pageRoute(page: const SignInPage()), (_) => false);
+    Navigator.of(context).pop();
+    context.read<SessionBloc>().add(const SessionSignedOut());
   }
 
   @override

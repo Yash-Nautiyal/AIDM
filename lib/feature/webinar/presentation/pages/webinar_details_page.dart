@@ -1,7 +1,7 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
-import 'package:aidm/core/utils/share_utils.dart';
+import 'package:aidm/core/utils/common/share_utils.dart';
 import 'package:aidm/core/widgets/app_bar/app_appbar.dart';
 import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:aidm/feature/home/presentation/widgets/sheets/start/start_webinar_sheet.dart';

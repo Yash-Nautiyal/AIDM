@@ -5,7 +5,7 @@ import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../../core/utils/responsive_extension.dart';
+import '../../../../../core/utils/app/responsive_extension.dart';
 
 class HomeUpgradeCard extends StatelessWidget {
   const HomeUpgradeCard({super.key, this.onUpgradeTap});

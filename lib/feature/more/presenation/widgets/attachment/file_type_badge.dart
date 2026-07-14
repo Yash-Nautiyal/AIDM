@@ -1,5 +1,5 @@
-import 'package:aidm/core/utils/file_utils.dart';
-import 'package:aidm/core/utils/responsive_extension.dart';
+import 'package:aidm/core/utils/common/file_utils.dart';
+import 'package:aidm/core/utils/app/responsive_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

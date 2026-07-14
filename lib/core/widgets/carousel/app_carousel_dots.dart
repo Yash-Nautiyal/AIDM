@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../constant/app_dimensions.dart';
 import '../../theme/app_theme_extension.dart';
-import '../../utils/responsive_extension.dart';
+import '../../utils/app/responsive_extension.dart';
 
 class AppCarouselDots extends StatelessWidget {
   const AppCarouselDots({

@@ -1,9 +1,12 @@
 import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/widgets/button/app_floating_button.dart';
+import 'package:aidm/feature/auth/presentation/bloc/session/session_bloc.dart';
+import 'package:aidm/feature/auth/presentation/bloc/session/session_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constant/app_dimensions.dart';
-import '../../../../core/widgets/nav/app_shell.dart';
+import '../../../../core/widgets/layout/app_shell.dart';
 import '../../../../core/theme/app_theme_extension.dart';
 import 'notification_page.dart';
 import 'schedule_page.dart';
@@ -21,6 +24,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
+    final user = context.watch<SessionBloc>().state.sessionOrNull;
     final webinars = [
       HomeWebinarCardData(
         title: 'Product Demo Day',
@@ -42,7 +46,7 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               HomeHeader(
-                userName: 'Dunge',
+                userName: user?.greetingName ?? '',
                 onNotificationsTap: () {
                   moveTo(context, const NotificationPage());
                 },

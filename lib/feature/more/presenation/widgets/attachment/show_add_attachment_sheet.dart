@@ -3,7 +3,7 @@ import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
-import 'package:aidm/core/utils/responsive_extension.dart';
+import 'package:aidm/core/utils/app/responsive_extension.dart';
 import 'package:aidm/core/widgets/bottom_sheet/app_bottom_sheet.dart';
 import 'package:aidm/core/widgets/bottom_sheet/show_app_bottom_sheet.dart';
 import 'package:aidm/core/widgets/button/app_button.dart';

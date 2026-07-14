@@ -4,6 +4,7 @@ import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:aidm/core/widgets/input/app_input1.dart';
+import 'package:aidm/feature/auth/presentation/widgets/auth_back_button.dart';
 import 'package:aidm/feature/auth/presentation/widgets/auth_legal_footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -17,6 +18,9 @@ class AuthPageLayout extends StatefulWidget {
     required this.secondaryActionLabel,
     required this.onPrimaryPressed,
     required this.onSecondaryPressed,
+    this.onBack,
+    this.isLoading = false,
+    this.errorMessage,
   });
 
   final String title;
@@ -25,13 +29,22 @@ class AuthPageLayout extends StatefulWidget {
   final String secondaryActionLabel;
   final ValueChanged<String> onPrimaryPressed;
   final VoidCallback onSecondaryPressed;
+  final VoidCallback? onBack;
+  final bool isLoading;
+  final String? errorMessage;
 
   @override
   State<AuthPageLayout> createState() => _AuthPageLayoutState();
 }
 
 class _AuthPageLayoutState extends State<AuthPageLayout> {
-  final _emailController = TextEditingController();
+  late final TextEditingController _emailController;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController();
+  }
 
   @override
   void dispose() {
@@ -53,7 +66,14 @@ class _AuthPageLayoutState extends State<AuthPageLayout> {
               padding: AppDimensions.pagePadding,
               child: Column(
                 children: [
-                  SizedBox(height: AppDimensions.spacing3xl),
+                  if (widget.onBack != null) ...[
+                    AuthBackButton(
+                      onPressed: widget.onBack!,
+                      enabled: !widget.isLoading,
+                    ),
+                    SizedBox(height: AppDimensions.spacingMd),
+                  ] else
+                    SizedBox(height: AppDimensions.spacing3xl),
                   SvgPicture.asset(
                     AppAssets.appLogo,
                     width: AppDimensions.logoWidth,
@@ -94,13 +114,26 @@ class _AuthPageLayoutState extends State<AuthPageLayout> {
                     ),
                   ),
                   SizedBox(height: AppDimensions.spacing2xl),
+                  if (widget.errorMessage != null) ...[
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        widget.errorMessage!,
+                        style: typography.bodyMedium.copyWith(
+                          color: theme.textDanger,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: AppDimensions.spacingMd),
+                  ],
                   AppButton(
                     label: widget.buttonLabel,
-                    onPressed: _handlePrimaryPressed,
+                    isLoading: widget.isLoading,
+                    onPressed: widget.isLoading ? null : _handlePrimaryPressed,
                   ),
                   SizedBox(height: AppDimensions.spacingLg),
                   GestureDetector(
-                    onTap: widget.onSecondaryPressed,
+                    onTap: widget.isLoading ? null : widget.onSecondaryPressed,
                     child: RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../utils/responsive_extension.dart';
+import '../../utils/app/responsive_extension.dart';
 
 class AppTypography {
   AppTypography._();

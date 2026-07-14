@@ -2,23 +2,37 @@ import 'dart:io';
 
 import 'package:aidm/core/constant/app_assets.dart';
 import 'package:aidm/core/constant/app_dimensions.dart';
-import 'package:aidm/core/routes/app_router.dart';
+import 'package:aidm/core/result/result.dart';
+import 'package:aidm/core/routes/auth_routes.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
-import 'package:aidm/core/theme/typography/app_typography_extension.dart';
-import 'package:aidm/core/utils/responsive_extension.dart';
+import 'package:aidm/core/utils/app/responsive_extension.dart';
+import 'package:aidm/core/utils/common/text_utils.dart';
 import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:aidm/core/widgets/carousel/app_carousel_dots.dart';
 import 'package:aidm/core/widgets/dialog/ios_action_sheet.dart';
-import 'package:aidm/core/widgets/input/app_input1.dart';
+import 'package:aidm/feature/auth/domain/entities/auth_resume_route.dart';
+import 'package:aidm/feature/auth/domain/repositories/auth_repository.dart';
+import 'package:aidm/feature/auth/domain/usecases/complete_permission.dart';
+import 'package:aidm/feature/auth/domain/usecases/save_session_metadata.dart';
+import 'package:aidm/feature/auth/domain/usecases/update_avatar.dart';
+import 'package:aidm/feature/auth/domain/usecases/update_profile.dart';
+import 'package:aidm/feature/auth/presentation/bloc/session/session_bloc.dart';
+import 'package:aidm/feature/auth/presentation/bloc/session/session_event.dart';
+import 'package:aidm/core/utils/auth/auth_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../widgets/profile_slide.dart';
 import '../widgets/sliding_page_layout.dart';
-import 'premium_page.dart';
 
 class PermissionPage extends StatefulWidget {
-  const PermissionPage({super.key});
+  const PermissionPage({super.key, this.profileOnly = false});
+
+  /// When true, opens directly to the profile slide (existing users missing
+  /// display name after login/restore).
+  final bool profileOnly;
 
   @override
   State<PermissionPage> createState() => _PermissionPageState();
@@ -27,6 +41,7 @@ class PermissionPage extends StatefulWidget {
 class _PermissionPageState extends State<PermissionPage>
     with WidgetsBindingObserver {
   static const _slideCount = 3;
+  static const _profileSlideIndex = 2;
 
   final _pageController = PageController();
   final _displayNameController = TextEditingController();
@@ -36,11 +51,69 @@ class _PermissionPageState extends State<PermissionPage>
   File? _profileImage;
   bool _notificationRequested = false;
   bool _calendarRequested = false;
+  bool _isSubmitting = false;
+  String? _errorMessage;
+
+  late final CompletePermission _completePermission;
+  late final SaveSessionMetadata _saveSessionMetadata;
+  late final UpdateProfile _updateProfile;
+  late final UpdateAvatar _updateAvatar;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    final repository = context.read<AuthRepository>();
+    _completePermission = CompletePermission(repository);
+    _saveSessionMetadata = SaveSessionMetadata(repository);
+    _updateProfile = UpdateProfile(repository);
+    _updateAvatar = UpdateAvatar(repository);
+    _restorePageState();
+  }
+
+  Future<void> _restorePageState() async {
+    final result = await context.read<AuthRepository>().readCachedSession();
+    final session = result.fold(
+      onSuccess: (value) => value,
+      onFailure: (_) => null,
+    );
+
+    final displayName = session?.displayName;
+    if (displayName != null && displayName.isNotEmpty) {
+      _displayNameController.text = displayName;
+    }
+
+    if (widget.profileOnly) {
+      if (!mounted) return;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _pageController.jumpToPage(_profileSlideIndex);
+        setState(() => _currentIndex = _profileSlideIndex);
+      });
+      return;
+    }
+
+    final index = await _resolveInitialSlide(session?.permissionPageIndex ?? 0);
+    if (!mounted || index <= 0) return;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _pageController.jumpToPage(index);
+      setState(() => _currentIndex = index);
+    });
+  }
+
+  /// OS is source of truth for notification/calendar; prefs only restore profile slide.
+  Future<int> _resolveInitialSlide(int savedIndex) async {
+    final notification = await Permission.notification.status;
+    final calendar = await _calendarPermission.status;
+
+    var fromOs = 0;
+    if (notification.isGranted) fromOs = 1;
+    if (calendar.isGranted) fromOs = 2;
+
+    if (savedIndex >= _profileSlideIndex) return _profileSlideIndex;
+    return fromOs > savedIndex ? fromOs : savedIndex;
   }
 
   @override
@@ -54,21 +127,18 @@ class _PermissionPageState extends State<PermissionPage>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      _checkPermissionOnResume();
+      _syncSlidesWithOsPermissions();
     }
   }
 
-  Future<void> _checkPermissionOnResume() async {
-    if (!mounted) return;
+  Future<void> _syncSlidesWithOsPermissions() async {
+    if (!mounted || widget.profileOnly) return;
 
-    if (_currentIndex == 0) {
-      final status = await Permission.notification.status;
-      if (status.isGranted) _goToSlide(1);
-    } else if (_currentIndex == 1) {
-      final permission = _calendarPermission;
-      final status = await permission.status;
-      if (status.isGranted) _goToSlide(2);
-    }
+    final index = await _resolveInitialSlide(_currentIndex);
+    if (index == _currentIndex) return;
+
+    _pageController.jumpToPage(index);
+    setState(() => _currentIndex = index);
   }
 
   Permission get _calendarPermission => Platform.isIOS
@@ -81,10 +151,158 @@ class _PermissionPageState extends State<PermissionPage>
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
+    setState(() => _currentIndex = index);
+
+    if (index == _profileSlideIndex) {
+      _persistProfileSlide();
+    }
   }
 
-  void _finishOnboarding() {
-    moveTo(context, const PremiumPage(), clearStack: true);
+  Future<void> _persistProfileSlide() async {
+    final result = await context.read<AuthRepository>().readCachedSession();
+    final session = result.fold(
+      onSuccess: (value) => value,
+      onFailure: (_) => null,
+    );
+    if (session == null || !mounted) return;
+
+    final trimmedName = _displayNameController.text.trim();
+
+    await _saveSessionMetadata(
+      session.copyWith(
+        permissionPageIndex: _profileSlideIndex,
+        resumeRoute: AuthResumeRoute.permission,
+        displayName: trimmedName.isNotEmpty ? trimmedName : session.displayName,
+      ),
+    );
+  }
+
+  Future<void> _finishPermission() async {
+    if (_isSubmitting) return;
+
+    if (widget.profileOnly) {
+      await _finishExistingUserProfile();
+      return;
+    }
+
+    final cachedResult = await context.read<AuthRepository>().readCachedSession();
+    final session = cachedResult.fold(
+      onSuccess: (value) => value,
+      onFailure: (_) => null,
+    );
+
+    if (session != null && !session.isNewUser) {
+      await _finishExistingUserProfile();
+      return;
+    }
+
+    setState(() {
+      _isSubmitting = true;
+      _errorMessage = null;
+    });
+
+    final result = await _completePermission(
+      CompletePermissionParams(
+        displayName: _displayNameController.text,
+        avatarFilePath: _profileImage?.path,
+      ),
+    );
+
+    if (!mounted) return;
+
+    result.fold(
+      onSuccess: (email) => AuthRoutes.toPremium(context, email: email),
+      onFailure: (failure) {
+        setState(() {
+          _isSubmitting = false;
+          _errorMessage = messageForAuthFailure(failure);
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(_errorMessage!)),
+        );
+      },
+    );
+  }
+
+  Future<void> _finishExistingUserProfile() async {
+    final trimmedName = _displayNameController.text.trim();
+    if (trimmedName.isEmpty) {
+      setState(() => _errorMessage = 'Please enter a display name.');
+      return;
+    }
+
+    setState(() {
+      _isSubmitting = true;
+      _errorMessage = null;
+    });
+
+    final cachedResult = await context.read<AuthRepository>().readCachedSession();
+    final baseSession = cachedResult.fold(
+      onSuccess: (value) => value,
+      onFailure: (_) => null,
+    );
+
+    if (baseSession == null || !mounted) {
+      setState(() {
+        _isSubmitting = false;
+        _errorMessage = 'Session not found. Please sign in again.';
+      });
+      return;
+    }
+
+    final (firstName, lastName) = parseDisplayName(trimmedName);
+
+    final result = await _updateProfile(
+      UpdateProfileParams(
+        firstName: firstName,
+        lastName: lastName,
+        email: baseSession.email,
+      ),
+    );
+
+    if (!mounted) return;
+
+    await result.fold(
+      onSuccess: (_) async {
+        if (_profileImage != null) {
+          await _updateAvatar(_profileImage!.path);
+        }
+
+        if (!mounted) return;
+
+        final updated = baseSession.copyWith(
+          displayName: trimmedName,
+          permissionPageIndex: 0,
+          resumeRoute: baseSession.isPremium
+              ? AuthResumeRoute.welcome
+              : AuthResumeRoute.subscription,
+        );
+
+        if (widget.profileOnly || baseSession.isPermissionComplete) {
+          context.read<SessionBloc>().add(SessionProfileUpdated(updated));
+          return;
+        }
+
+        await _saveSessionMetadata(updated);
+        if (!mounted) return;
+
+        if (baseSession.isPremium) {
+          context.read<SessionBloc>().add(
+            SessionSignedIn(
+              updated.copyWith(isPermissionComplete: true),
+            ),
+          );
+        } else {
+          await AuthRoutes.toPremium(context, email: baseSession.email);
+        }
+      },
+      onFailure: (failure) {
+        setState(() {
+          _isSubmitting = false;
+          _errorMessage = messageForAuthFailure(failure);
+        });
+      },
+    );
   }
 
   Future<void> _requestNotificationPermission() async {
@@ -101,7 +319,7 @@ class _PermissionPageState extends State<PermissionPage>
       permission: _calendarPermission,
       hasRequested: _calendarRequested,
       onRequested: () => _calendarRequested = true,
-      onGranted: () => _goToSlide(2),
+      onGranted: () => _goToSlide(_profileSlideIndex),
     );
   }
 
@@ -118,7 +336,6 @@ class _PermissionPageState extends State<PermissionPage>
     }
 
     if (hasRequested) {
-      // iOS never re-shows the system dialog after the first denial.
       await openAppSettings();
       return;
     }
@@ -178,29 +395,37 @@ class _PermissionPageState extends State<PermissionPage>
               child: PageView(
                 controller: _pageController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (index) => setState(() => _currentIndex = index),
+                onPageChanged: (index) {
+                  setState(() => _currentIndex = index);
+                  if (index == _profileSlideIndex) {
+                    _persistProfileSlide();
+                  }
+                },
                 children: [
                   _NotificationsSlide(
                     onEnableNotifications: _requestNotificationPermission,
                   ),
                   _CalendarSlide(onContinue: _requestCalendarPermission),
-                  _ProfileSlide(
+                  ProfileSlide(
                     displayNameController: _displayNameController,
                     profileImage: _profileImage,
+                    errorMessage: _errorMessage,
+                    isSubmitting: _isSubmitting,
                     onUploadPhoto: _showProfilePictureActionSheet,
-                    onContinue: _finishOnboarding,
-                    onNotNow: _finishOnboarding,
+                    onContinue: _isSubmitting ? null : _finishPermission,
+                    onNotNow: _isSubmitting ? null : _finishPermission,
                   ),
                 ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: AppDimensions.spacingLg),
-              child: AppCarouselDots(
-                count: _slideCount,
-                currentIndex: _currentIndex,
+            if (!widget.profileOnly)
+              Padding(
+                padding: EdgeInsets.only(bottom: AppDimensions.spacingLg),
+                child: AppCarouselDots(
+                  count: _slideCount,
+                  currentIndex: _currentIndex,
+                ),
               ),
-            ),
           ],
         ),
       ),
@@ -253,83 +478,6 @@ class _CalendarSlide extends StatelessWidget {
         fit: BoxFit.contain,
       ),
       actions: [AppButton(label: 'Continue', onPressed: onContinue)],
-    );
-  }
-}
-
-class _ProfileSlide extends StatelessWidget {
-  const _ProfileSlide({
-    required this.displayNameController,
-    required this.profileImage,
-    required this.onUploadPhoto,
-    required this.onContinue,
-    required this.onNotNow,
-  });
-
-  final TextEditingController displayNameController;
-  final File? profileImage;
-  final VoidCallback onUploadPhoto;
-  final VoidCallback onContinue;
-  final VoidCallback onNotNow;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context).extension<AppThemeExtension>()!;
-    final typography = Theme.of(context).extension<AppTypographyExtension>()!;
-
-    return SlidingPageLayout(
-      title: 'Personalize your profile',
-      subtitle:
-          'A complete profile gets 3x more returning attendees. Takes 10 seconds your audience will notice.',
-      illustration: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          GestureDetector(
-            onTap: onUploadPhoto,
-            child: Container(
-              width: 120.w,
-              height: 120.w,
-              decoration: BoxDecoration(
-                color: theme.brandPrimary,
-                shape: BoxShape.circle,
-                image: profileImage != null
-                    ? DecorationImage(
-                        image: FileImage(profileImage!),
-                        fit: BoxFit.cover,
-                      )
-                    : null,
-              ),
-            ),
-          ),
-          SizedBox(height: AppDimensions.spacingMd),
-          GestureDetector(
-            onTap: onUploadPhoto,
-            child: Text(
-              'Upload profile picture',
-              style: typography.bodyMedium.copyWith(color: theme.brandPrimary),
-            ),
-          ),
-        ],
-      ),
-      footer: Column(
-        children: [
-          AppInput(
-            controller: displayNameController,
-            hintText: 'Display Name',
-            textInputAction: TextInputAction.done,
-          ),
-          SizedBox(height: AppDimensions.spacingSm),
-          Text(
-            'Enter a name (e.g. first name, last name, or nickname)',
-            style: typography.captionLight.copyWith(color: theme.textTertiary),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-      actions: [
-        AppButton(label: 'Continue', onPressed: onContinue),
-        AppButton(label: 'Not Now', onPressed: onNotNow, enabled: false),
-      ],
     );
   }
 }

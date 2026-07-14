@@ -2,7 +2,7 @@ import 'package:aidm/core/constant/app_assets.dart';
 import 'package:aidm/core/constant/app_dimensions.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
-import 'package:aidm/core/utils/file_utils.dart';
+import 'package:aidm/core/utils/common/file_utils.dart';
 import 'package:aidm/core/widgets/card/app_card.dart';
 import 'package:aidm/core/widgets/popup/popup.dart';
 import 'package:aidm/core/widgets/popup/responsive_popup.dart';

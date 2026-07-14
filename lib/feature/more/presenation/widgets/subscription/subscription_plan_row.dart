@@ -5,7 +5,7 @@ import '../../../../../core/constant/app_dimensions.dart';
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/theme/app_theme_extension.dart';
 import '../../../../../core/theme/typography/app_typography_extension.dart';
-import '../../../../../core/utils/responsive_extension.dart';
+import '../../../../../core/utils/app/responsive_extension.dart';
 import '../../../../../core/widgets/badge/app_status_badge.dart';
 
 class SubscriptionPlanRow extends StatelessWidget {

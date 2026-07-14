@@ -1,4 +1,4 @@
-import 'package:aidm/core/utils/responsive_extension.dart';
+import 'package:aidm/core/utils/app/responsive_extension.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/app_dimensions.dart';

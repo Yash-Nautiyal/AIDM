@@ -4,7 +4,7 @@ import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/date_time_utils.dart';
+import '../../../../../core/utils/common/date_time_utils.dart';
 import '../webinar_list/home_webinar_cards.dart';
 import '../webinar_list/home_webinar_date_filter.dart';
 import '../webinar_list/home_webinar_list_empty.dart';

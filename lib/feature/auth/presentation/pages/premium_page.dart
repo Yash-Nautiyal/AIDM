@@ -1,18 +1,24 @@
 import 'package:aidm/core/constant/app_dimensions.dart';
-import 'package:aidm/core/routes/app_router.dart';
 import 'package:aidm/core/theme/app_colors.dart';
 import 'package:aidm/core/theme/app_theme_extension.dart';
 import 'package:aidm/core/theme/typography/app_typography_extension.dart';
-import 'package:aidm/core/utils/responsive_extension.dart';
+import 'package:aidm/core/utils/app/responsive_extension.dart';
 import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:aidm/core/widgets/card/app_card.dart';
-import 'package:aidm/core/widgets/nav/app_shell.dart';
+import 'package:aidm/core/routes/auth_routes.dart';
+import 'package:aidm/feature/auth/domain/repositories/auth_repository.dart';
+import 'package:aidm/feature/auth/domain/usecases/enter_app.dart';
+import 'package:aidm/feature/auth/presentation/bloc/premium/premium_cubit.dart';
+import 'package:aidm/feature/auth/presentation/bloc/premium/premium_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constant/app_assets.dart';
 
 class PremiumPage extends StatelessWidget {
-  const PremiumPage({super.key});
+  const PremiumPage({super.key, this.email});
+
+  final String? email;
 
   static const _features = [
     'Unlimited Capacity (1K to 1M attendees)',
@@ -24,8 +30,26 @@ class PremiumPage extends StatelessWidget {
     'Priority support',
   ];
 
-  void _goToDashboard(BuildContext context) {
-    moveTo(context, const AppShell(key: Key('app_shell')), clearStack: true);
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => PremiumCubit(
+        EnterApp(context.read<AuthRepository>()),
+      ),
+      child: _PremiumPageView(email: email, features: _features),
+    );
+  }
+}
+
+class _PremiumPageView extends StatelessWidget {
+  const _PremiumPageView({required this.email, required this.features});
+
+  final String? email;
+  final List<String> features;
+
+  void _enterApp(BuildContext context) {
+    context.read<PremiumCubit>().clearError();
+    context.read<PremiumCubit>().enterApp(email: email);
   }
 
   @override
@@ -33,71 +57,105 @@ class PremiumPage extends StatelessWidget {
     final theme = Theme.of(context).extension<AppThemeExtension>()!;
     final typography = Theme.of(context).extension<AppTypographyExtension>()!;
 
-    return Scaffold(
-      backgroundColor: theme.backgroundPage,
-      body: SafeArea(
-        child: Padding(
-          padding: AppDimensions.pagePadding,
-          child: Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: EdgeInsets.only(top: AppDimensions.spacing3xl),
-                  child: Column(
-                    children: [
-                      Text(
-                        'Premium performance,\nunbeatable pricing.',
-                        style: typography.h2.copyWith(
-                          color: theme.brandPrimary,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: AppDimensions.spacingMd),
-                      Text(
-                        'Scale your audience without scaling your budget. '
-                        'Experience high-end broadcasting with a transparent model.',
-                        style: typography.bodyMedium.copyWith(
-                          color: theme.textSecondary,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: AppDimensions.spacing2xl),
-                      _PricingCard(
-                        theme: theme,
-                        typography: typography,
-                        features: _features,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: AppDimensions.spacingLg,
-                  bottom: AppDimensions.spacingLg,
-                ),
+    return BlocListener<PremiumCubit, PremiumState>(
+      listener: (context, state) {
+        switch (state) {
+          case PremiumEnterAppReady(:final session):
+            AuthRoutes.signIn(context, session);
+          case PremiumFailure(:final message):
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(message)),
+            );
+          default:
+            break;
+        }
+      },
+      child: BlocBuilder<PremiumCubit, PremiumState>(
+        builder: (context, state) {
+          final isBusy = state is PremiumEntering || state is PremiumSubscribing;
+          final errorMessage = state is PremiumFailure ? state.message : null;
+
+          return Scaffold(
+            backgroundColor: theme.backgroundPage,
+            body: SafeArea(
+              child: Padding(
+                padding: AppDimensions.pagePadding,
                 child: Column(
                   children: [
-                    AppButton(
-                      label: 'Get Started',
-                      onPressed: () => _goToDashboard(context),
-                    ),
-                    SizedBox(height: AppDimensions.spacingMd),
-                    GestureDetector(
-                      onTap: () => _goToDashboard(context),
-                      child: Text(
-                        'Skip for now',
-                        style: typography.bodyMedium.copyWith(
-                          color: theme.textSecondary,
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: EdgeInsets.only(top: AppDimensions.spacing3xl),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Premium performance,\nunbeatable pricing.',
+                              style: typography.h2.copyWith(
+                                color: theme.brandPrimary,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(height: AppDimensions.spacingMd),
+                            Text(
+                              'Scale your audience without scaling your budget. '
+                              'Experience high-end broadcasting with a transparent model.',
+                              style: typography.bodyMedium.copyWith(
+                                color: theme.textSecondary,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(height: AppDimensions.spacing2xl),
+                            _PricingCard(
+                              theme: theme,
+                              typography: typography,
+                              features: features,
+                            ),
+                          ],
                         ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: AppDimensions.spacingLg,
+                        bottom: AppDimensions.spacingLg,
+                      ),
+                      child: Column(
+                        children: [
+                          if (errorMessage != null) ...[
+                            Text(
+                              errorMessage,
+                              style: typography.bodyMedium.copyWith(
+                                color: theme.textDanger,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(height: AppDimensions.spacingMd),
+                          ],
+                          AppButton(
+                            label: 'Get Started',
+                            isLoading: isBusy,
+                            onPressed: isBusy ? null : () => _enterApp(context),
+                          ),
+                          SizedBox(height: AppDimensions.spacingMd),
+                          GestureDetector(
+                            onTap: isBusy ? null : () => _enterApp(context),
+                            child: Text(
+                              'Skip for now',
+                              style: typography.bodyMedium.copyWith(
+                                color: isBusy
+                                    ? theme.textTertiary
+                                    : theme.textSecondary,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

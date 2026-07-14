@@ -6,7 +6,7 @@ import 'package:aidm/core/widgets/datepicker/app_date_picker.dart';
 import 'package:aidm/core/widgets/datepicker/app_time_picker.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/date_time_utils.dart';
+import '../../../../core/utils/common/date_time_utils.dart';
 import 'schedule_advanced_settings_page.dart';
 import 'schedule_time_zone_page.dart';
 import '../widgets/schedule/schedule_date_section.dart';

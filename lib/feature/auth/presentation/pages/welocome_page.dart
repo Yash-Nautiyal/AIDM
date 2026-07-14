@@ -1,12 +1,10 @@
 import 'package:aidm/core/constant/app_assets.dart';
-import 'package:aidm/core/routes/app_router.dart';
+import 'package:aidm/core/constant/app_dimensions.dart';
+import 'package:aidm/core/routes/auth_routes.dart';
+import 'package:aidm/core/theme/app_theme_extension.dart';
+import 'package:aidm/core/theme/typography/app_typography_extension.dart';
+import 'package:aidm/core/widgets/button/app_button.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/constant/app_dimensions.dart';
-import '../../../../core/theme/app_theme_extension.dart';
-import '../../../../core/theme/typography/app_typography_extension.dart';
-import '../../../../core/widgets/button/app_button.dart';
-import 'sign_up_page.dart';
 
 class WelocomePage extends StatelessWidget {
   const WelocomePage({super.key});
@@ -57,9 +55,7 @@ class WelocomePage extends StatelessWidget {
                     SizedBox(height: AppDimensions.spacing2xl),
                     AppButton(
                       label: 'Get Started',
-                      onPressed: () {
-                        moveTo(context, const SignUpPage());
-                      },
+                      onPressed: () => AuthRoutes.toSignUp(context),
                     ),
                   ],
                 ),

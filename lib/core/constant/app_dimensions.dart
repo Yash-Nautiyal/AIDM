@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/responsive_extension.dart';
+import '../utils/app/responsive_extension.dart';
 
 abstract final class AppDimensions {
   // Page layou

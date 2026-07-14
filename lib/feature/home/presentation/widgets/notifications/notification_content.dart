@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../core/constant/app_dimensions.dart';
 import '../../../../../core/theme/app_theme_extension.dart';
 import '../../../../../core/theme/typography/app_typography_extension.dart';
-import '../../../../../core/utils/file_utils.dart';
+import '../../../../../core/utils/common/file_utils.dart';
 import '../../../domain/entities/notification.dart';
 import '../../utils/notification_extensions.dart';
 

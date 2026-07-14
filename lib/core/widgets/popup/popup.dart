@@ -1,4 +1,4 @@
-import 'package:aidm/core/utils/responsive_extension.dart';
+import 'package:aidm/core/utils/app/responsive_extension.dart';
 import 'package:aidm/core/widgets/popup/responsive_popup.dart';
 import 'package:aidm/core/widgets/popup/responsive_popup_container.dart';
 import 'package:flutter/material.dart';

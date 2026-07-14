@@ -7,7 +7,7 @@ import '../../constant/app_dimensions.dart';
 import '../../routes/app_router.dart';
 import '../../theme/app_theme_extension.dart';
 import '../../theme/typography/app_typography_extension.dart';
-import '../../utils/responsive_extension.dart';
+import '../../utils/app/responsive_extension.dart';
 
 class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AppAppBar({

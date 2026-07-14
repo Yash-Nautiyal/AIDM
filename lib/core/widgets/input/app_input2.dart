@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../constant/app_dimensions.dart';
 import '../../theme/app_theme_extension.dart';
 import '../../theme/typography/app_typography_extension.dart';
-import '../../utils/responsive_extension.dart';
+import '../../utils/app/responsive_extension.dart';
 
 class AppInput2 extends StatefulWidget {
   const AppInput2({
